@@ -5,6 +5,8 @@ from flask import Flask, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from collections import defaultdict
+from loguru import logger
+from gevent.pywsgi import WSGIServer
 
 from utils.misc import json_to_dict, configs_abs_path, abs_path
 
@@ -140,4 +142,10 @@ def log():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    logger.remove()
+    logger.add("logs.txt", format="{time:X}|{message}", level="INFO")
+    # Debug/Development
+    # app.run(debug=True, host='0.0.0.0')
+    # Production
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
