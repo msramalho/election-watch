@@ -17,6 +17,7 @@ core/collection/temp/embeddings
 core/collection/temp
 *.joblib
 *.temp
+local/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
