@@ -141,9 +141,17 @@ def log():
     return {"content": read_task_log_file(task, _logs[task]["logs"][index])}
 
 
+@app.after_request
+def add_header(response):
+    response.cache_control.max_age = 54000  # 15min
+    response.cache_control.public = True
+    logger.info(request.full_path)
+    return response
+
+
 if __name__ == '__main__':
     logger.remove()
-    logger.add("logs.txt", format="{time:X}|{message}", level="INFO")
+    logger.add("logs_flask.txt", format="{time:X}|{message}", level="INFO")
     # Debug/Development
     # app.run(debug=True, host='0.0.0.0')
     # Production
