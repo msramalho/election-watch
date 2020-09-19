@@ -13,11 +13,11 @@ For a full description, please check the work on which Election Watch is based: 
 
 ### mongo dumps
 ```bash
-docker exec some-mongo sh -c 'exec mongodump -d electionswatch --archive' > PATHTOLOCALFILE/dump.archive
+docker exec some-mongo sh -c 'exec mongodump -d electionwatch --archive' > PATHTOLOCALFILE/dump.archive
 ```
 
 ```bash
-docker exec -it elections-watch_core_1 bash
+docker exec -it election-watch_core_1 bash
 ```
 
 ### Pre-commit
