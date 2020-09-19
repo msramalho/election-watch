@@ -1,31 +1,34 @@
 {
     "seed": {
-        "usernames": ["HANDLE1", "HANDLE2"]
+        "usernames": ["CeuAlbuquerque", "HelgaCorreia2", "cli_as", "ainterna_pt", "_jalmeida_", "jmpureza", "Jesario1", "_tinoderans_", "ascenso_simoes", "moisesscf", "PSantanaLopes", "francisco__rs", "Partido_PAN", "proque_twit", "JoanaMortagua", "anamiguel1981", "coelho_lima1", "Telmo_Correia", "EBrilhanteDias", "KatarMoreira2", "_ERGUE_TE", "AnaPassosFaro", "FirminoMarquesB", "economia_pt", "cristovaonorte", "1956purp", "MinistroCabrita", "OsVerdes", "pdr_coimbra", "LiberalPT", "limacosta", "jprebelo_sejd", "MRMortagua", "RuiRioPSD", "cultura_pt", "partido_alianca", "JooPaul57839990", "EsquerdaNet", "carlitosbras", "pcp_pt", "ebarrocomelo", "PedroFgSoares", "AlexandraNViei1", "anabela_pedroso", "Diogo_Leao", "zmaglh", "partidochega", "ruitavares", "catarinarf", "filipenb", "AndreCVentura", "MigCMatos", "RBaptistaLeite", "paulorios65", "andrecventura", "govpt", "aapbatista", "JoaoAtaide", "DuarteMarques", "gracafonseca", "alberto_machado", "ambiente_pt", "JorgePauloOliv2", "AntonioFilipe", "FernandoRuasPE", "_CDSPP", "antoniocostapm", "DuarteCordeiro", "tbribeiro", "heloisapolonia", "PartidoTerraMPT", "pedrosizavieira", "jvstorres", "lnes_Sousa_Real", "catarina_mart", "mariofcenteno", "LaraFMartinho", "Alexandre_Poco", "jlcarneiro2009", "coelhopresident", "ppdpsd", "MariaManuelRola", "LuisVPMonteiro", "LIVREpt", "cdupcppev", "Educacao_PT", "justica_pt", "editeestrela", "monicaquintela3", "movimentojpp", "noscidadaos", "HortenseMartins", "defesa_pt", "Ana_M_MG", "PNSpedronuno", "CristasAssuncao", "jpintocoelho60", "HugCarvalho", "luismtesta", "psocialista", "AnaMartinsGomes", "BrunoARFialho", "joao_ferreira33", "mmatias_", "_tinoderans_", "lusa_noticias", "cmjornal", "dntwit", "JornalNoticias", "dnoticiaspt", "AO_Online", "Publico", "SICNoticias", "observadorpt", "tvi24pt", "RTPNoticias", "expresso", "Renascenca", "Radio_Comercial", "Record_Portugal", "ojeconomico", "ECO_PT", "dinheiro_vivo", "SolOnline", "maisfutebol", "Visao_pt", "ojogo", "itwitting"],
+        "hashtags": []
     },
     "collection": {
         "seed": {
-            "friends": true,
+            "friends": false,
             "followers": true
         },
         "limits": {
-            "max_watched_users": 100000000,
-            "max_daily_increase": 25000,
+            "max_watched_users": 1000000,
+            "max_daily_increase": 5000,
             "max_daily_increase_ratio": 0.1,
-            "min_appearances_before_watched": 10
+            "min_appearances_before_watched": 100
         },
         "ignore_tweet_media": false,
-        "oldest_tweet": "Sun Aug 1 00:00:00 +0000 2019",
+        "oldest_tweet": "Sat Aug 1 00:00:00 +0000 2020",
         "search_languages": ["pt", "und"],
-        "max_threads": 8,
+        "max_threads": 2,
         "min_tweets_before_restricting_by_language": 10
     },
     "mongodb": {
-        "address": "mongodb://USER:PASSWORD@localhost:27017/",
-        "database": "twitter",
-        "drive_api_backup_enabled": true
+        "address": "mongodb://root:h942hf334f@localhost:27017/",
+        "address_docker": "mongodb://root:h942hf334f@mongo:27017/",
+        "address_": "mongodb://localhost:27017/",
+        "database": "electionswatch",
+        "drive_api_backup_enabled": false
     },
     "notifications": {
-        "pushbullet_token": "your pushbullet token"
+        "pushbullet_token": "o.OfemmWmawovLfNgWuoqRcaN0wVxIrf2A"
     },
     "database_stats_file": "out/db_logs.csv",
     "seconds_between_db_stats_log": 10,

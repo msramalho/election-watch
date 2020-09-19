@@ -267,13 +267,6 @@ def tweet_to_db_format(t):  # convert a tweet Status object to a dict with "_id"
 
 
 # DB interaction
-def setup_db():
-    # create indexes
-    with DoneMessage("Creating index on tweets.user"): col_tweets.create_index("user")
-    with DoneMessage("Creating index on tweets.created_at"): col_tweets.create_index("created_at")
-    with DoneMessage("Creating index on tweets.original"): col_tweets.create_index("original")
-    print("Database setup complete")
-
 
 def find_exclude_invalid(search_params={}):
     for v in misc.CONFIG["invalid_user_states"].values():

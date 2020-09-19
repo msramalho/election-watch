@@ -14,6 +14,7 @@ settings.yaml
 core/logs_flask.txt
 core/logs.txt
 core/collection/temp/embeddings
+core/collection/temp
 *.joblib
 *.temp
 
