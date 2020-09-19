@@ -1,0 +1,33 @@
+{
+    "seed": {
+        "usernames": ["HANDLE1", "HANDLE2"]
+    },
+    "collection": {
+        "seed": {
+            "friends": true,
+            "followers": true
+        },
+        "limits": {
+            "max_watched_users": 100000000,
+            "max_daily_increase": 25000,
+            "max_daily_increase_ratio": 0.1,
+            "min_appearances_before_watched": 10
+        },
+        "ignore_tweet_media": false,
+        "oldest_tweet": "Sun Aug 1 00:00:00 +0000 2019",
+        "search_languages": ["pt", "und"],
+        "max_threads": 8,
+        "min_tweets_before_restricting_by_language": 10
+    },
+    "mongodb": {
+        "address": "mongodb://USER:PASSWORD@localhost:27017/",
+        "database": "twitter",
+        "drive_api_backup_enabled": true
+    },
+    "notifications": {
+        "pushbullet_token": "your pushbullet token"
+    },
+    "database_stats_file": "out/db_logs.csv",
+    "seconds_between_db_stats_log": 10,
+    "api_keys": "./api.json"
+}

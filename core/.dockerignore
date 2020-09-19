@@ -1,0 +1,6 @@
+env/**
+envw/**
+__pycache__/**
+.ipynb_checkpoints/**
+*.md
+example.*
