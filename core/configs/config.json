@@ -14,7 +14,7 @@
             "max_daily_increase_ratio": 0.1,
             "min_appearances_before_watched": 100
         },
-        "ignore_tweet_media": false,
+        "ignore_tweet_media": true,
         "oldest_tweet": "Sat Aug 1 00:00:00 +0000 2020",
         "search_languages": ["pt", "und"],
         "max_threads": 10,
