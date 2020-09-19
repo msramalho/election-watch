@@ -1,7 +1,7 @@
 {
-    "name": "twitter-watch",
+    "name": "election-watch",
     "version": "1.0.0",
-    "description": "A UI for Twitter Watch - a framework for Twitter data collection",
+    "description": "A UI for Election Watch - a platform for monitoring democratic elections and fighting online disinformation",
     "author": "msramalho",
     "private": true,
     "scripts": {

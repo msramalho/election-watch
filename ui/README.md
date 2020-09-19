@@ -1,4 +1,4 @@
-# Twitter Watch UI
+# Election Watch UI
 
 ![](https://i.imgur.com/yVo1Mr1.png)
 
