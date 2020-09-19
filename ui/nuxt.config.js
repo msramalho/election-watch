@@ -63,7 +63,8 @@ export default {
     modules: [
         // Doc: https://axios.nuxtjs.org/usage
         ['@nuxtjs/axios', {
-            baseURL: "https://efec2a8e6a84.ngrok.io/"
+            baseURL: "http://35.234.106.142/"
+            // baseURL: "https://efec2a8e6a84.ngrok.io/"
             // baseURL: "http://localhost:5000/"
         }],
         'cookie-universal-nuxt',
