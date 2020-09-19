@@ -21,8 +21,8 @@
         "min_tweets_before_restricting_by_language": 10
     },
     "mongodb": {
-        "address": "mongodb://root:h942hf334f@localhost:27017/",
-        "address_docker": "mongodb://root:h942hf334f@mongo:27017/",
+        "address": "mongodb://root:yegf240f398h@localhost:27017/",
+        "address_docker": "mongodb://root:yegf240f398h@mongo:27017/",
         "address_": "mongodb://localhost:27017/",
         "database": "electionswatch",
         "drive_api_backup_enabled": false
