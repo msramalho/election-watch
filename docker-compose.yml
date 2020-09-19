@@ -15,6 +15,7 @@ services:
     volumes:
       - ./core:/usr/src/app
     ports:
+      - "80:5000"
       - "443:5000"
     depends_on:
       - mongo
