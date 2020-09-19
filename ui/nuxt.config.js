@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
     router: {
-        base: '/election-watch/'
+        base: '/elections-watch/'
     }
 } : {}
 
