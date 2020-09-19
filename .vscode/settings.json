@@ -1,0 +1,25 @@
+{
+    "files.exclude": {
+        ".git": true,
+        "**/__pycache__": true,
+        "**/.git": false,
+        "**/.ipynb_checkpoints": true,
+        "*/*/example.*": true,
+        "*/example.*": true,
+        "*/*/daily/*.py": true,
+        "*/*/hourly/*.py": true,
+        "*/*/non_stop/*.py": true,
+        "*/*/setup/*.py": true,
+        "core/envw/": true,
+        "core/env/": true,
+        "example.*": true
+    },
+    "editor.formatOnSave": true,
+    "javascript.format.enable": false,
+    "eslint.options": {
+        "extensions": [".html", ".js", ".vue", ".jsx"]
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
+}

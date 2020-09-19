@@ -1,0 +1,13 @@
+[{
+    "name": "your api keys name",
+    "consumer_key": "Your consumer key",
+    "consumer_secret": "Your consumer secret",
+    "access_token_key": "your access token key",
+    "access_token_secret": "your access token secret"
+}, {
+    "name": "_____this should be left at the end, as the last one is ignored_______",
+    "consumer_key": "____________",
+    "consumer_secret": "____________",
+    "access_token_key": "____________",
+    "access_token_secret": "____________"
+}]
