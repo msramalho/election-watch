@@ -2,7 +2,7 @@
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
       <v-card>
-        <v-card-title class="headline">Welcome to the Twitter Watch</v-card-title>
+        <v-card-title class="headline">Welcome to the Election Watch</v-card-title>
         <v-card-text></v-card-text>
         <v-card-actions>
           <v-btn color="primary" nuxt to="/stats">See stats</v-btn>

@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  created: function() {
+  created: function () {
     this.$axios.setBaseURL(
       this.$cookies.get("baseURL") || this.$axios.defaults.baseURL
     );
@@ -65,37 +65,37 @@ export default {
         {
           icon: "mdi-apps",
           title: "Welcome",
-          to: "/"
+          to: "/",
         },
         {
           icon: "mdi-chart-line",
           title: "Stats",
-          to: "/stats"
+          to: "/stats",
         },
         {
           icon: "mdi-text-box-multiple-outline",
           title: "Logs",
-          to: "/logs"
+          to: "/logs",
         } /* ,
         {
           icon: "mdi-brain",
           title: "Analysis",
           to: "/analysis"
-        } */
+        } */,
       ],
       miniVariant: false,
-      title: "Twitter Watch"
+      title: "Election Watch",
     };
   },
   methods: {
-    reload: function() {
+    reload: function () {
       // this.$axios.setBaseURL(_new);
       this.$cookies.set("baseURL", this.baseURL, {
         path: "/",
-        maxAge: 60 * 60 * 24 * 7 * 52 * 100
+        maxAge: 60 * 60 * 24 * 7 * 52 * 100,
       });
       window.location.reload(true);
-    }
-  }
+    },
+  },
 };
 </script>
