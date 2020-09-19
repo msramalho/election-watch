@@ -80,7 +80,7 @@ def pushbullet_notify(message):
         return
     pb = Pushbullet(CONFIG["notifications"]["pushbullet_token"])
     now = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
-    pb.push_note("Twitter Watch", "%s\n\n%s" % (now, message))
+    pb.push_note("Elections Watch", "%s\n\n%s" % (now, message))
     print(message, flush=True)  # also prints to stdout
 
 
