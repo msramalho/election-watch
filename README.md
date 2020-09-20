@@ -30,14 +30,20 @@ To run, execute `pre-commit run --all-files`.
 * get the top 10 mentions after a given date:
 ```sql
 db.getCollection('tweets').aggregate([
-	{$match: {"created_at": {$gte: new Date("2020-09-1")}}},
-	{$unwind: '$user_mentions'}, 
-	{ $group: { 
-		_id: '$user_mentions',
-		count: {$sum: 1}
-	}},
-	{$sort: {count: -1}},
-	{$limit: 10},
-	{ $project: { count: 1, _id: '$_id' }}
+  {$match: {"created_at": {$gte: new Date("2020-09-18"), $lt: new Date("2020-09-19")},
+            "retweeted_status": {$exists: false}}},
+  
+  {$unwind: '$user_mentions'}, 
+  
+  { $group: { 
+     _id: '$user_mentions',
+     count: {$sum: 1}
+  }},
+  
+{$sort: {count: -1}},
+
+{$limit: 50},
+
+{ $project: { count: 1, _id: '$_id' }}
 ]);
 ```
