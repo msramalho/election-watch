@@ -21,7 +21,7 @@ export default {
     this.loading_user_tweets = true;
     this.loading_mb = true;
     const r = await this.$axios.get(`db_logs`, {
-      params: { max_items: 2500 }
+      params: { max_items: 500 },
     });
     this.logs = r.data;
     this.display();
@@ -30,7 +30,7 @@ export default {
     return {
       logs: { time: [] },
       loading_user_tweets: false,
-      loading_mb: false
+      loading_mb: false,
     };
   },
   methods: {
@@ -40,14 +40,14 @@ export default {
         y: this.logs.users,
         mode: "markers",
         name: "#users",
-        type: "scatter"
+        type: "scatter",
       };
       let trace_tweets = {
         x: this.logs.time,
         y: this.logs.tweets,
         mode: "markers",
         name: "#tweets",
-        type: "scatter"
+        type: "scatter",
       };
 
       Plotly.newPlot("scatter_users_tweets", [trace_users, trace_tweets]);
@@ -59,12 +59,12 @@ export default {
         y: this.logs.mb,
         mode: "markers",
         name: "size (MB)",
-        type: "scatter"
+        type: "scatter",
       };
       Plotly.newPlot("scatter_mb", [trace_mb]);
       this.loading_mb = false;
-    }
+    },
   },
-  fetchOnServer: false
+  fetchOnServer: false,
 };
 </script>
