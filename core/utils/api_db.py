@@ -281,7 +281,12 @@ def insert_user_ids(user_ids, depth=0):
 
 def upsert_user_ids_appearances(user_ids):
     if not len(user_ids): return
-    col_users.bulk_write([UpdateOne({'_id': u}, {"$inc": {"appearances": 1}}, upsert=True) for u in user_ids], ordered=False)
+    col_users.bulk_write([UpdateOne({'_id': u}, {"$inc": {"appearances": 1}}, upsert=True) for u in user_ids],
+
+
+def upsert_user_ids_appearances_depth(user_ids, depth=0):
+    if not len(user_ids): return
+    col_users.bulk_write([UpdateOne({'_id': u}, {"$inc": {"appearances": 1}, "$min": {"depth": depth}}, upsert=True) for u in user_ids], ordered=False)
 
 
 def upsert_users(users):
@@ -295,19 +300,19 @@ def upsert_users(users):
 
 def upsert_user(user):
     # insert/update a user when they come from the api
-    operations = {"$set": user, "$min": {}}
+    operations={"$set": user, "$min": {}}
     if "collected_at" in user:
-        operations["$min"]["first_collected_at"] = user["collected_at"]
+        operations["$min"]["first_collected_at"]=user["collected_at"]
         del user["first_collected_at"]
     if "depth" in user:
-        operations["$min"]["depth"] = user["depth"]
+        operations["$min"]["depth"]=user["depth"]
         del user["depth"]
     if not len(operations["$min"]): del operations["$min"]  # if empty remove
     col_users.find_one_and_update({'_id': user['_id']}, operations, upsert=True)
 
 
 def update_not_allowed_user(user_id, prop="private"):
-    prop = misc.CONFIG["invalid_user_states"][prop]  # standardized
+    prop=misc.CONFIG["invalid_user_states"][prop]  # standardized
     col_users.find_one_and_update({'_id': user_id}, {'$set': {prop: True}, "$min": {"time_%s" % prop: datetime.datetime.utcnow()}})
 
 
