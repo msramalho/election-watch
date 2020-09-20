@@ -54,7 +54,7 @@ def stats():
 
 @app.route("/db_logs")
 def db_logs():
-    max_items = request.args.get('max_items') or 50_000
+    max_items = request.args.get('max_items') or 500
     max_items = int(max_items)
     db_logs = abs_path(".." + os.sep + "out") + os.sep + "db_logs.csv"
     res = {"time": [], "users": [], "tweets": [], "mb": []}

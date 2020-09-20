@@ -24,3 +24,20 @@ docker exec -it election-watch_core_1 bash
 Check [pre-commit.com](https://pre-commit.com/hooks.html) for more pre-commit functionality and then add it to the [pre-commit config file](.pre-commit-config.yaml).
 
 To run, execute `pre-commit run --all-files`.
+
+### Useful MongoDb queries
+* database current size in GB `db.stats(1024*1024*1024).dataSize + " GB";`
+* get the top 10 mentions after a given date:
+```sql
+db.getCollection('tweets').aggregate([
+	{$match: {"created_at": {$gte: new Date("2020-09-1")}}},
+	{$unwind: '$user_mentions'}, 
+	{ $group: { 
+		_id: '$user_mentions',
+		count: {$sum: 1}
+	}},
+	{$sort: {count: -1}},
+	{$limit: 10},
+	{ $project: { count: 1, _id: '$_id' }}
+]);
+```
