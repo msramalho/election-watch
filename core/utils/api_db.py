@@ -298,8 +298,10 @@ def upsert_user(user):
     operations = {"$set": user, "$min": {}}
     if "collected_at" in user:
         operations["$min"]["first_collected_at"] = user["collected_at"]
+        del user["first_collected_at"]
     if "depth" in user:
         operations["$min"]["depth"] = user["depth"]
+        del user["depth"]
     if not len(operations["$min"]): del operations["$min"]  # if empty remove
     col_users.find_one_and_update({'_id': user['_id']}, operations, upsert=True)
 
