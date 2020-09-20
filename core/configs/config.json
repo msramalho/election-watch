@@ -15,15 +15,15 @@
             "min_appearances_before_watched": 100
         },
         "ignore_tweet_media": true,
-        "oldest_tweet": "Sat Aug 1 00:00:00 +0000 2020",
+        "oldest_tweet": "Tue Sep 1 00:00:00 +0000 2020",
         "search_languages": ["pt", "und"],
-        "max_threads": 14,
+        "max_threads": 16,
         "min_tweets_before_restricting_by_language": 10
     },
     "mongodb": {
-        "address": "mongodb://root:yegf240f398h@localhost:27017/",
+        "address_": "mongodb://root:yegf240f398h@localhost:27017/",
         "address_docker": "mongodb://root:yegf240f398h@mongo:27017/",
-        "address_": "mongodb://localhost:27017/",
+        "address": "mongodb://localhost:27017/",
         "database": "electionswatch",
         "drive_api_backup_enabled": false
     },
