@@ -38,7 +38,9 @@ def read_json(filename):
 
 @app.route("/stats")
 def stats():
-    return read_json(abs_path("..") + os.sep + config["database_stats_file_api"])
+    try:
+        return read_json(abs_path("..") + os.sep + config["database_stats_file_api"])
+    except: return dict()
 
 
 @app.route("/db_logs")

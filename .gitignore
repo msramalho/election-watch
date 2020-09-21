@@ -18,6 +18,7 @@ core/collection/temp
 *.joblib
 *.temp
 local/
+core/report
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
