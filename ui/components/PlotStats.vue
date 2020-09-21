@@ -1,7 +1,12 @@
 <template>
   <!-- <div v-if="logs.time.length"> -->
   <div>
-    <h3 class="ma-4">Total points: {{ logs.time.length}}</h3>
+    <h3 class="ma-4">
+      Total points: {{logs.time.length}}
+      <small
+        v-if="logs.last_updated"
+      >(last updated: {{logs.last_updated}})</small>
+    </h3>
     <v-card class="ma-2" :loading="loading_user_tweets?'primary':false">
       <h2 class="text-center pa-4">Tweets and Users over time</h2>
       <div id="scatter_users_tweets"></div>
@@ -21,8 +26,11 @@ export default {
     this.loading_user_tweets = true;
     this.loading_mb = true;
     const r = await this.$axios.get(`db_logs`, {
-      params: { max_items: 500 },
+      // params: { max_items: 500 },
     });
+    r.data.last_updated = new Date(
+      Date.parse(r.data.last_updated)
+    ).toLocaleTimeString();
     this.logs = r.data;
     this.display();
   },

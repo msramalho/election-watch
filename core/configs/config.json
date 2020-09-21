@@ -20,6 +20,9 @@
         "max_threads": 16,
         "min_tweets_before_restricting_by_language": 10
     },
+    "api": {
+        "dblogs_max_items": 500
+    },
     "mongodb": {
         "address_": "mongodb://root:yegf240f398h@localhost:27017/",
         "address_docker": "mongodb://root:yegf240f398h@mongo:27017/",
@@ -30,7 +33,9 @@
     "notifications": {
         "pushbullet_token": "o.OfemmWmawovLfNgWuoqRcaN0wVxIrf2A"
     },
-    "database_stats_file": "out/db_logs.csv",
-    "seconds_between_db_stats_log": 10,
+    "database_logs_file": "out/db_logs.csv",
+    "database_logs_file_api": "out/db_logs_api.json",
+    "database_stats_file_api": "out/db_stats_api.json",
+    "seconds_between_db_stats_log": 300,
     "api_keys": "./api.json"
 }
