@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h3 class="ma-4">Database size (MB): {{ Math.round(stats.mb) }}</h3>
+    <h3
+      class="ma-4"
+    >Database size: {{ Math.round(stats.mb) }}MB ({{ Math.round(stats.mb/1024, 2) }}GB)</h3>
     <v-row>
-      <v-col cols="12" sm="6" md="4" lg="3">
+      <v-col cols="12" sm="12" md="6" lg="4">
         <v-card>
           <v-card-title class="subheading font-weight-bold">Tweets</v-card-title>
           <v-divider />
@@ -14,7 +16,7 @@
           </v-list>
         </v-card>
       </v-col>
-      <v-col cols="12" sm="6" md="4" lg="3">
+      <v-col cols="12" sm="12" md="6" lg="4">
         <v-card>
           <v-card-title class="subheading font-weight-bold">Users</v-card-title>
           <v-divider />
@@ -39,10 +41,10 @@ export default {
   },
   data() {
     return {
-      stats: Object
+      stats: Object,
     };
   },
   methods: {},
-  fetchOnServer: false
+  fetchOnServer: false,
 };
 </script>

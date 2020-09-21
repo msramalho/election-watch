@@ -1,4 +1,4 @@
-import sys, os, glob, time, re
+import sys, os, glob, time, re, json
 sys.path = ['.', '..', '../..'] + sys.path
 
 from flask import Flask, request
@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from flask_cors import CORS
 from collections import defaultdict
 from loguru import logger
+from collections import OrderedDict  # for json.load to keep order
 from gevent.pywsgi import WSGIServer
 
 from utils.misc import json_to_dict, configs_abs_path, abs_path
@@ -30,50 +31,19 @@ def hello():
     return {"alive": True}
 
 
+def read_json(filename):
+    with open(filename, encoding="utf-8") as f:
+        return json.loads(f.read(), object_pairs_hook=OrderedDict)
+
+
 @app.route("/stats")
 def stats():
-    try:
-        return {
-            "users": {
-                "total": col_users.count({}),
-                # "depth_0": col_users.count({"depth": 0}),
-                # "depth_1": col_users.count({"depth": 1}),
-                # "depth_2": col_users.count({"depth": 2}),
-                # "screen_name": col_users.count({"screen_name": {"$exists": True}})
-            },
-            "tweets": {
-                "total": col_tweets.count({}),
-                # "processed": col_tweets.count({"processed": True})
-            },
-            "mb": db.command("dbstats")["dataSize"] / (1024 * 1024)
-        }
-    except Exception as e:
-        print("/stats failed with %s" % e)
-        return {"users": {"error": "db not connected"}, "tweets": {"error": "db not connected"}, "mb": 0}
+    return read_json(abs_path("..") + os.sep + config["database_stats_file_api"])
 
 
 @app.route("/db_logs")
 def db_logs():
-    max_items = request.args.get('max_items') or 500
-    max_items = int(max_items)
-    db_logs = abs_path(".." + os.sep + "out") + os.sep + "db_logs.csv"
-    res = {"time": [], "users": [], "tweets": [], "mb": []}
-    with open(db_logs, encoding="utf-8") as f:
-        total_points = len(f.readlines())
-        max_items = min(max_items, total_points)
-    with open(db_logs, encoding="utf-8") as f:
-        steps = total_points // max_items
-        i = 0
-        for l in f:
-            if i == steps:
-                t, u, tw, m = l.strip().split(",")
-                res["time"].append(t)
-                res["users"].append(u)
-                res["tweets"].append(tw)
-                res["mb"].append(m)
-                i = 0
-            i += 1
-    return res
+    return read_json(abs_path("..") + os.sep + config["database_logs_file_api"])
 
 
 def get_out_folder():

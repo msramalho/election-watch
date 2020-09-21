@@ -47,3 +47,4 @@ db.getCollection('tweets').aggregate([
 { $project: { count: 1, _id: '$_id' }}
 ]);
 ```
+* unset a given property(ies): `db.getCollection('users').update({}, {$unset: {private: 1, time_private: 1}}, {multi: true})`

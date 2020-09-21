@@ -106,7 +106,7 @@ def get_tweets(user, func, since_id_key, oldest_tweet, args={}):
             tweets.extend(new_tweets)
             if len(new_tweets) and new_tweets[-1]["created_at"] < oldest_tweet: break
         except twitter.TwitterError as e:
-            if not handle_error_next_api(e, user["_id"], "get_tweets:%s" % func.__name__): break
+            if not handle_error_next_api(e, user["_id"], "get_tweets:%s" % func.__name__, checkSuspension=True): break
     # update db with new value for since_id
     user[since_id_key] = since_id if not len(tweets) else tweets[0]["_id"]  # return new since_id
     upsert_user(user)
@@ -127,10 +127,9 @@ def search_hashtag(hashtag, since, until, lang, count=100, verbose=True):
 
 # API+DB METHODS
 
+
 # https://developer.twitter.com/en/docs/basics/response-codes
-
-
-def handle_error_next_api(error, user_id, task="", verbose=True):
+def handle_error_next_api(error, user_id, task="", verbose=True, checkSuspension=False):
     error_message = "Error for %s with error %s with API Keys from '%s' (%s)" % (user_id, error, BEST["name"], task)
 
     if verbose: print(error_message, flush=True)
@@ -138,7 +137,9 @@ def handle_error_next_api(error, user_id, task="", verbose=True):
     if not hasattr(error, 'message'):
         if verbose: print("Non-expected error: %s" % error, flush=True)
     elif error.message == "Not authorized.":
-        update_not_allowed_user(user_id)
+        # some endpoints return this instead of suspended, so force a call on account details to check if it is suspensions, or private
+        if checkSuspension: get_account_details(user_id)
+        else: update_not_allowed_user(user_id)
         return False  # False means skip
     elif type(error.message) == list and "code" in error.message[0]:
         code = error.message[0]["code"]  # 88 = rate limit, 32 = authentication failed, 326 is blocked
