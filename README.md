@@ -32,19 +32,21 @@ To run, execute `pre-commit run --all-files`.
 db.getCollection('tweets').aggregate([
   {$match: {"created_at": {$gte: new Date("2020-09-18"), $lt: new Date("2020-09-19")},
             "retweeted_status": {$exists: false}}},
-  
+
   {$unwind: '$user_mentions'}, 
-  
+
   { $group: { 
-     _id: '$user_mentions',
-     count: {$sum: 1}
+      _id: '$user_mentions',
+      count: {$sum: 1}
   }},
-  
-{$sort: {count: -1}},
 
-{$limit: 50},
+  {$sort: {count: -1}},
 
-{ $project: { count: 1, _id: '$_id' }}
+  {$limit: 50},
+
+  { $project: { count: 1, _id: '$_id' }}
 ]);
 ```
 * unset a given property(ies): `db.getCollection('users').update({}, {$unset: {private: 1, time_private: 1}}, {multi: true})`
+* get large contributors not in seed: `db.getCollection('users').count({followers_count: {$gt: 500000}, depth: {$gt: 0}})`
+* find tweets with a given hashtag(s) on a given date range `db.getCollection('tweets').find({"created_at": {$gte: new Date("2020-09-18"), $lt: new Date("2020-09-19")}, hashtags: {$in: ["HASHTAG"]}})`
