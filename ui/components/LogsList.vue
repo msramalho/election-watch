@@ -61,7 +61,7 @@
               /
               {{selected.file}}
             </h3>
-            <code class="pa-2" v-text="content" />
+            <code class="pa-2" v-html="content.replace('\n', '<br/>')" />
           </div>
         </v-card>
         <v-btn v-if="content!=''" fixed fab bottom right href="#" color="primary">
@@ -88,7 +88,7 @@ export default {
     return {
       logs: [],
       content: "",
-      selected: null
+      selected: null,
     };
   },
   methods: {
@@ -98,22 +98,22 @@ export default {
         task: t.getAttribute("task"),
         index: t.getAttribute("index"),
         file: t.getAttribute("file"),
-        loading: true
+        loading: true,
       };
       this.$axios
         .get(`log`, {
-          params: this.selected
+          params: this.selected,
         })
-        .then(res => {
+        .then((res) => {
           this.content = res.data.content;
           this.selected.loading = false;
         })
-        .catch(_error => {
+        .catch((_error) => {
           this.content = "Communication error, please retry...";
           this.selected.loading = false;
         });
-    }
+    },
   },
-  fetchOnServer: false
+  fetchOnServer: false,
 };
 </script>
