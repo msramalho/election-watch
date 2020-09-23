@@ -19,10 +19,8 @@
         <v-list-group
           v-for="item in nestedItems"
           :key="item.title"
-          v-model="item.active"
+          v-model="item.open"
           :prepend-icon="item.action"
-          :disabled="item.disabled"
-          :ripple="!item.disabled"
         >
           <template v-slot:activator>
             <v-list-item-content>
@@ -50,7 +48,7 @@
             </v-tooltip>
           </v-list-item>
         </v-list-group>
-        <!-- deactivated -->
+        <!-- disabled -->
         <v-list-item v-for="item in disabledItems" :key="item.title" disabled>
           <v-list-item-icon>
             <v-icon>{{ item.action }}</v-icon>
@@ -108,7 +106,7 @@ export default {
         {
           action: "mdi-twitter",
           title: "Twitter",
-          disabled: false,
+          open: false,
           items: [
             {
               title: "Visão Geral",
@@ -143,20 +141,15 @@ export default {
             },
           ],
         },
-        {
-          action: "mdi-brain",
-          items: [{ title: "List Item" }],
-          title: "Education",
-          disabled: true,
-        },
       ],
       disabledItems: [
         {
           action: "mdi-facebook",
           title: "Facebook",
-          tooltip:
-            "De momento ainda não suportamos análise de dados do Facebook",
-          disabled: true,
+        },
+        {
+          action: "mdi-youtube",
+          title: "Youtube",
         },
         // {
         //   action: "mdi-instagram",
