@@ -50,3 +50,4 @@ db.getCollection('tweets').aggregate([
 * unset a given property(ies): `db.getCollection('users').update({}, {$unset: {private: 1, time_private: 1}}, {multi: true})`
 * get large contributors not in seed: `db.getCollection('users').count({followers_count: {$gt: 500000}, depth: {$gt: 0}})`
 * find tweets with a given hashtag(s) on a given date range `db.getCollection('tweets').find({"created_at": {$gte: new Date("2020-09-18"), $lt: new Date("2020-09-19")}, hashtags: {$in: ["HASHTAG"]}})`
+* get list of ids from a query `db.getCollection('users').find({followers_count: {$gte: 100000}}, {_id: 1}).map(function(item){ return item._id; }).reduce(function(acc, prev){return acc + "," + prev})`

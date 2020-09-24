@@ -17,7 +17,7 @@ from utils.dynamic_parallelism import DynamicParallelism
 load_config()
 
 # print config
-print("using %d seed accounts and %d hashtags" % (len(misc.CONFIG["seed"]["usernames"]), len(misc.CONFIG["seed"]["hashtags"])))
+print("using %d seed accounts (%d from news sources) and %d hashtags" % (len(misc.CONFIG["seed"]["usernames"]), len(misc.CONFIG["seed"]["usernames_news"]), len(misc.CONFIG["seed"]["hashtags"])))
 
 # initialize the database connection
 init_db()

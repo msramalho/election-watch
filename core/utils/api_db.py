@@ -262,7 +262,6 @@ def tweet_common_format(t, sub_tweet=True):
 
 def tweet_to_db_format(t):  # convert a tweet Status object to a dict with "_id"
     t = t.AsDict()
-    t["processed"] = False
     t = tweet_common_format(t, sub_tweet=False)
     return t
 
@@ -280,14 +279,16 @@ def insert_user_ids(user_ids, depth=0):
     col_users.bulk_write([UpdateOne({'_id': u}, {"$min": {"depth": depth}}, upsert=True) for u in user_ids], ordered=False)
 
 
-def upsert_user_ids_appearances(user_ids):
+def upsert_user_ids_appearances(user_ids):  # legacy
     if not len(user_ids): return
     col_users.bulk_write([UpdateOne({'_id': u}, {"$inc": {"appearances": 1}}, upsert=True) for u in user_ids], ordered=False)
 
 
-def upsert_user_ids_appearances_depth(user_ids, depth=0):
+def upsert_user_ids_inc_custom_depth(user_ids, custom_name, depth=0):
+    # custom_name replaces appearances to allow for different counters like
+    # the followers of politcal seed and news seed
     if not len(user_ids): return
-    col_users.bulk_write([UpdateOne({'_id': u}, {"$inc": {"appearances": 1}, "$min": {"depth": depth}}, upsert=True) for u in user_ids], ordered=False)
+    col_users.bulk_write([UpdateOne({'_id': u}, {"$inc": {custom_name: 1}, "$min": {"depth": depth}}, upsert=True) for u in user_ids], ordered=False)
 
 
 def upsert_users(users):
