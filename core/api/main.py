@@ -10,6 +10,7 @@ from collections import OrderedDict  # for json.load to keep order
 from gevent.pywsgi import WSGIServer
 
 from utils.misc import json_to_dict, configs_abs_path, abs_path
+from utils.task import Task
 
 
 app = Flask(__name__)
@@ -103,7 +104,7 @@ def read_task_log_file(task, filename):
 def log():
     task = request.args.get('task')
     try: index = int(request.args.get('index'))
-    except: return "Index is not a valid number", 404
+    except: return "Index is not a valid number", 403
 
     _logs = logs()
     if task not in _logs:
@@ -111,6 +112,19 @@ def log():
     if index >= len(_logs[task]["logs"]):
         return ("Index %s not found for task %s" % (index, task)), 404
     return {"content": read_task_log_file(task, _logs[task]["logs"][index])}
+
+
+@app.route("/task_data")
+def task_data():
+    # this will query the DB dynamically in the task_name collection
+    task_name = request.args.get('task_name')
+    try:
+        assert type(task_name) == str and len(task_name) > 0
+        task = Task(db, task_name, False)
+        assert task.exists()
+    except: return "task_name is invalid", 403
+
+    return task.get_api_n(30)  # return data for the last 30 days
 
 
 @app.after_request
