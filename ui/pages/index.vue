@@ -1,8 +1,17 @@
 <template>
   <v-layout column justify-center align-center>
+    <a href="https://projector.tensorflow.org/">See source</a>
+    <iframe
+      src="https://projector.tensorflow.org/"
+      style="width: 100%; height: 800px"
+      title="Embeddings visualization"
+    >
+    </iframe>
     <v-flex xs12 sm8 md6>
       <v-card>
-        <v-card-title class="headline">Welcome to the Election Watch</v-card-title>
+        <v-card-title class="headline"
+          >Welcome to the Election Watch</v-card-title
+        >
         <v-card-text></v-card-text>
         <v-card-actions>
           <v-btn color="primary" nuxt to="/stats">See stats</v-btn>
@@ -16,6 +25,6 @@
 
 <script>
 export default {
-  components: {}
+  components: {},
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1 class="text-center ma-2">Data Collection Logs</h1>
+      <h1 class="text-center ma-2">Logs de Recolha de Dados</h1>
       <logs-list />
     </v-flex>
   </v-layout>
@@ -10,6 +10,6 @@
 <script>
 import LogsList from "~/components/LogsList.vue";
 export default {
-  components: { LogsList }
+  components: { LogsList },
 };
 </script>

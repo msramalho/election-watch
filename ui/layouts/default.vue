@@ -35,7 +35,7 @@
             router
             exact
           >
-            <v-list-item-action style="margin-left:10px;">
+            <v-list-item-action style="margin-left: 10px">
               <v-icon>{{ child.action }}</v-icon>
             </v-list-item-action>
             <v-tooltip right open-delay="500">
@@ -44,7 +44,7 @@
                   <v-list-item-title v-text="child.title"></v-list-item-title>
                 </v-list-item-content>
               </template>
-              <span>{{child.tooltip}}</span>
+              <span>{{ child.tooltip }}</span>
             </v-tooltip>
           </v-list-item>
         </v-list-group>
@@ -54,7 +54,7 @@
             <v-icon>{{ item.action }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{item.title}}</v-list-item-title>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -62,7 +62,7 @@
     <v-app-bar :clipped-left="clipped" app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn v-if="drawer" icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+        <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
@@ -106,7 +106,9 @@ export default {
         {
           action: "mdi-twitter",
           title: "Twitter",
-          open: false,
+          open: ["general", "elections", "malicious", "stats", "logs"].includes(
+            this.$route.name
+          ),
           items: [
             {
               title: "Visão Geral",
