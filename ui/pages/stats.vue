@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1 class="text-center mb-8">Some Statistics</h1>
+      <h1 class="text-center mb-8">Estatísticas Base de Dados</h1>
       <statistics />
       <plot-stats />
     </v-flex>
@@ -12,6 +12,6 @@
 import Statistics from "~/components/Statistics.vue";
 import PlotStats from "~/components/PlotStats.vue";
 export default {
-  components: { Statistics, PlotStats }
+  components: { Statistics, PlotStats },
 };
 </script>

@@ -2,17 +2,19 @@
   <!-- <div v-if="logs.time.length"> -->
   <div>
     <h3 class="ma-4">
-      Total points: {{logs.time.length}}
-      <small
-        v-if="logs.last_updated"
-      >(last updated: {{logs.last_updated}})</small>
+      Pontos mostrados: {{ logs.time.length }}
+      <small v-if="logs.last_updated"
+        >(úlitma atualização: {{ logs.last_updated }})</small
+      >
     </h3>
-    <v-card class="ma-2" :loading="loading_user_tweets?'primary':false">
-      <h2 class="text-center pa-4">Tweets and Users over time</h2>
+    <v-card class="ma-2" :loading="loading_user_tweets ? 'primary' : false">
+      <h2 class="text-center pa-4">Tweets e Contas ao longo do tempo</h2>
       <div id="scatter_users_tweets"></div>
     </v-card>
-    <v-card class="ma-2" :loading="loading_mb?'primary':false">
-      <h2 class="text-center pa-4">Database size over time</h2>
+    <v-card class="ma-2" :loading="loading_mb ? 'primary' : false">
+      <h2 class="text-center pa-4">
+        Tamanho da base de dados ao longo do tempo
+      </h2>
       <div id="scatter_mb"></div>
     </v-card>
   </div>
