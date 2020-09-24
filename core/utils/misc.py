@@ -101,6 +101,14 @@ def readable_seconds(seconds, _format="%2dd %2dh %2dm %2ds"):
     secs = (seconds - 86400 * days - 3600 * hours - 60 * mins)
     return _format % (days, hours, mins, secs)
 
+
+def get_filter_by_day(day):
+    # expects datetime
+    day_start = day.replace(hour=0, minute=0, second=0, microsecond=0)
+    day_end = day.replace(hour=23, minute=59, second=59, microsecond=0)
+    return {"$gte": day_start, "$lt": day_end}
+
+
 # register a detection of interruption for scripts
 @atexit.register
 def gracefully_stop():
