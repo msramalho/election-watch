@@ -13,6 +13,8 @@ from utils import api_db  # to access KEYS, BEST, ...
 from utils.nlp import *
 from utils.dynamic_parallelism import DynamicParallelism
 
+from utils.task import Task
+
 # load configuration from JSON
 load_config()
 
