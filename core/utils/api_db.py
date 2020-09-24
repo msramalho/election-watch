@@ -305,7 +305,7 @@ def upsert_user(user):
     operations = {"$set": user, "$min": {}}
     if "collected_at" in user:
         operations["$min"]["first_collected_at"] = user["collected_at"]
-        del user["first_collected_at"]
+        if "first_collected_at" in user: del user["first_collected_at"]
     if "depth" in user:
         operations["$min"]["depth"] = user["depth"]
         del user["depth"]
