@@ -30,7 +30,7 @@ class Task:
         # self.collection.find({})
         return list(self.collection.find({}, {"_id": withId, "day": 1, "data": 1}).sort([("day", -1)]).limit(n))
 
-    def unzip_last_n(self, n=30):
+    def unzip_last_n(self, n=30, withId=True):
         # returns two lists [days], [datas]
         unzip = list(zip(*[(x["day"], x["data"]) for x in self.get_last_n(n)]))
         return unzip[0], unzip[1]
@@ -41,5 +41,7 @@ class Task:
 
     def get_api_n(self, n):
         # returns a standardized dict that can be returned directly by the api
-        res = map(lambda r: {"day": r["day"].strftime("%Y-%m-%d"), "data": r["data"]}, self.get_last_n(n, False))
-        return {"data": list(res)}
+        res = self.unzip_last_n(n, False)
+        res = [[d.strftime("%Y-%m-%d") for d in res[0]], res[1]]
+        # res = map(lambda r: {"day": r["day"].strftime("%Y-%m-%d"), "data": r["data"]}, self.unzip_last_n(n, False))
+        return {"history": res}
