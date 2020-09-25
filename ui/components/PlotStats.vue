@@ -49,7 +49,7 @@ export default {
         x: this.logs.time,
         y: this.logs.users,
         mode: "markers",
-        name: "#users",
+        name: "#contas",
         type: "scatter",
       };
       let trace_tweets = {
