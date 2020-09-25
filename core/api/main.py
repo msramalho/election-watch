@@ -124,7 +124,7 @@ def task_data():
         assert task.exists()
     except: return "task_name is invalid", 403
 
-    return task.get_api_n(30)  # return data for the last 30 days
+    return task.get_api_n(365)  # return data for the last 30 days
 
 
 @app.after_request
