@@ -7,21 +7,43 @@
         <strong>{{ sum(totals) }} tweets</strong>
         contendo links para sites de notícias falsas.
 
-        <br />Estes tweets receberam um total de {{ sum(favourite_counts) }}
-        <i>likes</i> (média:
-        {{ sum(favourite_counts) / sum(totals) }} likes/tweet) e
-        {{ sum(retweet_counts) }} <i>retweets</i> (média:
-        {{ sum(retweet_counts) / sum(totals) }} retweets/tweet).
+        <br />Estes tweets receberam um total de
+        <strong>{{ sum(favorite_counts) }} <i>likes</i></strong> (média:
+        {{ (sum(favorite_counts) / sum(totals)).toFixed(2) }} likes/tweet) e
+        <strong>{{ sum(retweet_counts) }} <i>retweets</i></strong> (média:
+        {{ (sum(retweet_counts) / sum(totals)).toFixed(2) }} retweets/tweet).
 
         <br />Neste momento, estamos a monitorizar
-        <strong>{{ sites.length }}</strong> websites e páginas de facebook de
-        notícias falsas.
+        <a @click.stop="dialog_sites = true">
+          <strong>{{ sites.length }}</strong> websites e páginas de facebook</a
+        >
+        de notícias falsas.
       </p>
       <div id="fakenews_over_time"></div>
       <div id="fakenews_by_website_more_than_5"></div>
       <div id="fakenews_by_website_grouped"></div>
       <!-- <div id="fakenews_by_website_heatmap"></div> -->
     </v-card>
+
+    <v-dialog v-model="dialog_sites" max-width="500">
+      <v-card>
+        <v-card-title class="headline"
+          >Fontes de notícias falsas ({{ this.sites.length }})</v-card-title
+        >
+
+        <v-card-text>
+          <v-list-item v-for="(site, k) in this.sites" :key="k">
+            <v-btn text :href="'https://www.' + site" small flat>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ site }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-btn>
+          </v-list-item>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -39,7 +61,7 @@ export default {
     // read relevant data
     this.x = r.data.history[0].map((d) => new Date(d));
     this.totals = r.data.history[1].map((x) => x.total);
-    this.favourite_counts = r.data.history[1].map((x) => x.favourite_count);
+    this.favorite_counts = r.data.history[1].map((x) => x.favorite_count);
     this.retweet_counts = r.data.history[1].map((x) => x.retweet_count);
 
     this.sites = Object.keys(r.data.history[1][0].sites).map((site) =>
@@ -68,11 +90,14 @@ export default {
     return {
       x: [],
       totals: [],
+      favorite_counts: [],
+      retweet_counts: [],
       heatmap: [],
       sites: [],
       last_updated: false,
       logs: { time: [] },
       loading_plot: false,
+      dialog_sites: false,
     };
   },
   methods: {
