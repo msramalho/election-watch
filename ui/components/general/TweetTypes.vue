@@ -22,8 +22,6 @@ export default {
     this.x = r.data.history[0].map((d) => new Date(d));
     this.y = r.data.history[1];
 
-    console.log(this.x);
-    console.log(this.y);
     this.last_updated = this.x[0].toLocaleString();
 
     this.display();

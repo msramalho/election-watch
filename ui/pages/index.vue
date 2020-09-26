@@ -10,7 +10,7 @@
     <v-flex xs12 sm8 md6>
       <v-card>
         <v-card-title class="headline"
-          >Welcome to the Election Watch</v-card-title
+          >Bem-vind@ ao Election Watch</v-card-title
         >
         <v-card-text></v-card-text>
         <v-card-actions>
