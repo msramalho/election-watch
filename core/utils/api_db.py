@@ -259,7 +259,7 @@ def tweet_common_format(t, sub_tweet=True):
 
     # standard format with less repeated information
     t["user"] = t["user"]["id"]
-    if "hashtags" in t: t["hashtags"] = [h["text"] for h in t["hashtags"]]
+    if "hashtags" in t: t["hashtags"] = [h["text"].lower() for h in t["hashtags"]]
     if "user_mentions" in t: t["user_mentions"] = [um["id"] for um in t["user_mentions"]]
 
     # recursively cleanup
