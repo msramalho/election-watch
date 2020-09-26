@@ -2,7 +2,7 @@ import sys, os, glob, time, re, json
 sys.path = ['.', '..', '../..'] + sys.path
 
 from flask import Flask, request
-from flask_pymongo import PyMongo
+# from flask_pymongo import PyMongo
 from flask_cors import CORS
 from collections import defaultdict
 from loguru import logger
@@ -11,20 +11,20 @@ from gevent.pywsgi import WSGIServer
 
 from utils.misc import json_to_dict, configs_abs_path, abs_path
 from utils.task import Task
-
+from utils.db_connect import DBConnect
 
 app = Flask(__name__)
 CORS(app)
 
 config = json_to_dict(configs_abs_path('config.json'))
 
-app.config["MONGO_URI"] = config["mongodb"]["address"] + "admin"
-
-
-mongo = PyMongo(app)
-db = mongo.cx.get_database(config["mongodb"]["database"])
-col_users = db.get_collection("users")
-col_tweets = db.get_collection("tweets")
+MONGO_URI = config["mongodb"]["address"]
+DATABASE = config["mongodb"]["database"]
+# app.config["MONGO_URI"] = config["mongodb"]["address"] + "admin"
+# mongo = PyMongo(app)
+# db = mongo.cx.get_database(config["mongodb"]["database"])
+# col_users = db.get_collection("users")
+# col_tweets = db.get_collection("tweets")
 
 
 @app.route("/")
@@ -118,13 +118,14 @@ def log():
 def task_data():
     # this will query the DB dynamically in the task_name collection
     task_name = request.args.get('task_name')
-    try:
-        assert type(task_name) == str and len(task_name) > 0
-        task = Task(db, task_name, False)
-        assert task.exists()
+    try: assert type(task_name) == str and len(task_name) > 0
     except: return "task_name is invalid", 403
 
-    return task.get_api_n(365)  # return data for the last 30 days
+    with DBConnect(MONGO_URI, DATABASE) as db:
+        task = Task(db, task_name, False)
+        try: assert task.exists()
+        except: return "task_name not found", 404
+        return task.get_api_n(365)  # return data for the last 30 days
 
 
 @app.after_request
