@@ -25,9 +25,9 @@
         "dblogs_max_items": 500
     },
     "mongodb": {
-        "address_": "mongodb://root:yegf240f398h@localhost:27017/",
+        "address": "mongodb://root:yegf240f398h@localhost:27017/",
         "address_docker": "mongodb://root:yegf240f398h@mongo:27017/",
-        "address": "mongodb://localhost:27017/",
+        "address_": "mongodb://localhost:27017/",
         "database": "electionswatch",
         "drive_api_backup_enabled": true,
         "dump_file_drive_id": "16fMzD3S8tpUHvY_dPuhFMPZjwSluBMFn"
