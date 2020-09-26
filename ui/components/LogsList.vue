@@ -77,7 +77,10 @@
               /
               {{ selected.file }}
             </h3>
-            <code class="pa-2" v-html="content.replace('\n', '<br/>')" />
+            <span
+              class="pa-2 code-span"
+              v-html="content.replace('\n', '<br/>')"
+            />
           </div>
         </v-card>
         <v-btn
@@ -99,6 +102,12 @@
 <style scoped>
 .code-height {
   max-width: 100%;
+}
+.code-span {
+  white-space: pre-wrap;
+  font-size: small;
+  background-color: #e3e3e3;
+  display: block;
 }
 </style>
 
