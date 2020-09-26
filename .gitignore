@@ -6,6 +6,7 @@ envw/
 .ipynb_checkpoints
 .pyc
 api.json
+api_old.json
 config.json
 out/
 deploy.*
@@ -19,6 +20,9 @@ core/collection/temp
 *.temp
 local/
 core/report
+TODO.md
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
