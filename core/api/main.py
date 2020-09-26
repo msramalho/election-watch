@@ -18,7 +18,7 @@ CORS(app)
 
 config = json_to_dict(configs_abs_path('config.json'))
 
-MONGO_URI = config["mongodb"]["address_docker"]
+MONGO_URI = os.environ.get('MONGO_ADDRESS') or config["mongodb"]["address"]
 DATABASE = config["mongodb"]["database"]
 # app.config["MONGO_URI"] = config["mongodb"]["address"] + "admin"
 # mongo = PyMongo(app)
