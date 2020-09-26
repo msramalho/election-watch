@@ -51,21 +51,21 @@ db.getCollection('tweets').aggregate([
 ```javascript
 db.getCollection('tweets').aggregate([
   {$match: {"original": true}},
-
   {$unwind: '$hashtags'}, 
-
   { $group: { 
       _id: '$hashtags',
-      // count: {$sum: 1}
-      count: {$sum: { $add : ['$favorite_count', '$retweet_count']}}
+      count: {$sum: 1}, // em quantos originais aparecem
+      countWeight: {$sum: { $add : ['$favorite_count', '$retweet_count']}} // retweets+favorite
   }},
+  {$project: {
+      impact: { $divide: [ "$countWeight", "$count" ] },
+      count: 1, countWeight: 1, _id: '$_id'
+   }},
+   {$match: {count : {$gte: 100}}},
+  {$sort: {impact: -1}}, {$limit: 50},
 
-  {$sort: {count: -1}},
-
-  {$limit: 50},
-
-  { $project: { count: 1, _id: '$_id' }}
-]).map(x=>x._id + " - " + x.count).reduce((acc, prev) => acc + "\n" + prev)
+  { $project: { count: 1, countWeight: 1, impact: 1, _id: '$_id'}}
+]).map(x=>"#" + x._id + "(" + x.impact + ") - " + x.count + " - " + x.countWeight).reduce((acc, prev) => acc + "\n" + prev)
 ```
 * unset a given property(ies): `db.getCollection('users').update({}, {$unset: {private: 1, time_private: 1}}, {multi: true})`
 * get large contributors not in seed: `db.getCollection('users').count({followers_count: {$gt: 500000}, depth: {$gt: 0}})`
@@ -73,4 +73,29 @@ db.getCollection('tweets').aggregate([
 * get list of ids from a query `db.getCollection('users').find({followers_count: {$gte: 100000}}, {_id: 1}).map(function(item){ return item._id; }).reduce(function(acc, prev){return acc + "," + prev})`
 * get users with >= 100k followers and their follows_political, follows_news count `db.getCollection('users').find({followers_count: {$gte: 100000}, depth: {$gt: 0}}).map(x=>x.screen_name + " - " + x.follows_political + " - " + x.follows_news);`
 
-### keys a falhar: toni,
+```javascript
+
+db.getCollection('tweets').find({hashtags: {$exists: true}})
+.forEach(function(tweet) {
+    tweet.hashtags = tweet.hashtags.map(function(h) {
+        return h.toLowerCase();         
+    }); 
+    db.getCollection('tweets').save(tweet); 
+})
+```
+````javascript
+db.getCollection('users').count({
+    "count_parsed_tweets": {"$gte": 25},
+    "most_common_language": {"$not": {"$in": ["pt", "und"]}},
+    $and: [
+    {$or: [
+        {follows_political: {$lte: 2}},
+        {follows_political: {$exists: false}}
+    ]},
+    {"$or": [
+        {"tweeted_languages.pt": {"$exists": false}},
+        {"tweeted_languages.pt": {"$lte": 5}}
+    ]}
+    ]
+})//.limit(200).map(x=>x.screen_name + ":" + x.follows_political + "," + x.follows_news + " - " + x.description).reduce((acc, prev) => acc + "\n" + prev)
+```
