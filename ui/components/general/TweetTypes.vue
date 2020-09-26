@@ -40,14 +40,7 @@ export default {
   methods: {
     display() {
       let options = {
-        colorway: [
-          "#E64A39",
-          "#E97439",
-          "#EDD157",
-          "#65ED99",
-          "#5F8BE9",
-          "#6F1BC6",
-        ],
+        colorway: ["16DB65", "947BD3", "0CAADC", "EF7B45", "4F6D7A"],
       };
       let traces = [
         {

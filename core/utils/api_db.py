@@ -89,6 +89,17 @@ def get_account_details(user_id=None, screen_name=None, re_raise=False):
         if re_raise: raise e
 
 
+def update_account_details_on_suspended(user):
+    account = get_account_details(user_id=user["_id"])
+    if account:  # user has been unsuspended
+        user = user_to_db_format(account)
+        user["suspended"] = False
+        user["time_unsuspended"] = datetime.datetime.utcnow()
+        upsert_user(user)
+        return user
+    return user
+
+
 def get_tweets(user, func, since_id_key, oldest_tweet, args={}):
     # this method finds tweets between [OLDEST_TWEET, now] or [since_id, now] iff since_id
     # up to a maximum of 3200 as per the API spec, using func
@@ -268,9 +279,10 @@ def tweet_to_db_format(t):  # convert a tweet Status object to a dict with "_id"
 
 # DB interaction
 
-def find_exclude_invalid(search_params={}):
+def find_exclude_invalid(search_params={}, _except=["suspended"]):
     for v in misc.CONFIG["invalid_user_states"].values():
         search_params[v] = {"$exists": False}
+    for v in _except: del search_params[v]
     return search_params
 
 
