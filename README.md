@@ -27,17 +27,17 @@ To run, execute `pre-commit run --all-files`.
 
 ### Useful MongoDb queries
 * database current size in GB `db.stats(1024*1024*1024).dataSize + " GB";`
-* get the top 10 mentions after a given date:
+* get the top 50 mentions after a given date:
 ```sql
 db.getCollection('tweets').aggregate([
-  {$match: {"created_at": {$gte: new Date("2020-09-18"), $lt: new Date("2020-09-19")},
-            "retweeted_status": {$exists: false}}},
+  {$match: {"original": true}},
 
   {$unwind: '$user_mentions'}, 
 
   { $group: { 
       _id: '$user_mentions',
       count: {$sum: 1}
+      -- count: {$sum: { $add : ['$favorite_count', '$retweet_count']}}
   }},
 
   {$sort: {count: -1}},
@@ -45,10 +45,32 @@ db.getCollection('tweets').aggregate([
   {$limit: 50},
 
   { $project: { count: 1, _id: '$_id' }}
-]);
+]).map(x=>x._id + " - " + db.getCollection('users').find({_id: x._id}).map(y=>y.screen_name) +  " - " + x.count).reduce((acc, prev) => acc + "\n" + prev)
+```
+* get the top 50 hashtags by either impact (retweets + favorites) or just appearance count
+```javascript
+db.getCollection('tweets').aggregate([
+  {$match: {"original": true}},
+
+  {$unwind: '$hashtags'}, 
+
+  { $group: { 
+      _id: '$hashtags',
+      // count: {$sum: 1}
+      count: {$sum: { $add : ['$favorite_count', '$retweet_count']}}
+  }},
+
+  {$sort: {count: -1}},
+
+  {$limit: 50},
+
+  { $project: { count: 1, _id: '$_id' }}
+]).map(x=>x._id + " - " + x.count).reduce((acc, prev) => acc + "\n" + prev)
 ```
 * unset a given property(ies): `db.getCollection('users').update({}, {$unset: {private: 1, time_private: 1}}, {multi: true})`
 * get large contributors not in seed: `db.getCollection('users').count({followers_count: {$gt: 500000}, depth: {$gt: 0}})`
 * find tweets with a given hashtag(s) on a given date range `db.getCollection('tweets').find({"created_at": {$gte: new Date("2020-09-18"), $lt: new Date("2020-09-19")}, hashtags: {$in: ["HASHTAG"]}})`
 * get list of ids from a query `db.getCollection('users').find({followers_count: {$gte: 100000}}, {_id: 1}).map(function(item){ return item._id; }).reduce(function(acc, prev){return acc + "," + prev})`
 * get users with >= 100k followers and their follows_political, follows_news count `db.getCollection('users').find({followers_count: {$gte: 100000}, depth: {$gt: 0}}).map(x=>x.screen_name + " - " + x.follows_political + " - " + x.follows_news);`
+
+### keys a falhar: toni,
