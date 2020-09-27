@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
+    <v-card class="ma-4" :loading="loading_plot ? 'primary' : false">
       <h2 class="text-center pa-4">Notícias Falsas</h2>
       <p class="pa-4">
         Nos últimos {{ x.length }} dias, foram partilhados um total de
