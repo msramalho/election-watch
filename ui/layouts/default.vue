@@ -126,14 +126,14 @@ export default {
             },
             {
               title: "Presidenciais 2021",
-              tooltip: "Análise da atividade dos candidatos e partidos",
+              tooltip: "Análise da atividade dos candidatos presidenciais",
               to: "/elections",
               action: "mdi-vote-outline",
             },
             {
               title: "Atividade Maliciosa",
               tooltip:
-                "Explorar a atividade maliciosa: fake news, contas suspensas, atividade de bots",
+                "Explorar a atividade maliciosa: fake news, contas suspensas, ...",
               to: "/malicious",
               action: "mdi-shield-alert-outline",
             },

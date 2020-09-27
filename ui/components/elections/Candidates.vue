@@ -105,7 +105,7 @@
           >
             <template v-slot:top>
               <v-toolbar flat>
-                <v-toolbar-title>Tweets {{ candidate }}</v-toolbar-title>
+                <v-toolbar-title>Tweets de {{ candidate }}</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <!-- <v-text-field
                   v-model="candidates[candidate].search"
@@ -167,6 +167,7 @@ export default {
         { text: "Texto", value: "full_text", align: "center" },
         { text: "Likes", value: "favorite_count", align: "center" },
         { text: "Retweets", value: "retweet_count", align: "center" },
+        { text: "Data", value: "created_at", align: "center" },
         // { text: "", value: "data-table-expand" },
       ],
     };

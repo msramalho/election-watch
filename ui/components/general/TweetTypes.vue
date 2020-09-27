@@ -1,6 +1,5 @@
 <template>
   <div>
-    <small v-if="last_updated">(úlitma atualização: {{ last_updated }})</small>
     <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
       <h2 class="text-center pa-4">Tipos de Tweets ao longo do tempo</h2>
       <div id="types_of_tweets_totals"></div>
@@ -22,15 +21,12 @@ export default {
     this.x = r.data.history[0].map((d) => new Date(d));
     this.y = r.data.history[1];
 
-    this.last_updated = this.x[0].toLocaleString();
-
     this.display();
   },
   data() {
     return {
       x: [],
       y: [],
-      last_updated: false,
       logs: { time: [] },
       loading_plot: false,
     };
