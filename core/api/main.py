@@ -125,7 +125,7 @@ def task_data():
         task = Task(db, task_name, False)
         try: assert task.exists()
         except: return "task_name not found", 404
-        return task.get_api_n(365)  # return data for the last 30 days
+        return task.get_api_n(365)  # return data for the last 365 days
 
 
 @app.after_request
