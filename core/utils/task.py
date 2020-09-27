@@ -26,7 +26,7 @@ class Task:
         if self.only_one:
             return self.collection.find_one_and_update({}, {"$set": {"day": day, "data": data}}, upsert=True)
         else:
-            return self.collection.find_one_and_update({"day": get_filter_by_day(day)}, {"$set": {"data": data}}, upsert=True)
+            return self.collection.find_one_and_update({"day": get_filter_by_day(day)}, {"$set": {"day": day, "data": data}}, upsert=True)
 
     def get_last_n(self, n=30, withId=True):
         assert n > 0, "n must be greater than 0"
