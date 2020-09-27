@@ -1,6 +1,5 @@
 <template>
   <div>
-    <small v-if="last_updated">(úlitma atualização: {{ last_updated }})</small>
     <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
       <p class="pa-5">
         A data de criação das contas é um dos principais fatores que levantam
