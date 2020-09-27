@@ -3,13 +3,15 @@
     <v-flex class="text-center">
       <h1>Atividade Maliciosa</h1>
       <fakenews />
+      <suspensions />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import Fakenews from "~/components/general/Fakenews.vue";
+import Fakenews from "~/components/malicious/Fakenews.vue";
+import Suspensions from "~/components/malicious/Suspensions.vue";
 export default {
-  components: { Fakenews },
+  components: { Fakenews, Suspensions },
 };
 </script>

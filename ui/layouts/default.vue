@@ -83,6 +83,14 @@
     </v-content>
     <v-footer :fixed="fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
+      <v-spacer></v-spacer>
+      <small>
+        <a href="https://github.com/msramalho/election-watch"> Código Fonte</a>
+        &nbsp;|&nbsp;
+        <a href="https://msramalho.github.io/msc-thesis.pdf"
+          >Tese de Mestrado</a
+        >
+      </small>
     </v-footer>
   </v-app>
 </template>
