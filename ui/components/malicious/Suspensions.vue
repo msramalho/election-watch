@@ -20,7 +20,7 @@
       <v-data-table
         :headers="tableHeaders"
         :items="suspended"
-        item-key="name"
+        item-key="_id"
         class="elevation-1"
         :search="search"
       >
@@ -31,7 +31,7 @@
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
-              label="Search"
+              label="Pesquisar"
               single-line
               hide-details
             ></v-text-field>
@@ -88,7 +88,6 @@ export default {
       x: [],
       totals: [],
       last_updated: false,
-      logs: { time: [] },
       loading_plot: false,
       dialog_sites: false,
       suspended: [],

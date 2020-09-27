@@ -105,7 +105,6 @@ export default {
       retweet_counts: [],
       heatmap: [],
       sites: [],
-      last_updated: false,
       logs: { time: [] },
       loading_plot: false,
       dialog_sites: false,
