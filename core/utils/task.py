@@ -22,7 +22,7 @@ class Task:
         return self.collection.find_one({"day": get_filter_by_day(day)}) is not None
 
     def insert(self, day, data):
-        return self.collection.find_one_and_update({"day": get_filter_by_day(day)}, {"$set": "data": data}, upsert=True)
+        return self.collection.find_one_and_update({"day": get_filter_by_day(day)}, {"$set": {"data": data}}, upsert=True)
 
     def get_last_n(self, n=30, withId=True):
         assert n > 0, "n must be greater than 0"
