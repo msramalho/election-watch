@@ -10,8 +10,11 @@
         (JI) para cada par de conjunto de seguidores no Twitter, entre os
         diferentes candidatos.<br />
         Valores mais altos implicam que há uma maior semelhança entre os
-        conjuntos. Se as mesmas contas seguirem dois candidatos, o valor de JI
-        entre eles é 1.
+        conjuntos. <br />Se dois candidatos tiverem exatamente os mesmos
+        seguidores, o valor de JI entre eles é 1. <br />
+        Esta é uma possível métrica que indica a polarização entre seguidores,
+        sendo que se espera que candidatos que apelem aos mesmos utilizadores,
+        tenham um índice maior. <br />
       </p>
       <div id="followers_polatization_heatmap"></div>
     </v-card>
@@ -30,9 +33,9 @@ export default {
 
     // this.date = r.data.history[0][0]; //only contains this date
     this.candidates = r.data.history[1][0].candidates;
-    this.heatmap_polarization = r.data.history[1][0].polarization_matrix;
+    this.polarization = r.data.history[1][0].polarization;
 
-    console.log(this.heatmap_polarization);
+    console.log(this.polarization);
     // this.data_points = r.data.history[1][0].filter(
     //   (dp) => dp.year !== null && dp.year != 1970
     // );
@@ -44,7 +47,7 @@ export default {
   data() {
     return {
       candidates: [],
-      heatmap_polarization: [],
+      polarization: [],
       loading_plot: false,
     };
   },
@@ -54,13 +57,13 @@ export default {
     },
     display() {
       this.x = this.candidates.map((c) => `#${c[0]}`);
-      this.heatmap_polarization = this.heatmap_polarization.map((row) =>
+      this.polarization = this.polarization.map((row) =>
         row.map((cell) => (cell == 1 ? undefined : cell.toFixed(4)))
       );
-      let max = this.max(this.heatmap_polarization.flat());
+      let max = this.max(this.polarization.flat());
       let data = [
         {
-          z: this.heatmap_polarization,
+          z: this.polarization,
           x: this.x,
           y: this.x,
           type: "heatmap",
@@ -97,7 +100,7 @@ export default {
 
       for (let i = 0; i < this.x.length; i++) {
         for (let j = 0; j < this.x.length; j++) {
-          let currentValue = this.heatmap_polarization[i][j];
+          let currentValue = this.polarization[i][j];
           //   let textColor = currentValue >= max ? "black" : "white";
           let textColor = currentValue > 0 ? "black" : "white";
           let result = {
@@ -105,7 +108,7 @@ export default {
             yref: "y1",
             x: this.x[j],
             y: this.x[i],
-            text: this.heatmap_polarization[i][j],
+            text: this.polarization[i][j],
             font: {
               family: "Roboto",
               size: 12,
