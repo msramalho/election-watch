@@ -22,7 +22,7 @@ class Task:
         return self.collection.find_one({"day": get_filter_by_day(day)}) is not None
 
     def insert(self, day, data):
-        return self.collection.insert({"_id": str(uuid.uuid4()), "day": day, "data": data})
+        return self.collection.find_one_and_update({"day": get_filter_by_day(day)}, {"$set": "data": data}, upsert=True)
 
     def get_last_n(self, n=30, withId=True):
         assert n > 0, "n must be greater than 0"
@@ -33,9 +33,12 @@ class Task:
     def unzip_last_n(self, n=30, withId=True):
         # returns two lists [days], [datas]
         unzip = list(zip(*[(x["day"], x["data"]) for x in self.get_last_n(n)]))
-        return unzip[0], unzip[1]
+        if len(unzip): return unzip[0], unzip[1]
+        return [], []
 
-    def get_last(self): return self.get_last_n(1)[0]
+    def get_last(self):
+        last = self.get_last_n(1)
+        if len(last): return [0]
 
     def drop(self): self.collection.remove({})
     def drop_day(self, day): self.collection.remove({"day": day})

@@ -4,7 +4,7 @@
       <h2 class="text-center pa-4">Contas Suspensas</h2>
       <p class="pa-4">
         Nos últimos {{ x.length - 1 }} dias, foram suspensas um total de
-        <strong>{{ sum(totals) }} contas</strong>.
+        <strong>{{ this.suspended.length }} contas</strong>.
         <br />
         Há várias
         <a
@@ -70,16 +70,18 @@ export default {
     this.totals = this.totals.slice(countIgnore);
 
     // get suspended accounts information
-    (this.suspended = r.data.history[1].map((x) => x.users).flat()).map(
-      (user) => {
+    this.suspended = r.data.history[1]
+      .filter((x) => x.users.length > 0)
+      .map((x) => x.users)
+      .flat()
+      .map((user) => {
         // apply any transformation here
         if (user.created_at !== undefined) {
           user.created_at = new Date(user.created_at).toLocaleDateString();
         }
         return user;
-      }
-    );
-    console.log(this.suspended);
+      });
+    this.suspended = this.uniqBy(this.suspended, (x) => x._id);
 
     this.display();
   },
@@ -109,7 +111,13 @@ export default {
     sum(arr) {
       return arr.reduce((a, b) => a + b, 0);
     },
-
+    uniqBy(a, key) {
+      var seen = {};
+      return a.filter(function (item) {
+        var k = key(item);
+        return seen.hasOwnProperty(k) ? false : (seen[k] = true);
+      });
+    },
     display() {
       let startDate = this.x.filter((day, i) => this.totals[i] > 0)[0];
       let options = {

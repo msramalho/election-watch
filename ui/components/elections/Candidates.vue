@@ -32,7 +32,7 @@
             rounded
             max-width="150px"
           >
-            <v-icon>mdi-twitter</v-icon>&nbsp; profile
+            <v-icon>mdi-twitter</v-icon>&nbsp; perfil
           </v-btn>
         </v-expansion-panel-header>
         <v-expansion-panel-content class="text-left">
