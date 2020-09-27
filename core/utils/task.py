@@ -6,9 +6,10 @@ from .misc import get_filter_by_day
 class Task:
     # handles a collection task_name
     # each document is {_id: uuid, day: day of analysis, data: what to store for this day}
-    def __init__(self, db, name, create=True):
+    def __init__(self, db, name, create=True, only_one=False):
         self.name = "task_%s" % slugify(name, separator="_")
         self.db = db
+        self.only_one = only_one
         if create or self.exists(): self.create()
 
     def create(self):
@@ -22,7 +23,10 @@ class Task:
         return self.collection.find_one({"day": get_filter_by_day(day)}) is not None
 
     def insert(self, day, data):
-        return self.collection.find_one_and_update({"day": get_filter_by_day(day)}, {"$set": {"data": data}}, upsert=True)
+        if self.only_one:
+            return self.collection.find_one_and_update({}, {"$set": {"day": day, "data": data}}, upsert=True)
+        else:
+            return self.collection.find_one_and_update({"day": get_filter_by_day(day)}, {"$set": {"data": data}}, upsert=True)
 
     def get_last_n(self, n=30, withId=True):
         assert n > 0, "n must be greater than 0"
