@@ -25,22 +25,33 @@
       <!-- <div id="fakenews_by_website_heatmap"></div> -->
     </v-card>
 
-    <v-dialog v-model="dialog_sites" max-width="500">
-      <v-card>
-        <v-card-title class="headline"
-          >Fontes de notícias falsas ({{ this.sites.length }})</v-card-title
-        >
+    <v-dialog v-model="dialog_sites" max-width="750">
+      <v-card class="text-center">
+        <h2 class="headline text-center pa-3">
+          Fontes de notícias falsas ({{ this.sites.length }})
+        </h2>
 
         <v-card-text>
-          <v-list-item v-for="(site, k) in this.sites" :key="k">
-            <v-btn text :href="'https://www.' + site" small flat>
-              <v-list-item-content>
-                <v-list-item-title>
-                  {{ site }}
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-btn>
-          </v-list-item>
+          <p class="mb-2">
+            Podes sugerir novas editanto
+            <a
+              href="https://github.com/msramalho/election-watch/blob/master/core/fakenews.txt"
+              >este ficheiro</a
+            >
+            no nosso repositório.
+          </p>
+          <v-btn
+            v-for="(site, k) in this.sites"
+            :key="k"
+            text
+            :href="'https://www.' + site"
+            small
+            color="primary"
+            elevation="2"
+            class="ma-2"
+          >
+            {{ site }}
+          </v-btn>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -65,7 +76,7 @@ export default {
     this.retweet_counts = r.data.history[1].map((x) => x.retweet_count);
 
     this.sites = Object.keys(r.data.history[1][0].sites).map((site) =>
-      site.replace("-", ".")
+      site.replaceAll("-", ".")
     );
 
     //heatmap
