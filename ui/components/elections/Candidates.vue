@@ -99,7 +99,16 @@
 
           <v-data-table
             :headers="tableHeaders"
-            :items="candidates[candidate].metrics.map((x) => x.tweets).flat()"
+            :items="
+              candidates[candidate].metrics
+                .map((x) =>
+                  x.tweets.map((t) => {
+                    t.created_at = new Date(t.created_at).toLocaleDateString();
+                    return t;
+                  })
+                )
+                .flat()
+            "
             item-key="_id"
             class="elevation-1"
           >
@@ -156,7 +165,6 @@ export default {
     });
     this.candidateNames = Object.keys(this.candidates);
     this.candidateNames.sort();
-    console.log(this.candidates);
     this.display();
     this.loading_plot = false;
   },

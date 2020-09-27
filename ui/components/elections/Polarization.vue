@@ -1,9 +1,7 @@
 <template>
   <div>
+    <h2 class="text-center pa-4">Polarização entre seguidores de candidatos</h2>
     <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
-      <h2 class="text-center pa-4">
-        Polarização entre seguidores de candidatos
-      </h2>
       <p class="pa-5 pb-0 col-md-12 col-lg-8 mx-auto text-justify">
         Esta tabela mostra o
         <a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard Index</a>
@@ -16,6 +14,8 @@
         sendo que se espera que candidatos que apelem aos mesmos utilizadores,
         tenham um índice maior. <br />
       </p>
+    </v-card>
+    <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
       <div id="followers_polatization_heatmap"></div>
       <p class="pa-5 pb-0 col-md-12 col-lg-8 mx-auto text-justify">
         Por outro lado, esta tabela permite responder à questão: Que percentagem
