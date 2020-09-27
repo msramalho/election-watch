@@ -105,7 +105,12 @@
           >
             <template v-slot:top>
               <v-toolbar flat>
-                <v-toolbar-title>Tweets de {{ candidate }}</v-toolbar-title>
+                <v-toolbar-title
+                  >Tweets de {{ candidate }} ({{
+                    candidates[candidate].metrics.map((x) => x.tweets).flat()
+                      .length
+                  }})</v-toolbar-title
+                >
                 <v-spacer></v-spacer>
                 <!-- <v-text-field
                   v-model="candidates[candidate].search"

@@ -4,10 +4,10 @@
       <h2 class="text-center pa-4">
         Polarização entre seguidores de candidatos
       </h2>
-      <p class="pa-5">
+      <p class="pa-5 pb-0 col-md-12 col-lg-8 mx-auto text-justify">
         Esta tabela mostra o
         <a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard Index</a>
-        (JI) para cada par de conjunto de seguidores no Twitter, entre os
+        (JI) para cada par de conjuntos de seguidores no Twitter, entre os
         diferentes candidatos.<br />
         Valores mais altos implicam que há uma maior semelhança entre os
         conjuntos. <br />Se dois candidatos tiverem exatamente os mesmos
@@ -17,6 +17,14 @@
         tenham um índice maior. <br />
       </p>
       <div id="followers_polatization_heatmap"></div>
+      <p class="pa-5 pb-0 col-md-12 col-lg-8 mx-auto text-justify">
+        Por outro lado, esta tabela permite responder à questão: Que percentagem
+        dos seguidores do candidato numa dada linha é que seguem o candidato de
+        uma dada coluna. <br />Naturalmente, exclui-se a diagonal por esse valor
+        ser sempre 1, já que cada candidato partilha todos os seguidores consigo
+        mesmo :)
+      </p>
+      <div id="followers_ratios_heatmap"></div>
     </v-card>
   </div>
 </template>
@@ -34,13 +42,8 @@ export default {
     // this.date = r.data.history[0][0]; //only contains this date
     this.candidates = r.data.history[1][0].candidates;
     this.polarization = r.data.history[1][0].polarization;
-
-    console.log(this.polarization);
-    // this.data_points = r.data.history[1][0].filter(
-    //   (dp) => dp.year !== null && dp.year != 1970
-    // );
-    // this.x = this.data_points.map((dp) => new Date(dp.year, dp.month - 1, 1));
-    // this.y = this.data_points.map((dp) => dp.count);
+    this.ratios = r.data.history[1][0].ratios;
+    this.x = this.candidates.map((c) => `#${c[0]}`);
 
     this.display();
   },
@@ -48,19 +51,15 @@ export default {
     return {
       candidates: [],
       polarization: [],
+      ratios: [],
       loading_plot: false,
     };
   },
   methods: {
-    max(arr) {
-      return arr.reduce((a, b) => Math.max(a, b));
-    },
-    display() {
-      this.x = this.candidates.map((c) => `#${c[0]}`);
+    displayPolarization() {
       this.polarization = this.polarization.map((row) =>
-        row.map((cell) => (cell == 1 ? undefined : cell.toFixed(4)))
+        row.map((cell) => cell.toFixed(4))
       );
-      let max = this.max(this.polarization.flat());
       let data = [
         {
           z: this.polarization,
@@ -93,7 +92,7 @@ export default {
         },
         height: 650,
         margin: {
-          t: 200,
+          t: 150,
           l: 150,
         },
       };
@@ -101,7 +100,6 @@ export default {
       for (let i = 0; i < this.x.length; i++) {
         for (let j = 0; j < this.x.length; j++) {
           let currentValue = this.polarization[i][j];
-          //   let textColor = currentValue >= max ? "black" : "white";
           let textColor = currentValue > 0 ? "black" : "white";
           let result = {
             xref: "x1",
@@ -121,7 +119,75 @@ export default {
       }
 
       Plotly.newPlot("followers_polatization_heatmap", data, layout);
+    },
+    displayRatios() {
+      this.ratios = this.ratios.map((row) =>
+        row.map((cell) => (cell * 100).toFixed(2))
+      );
+      let data = [
+        {
+          z: this.ratios,
+          x: this.x,
+          y: this.x,
+          type: "heatmap",
+          hoverongaps: false,
+          colorscale: "YlGnBu",
+          colorscale: [
+            [0, "#fff"],
+            [1, "#06CDF4"],
+          ],
+          showscale: false,
+        },
+      ];
+      let layout = {
+        title:
+          "Percentagem de seguidores de Candidato linha que seguem candidato coluna",
+        annotations: [],
+        xaxis: {
+          ticks: "",
+          side: "top",
+        },
+        yaxis: {
+          ticks: "",
+          ticksuffix: " ",
+          width: 700,
+          height: 700,
+          autosize: false,
+          autorange: "reversed",
+        },
+        height: 650,
+        margin: {
+          t: 150,
+          l: 150,
+        },
+      };
 
+      for (let i = 0; i < this.x.length; i++) {
+        for (let j = 0; j < this.x.length; j++) {
+          let currentValue = this.ratios[i][j];
+          let textColor = currentValue > 0 ? "black" : "white";
+          let result = {
+            xref: "x1",
+            yref: "y1",
+            x: this.x[j],
+            y: this.x[i],
+            text: this.ratios[i][j],
+            font: {
+              family: "Roboto",
+              size: 12,
+              color: textColor,
+            },
+            showarrow: false,
+          };
+          layout.annotations.push(result);
+        }
+      }
+
+      Plotly.newPlot("followers_ratios_heatmap", data, layout);
+    },
+    display() {
+      this.displayPolarization();
+      this.displayRatios();
       this.loading_plot = false;
     },
   },
