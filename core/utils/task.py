@@ -38,6 +38,7 @@ class Task:
     def get_last(self): return self.get_last_n(1)[0]
 
     def drop(self): self.collection.remove({})
+    def drop_day(self, day): self.collection.remove({"day": day})
 
     def get_api_n(self, n):
         # returns a standardized dict that can be returned directly by the api
