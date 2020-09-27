@@ -2,7 +2,7 @@
   <v-layout>
     <v-flex class="text-center">
       <h1>Presidenciais 2021</h1>
-      <!-- <candidates /> -->
+      <candidates />
       <polarization />
     </v-flex>
   </v-layout>

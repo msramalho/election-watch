@@ -1,8 +1,18 @@
 <template>
   <div>
     <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
-      <p class="pa-5">lorem</p>
-      <h2 class="text-center pa-4">Contas por ano e mês de criação</h2>
+      <h2 class="text-center pa-4">
+        Polarização entre seguidores de candidatos
+      </h2>
+      <p class="pa-5">
+        Esta tabela mostra o
+        <a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard Index</a>
+        (JI) para cada par de conjunto de seguidores no Twitter, entre os
+        diferentes candidatos.<br />
+        Valores mais altos implicam que há uma maior semelhança entre os
+        conjuntos. Se as mesmas contas seguirem dois candidatos, o valor de JI
+        entre eles é 1.
+      </p>
       <div id="followers_polatization_heatmap"></div>
     </v-card>
   </div>
@@ -39,11 +49,15 @@ export default {
     };
   },
   methods: {
+    max(arr) {
+      return arr.reduce((a, b) => Math.max(a, b));
+    },
     display() {
       this.x = this.candidates.map((c) => `#${c[0]}`);
       this.heatmap_polarization = this.heatmap_polarization.map((row) =>
         row.map((cell) => (cell == 1 ? undefined : cell.toFixed(4)))
       );
+      let max = this.max(this.heatmap_polarization.flat());
       let data = [
         {
           z: this.heatmap_polarization,
@@ -52,15 +66,15 @@ export default {
           type: "heatmap",
           hoverongaps: false,
           colorscale: "YlGnBu",
-          //   colorscale: [
-          //     [0, "#000"],
-          //     [1, "#fff"],
-          //   ],
+          colorscale: [
+            [0, "#fff"],
+            [1, "#06CDF4"],
+          ],
           showscale: false,
         },
       ];
       let layout = {
-        title: "Annotated Heatmap",
+        title: "Semelhança entre os conjuntos de seguidores (Jaccard Index)",
         annotations: [],
         xaxis: {
           ticks: "",
@@ -74,12 +88,18 @@ export default {
           autosize: false,
           autorange: "reversed",
         },
+        height: 650,
+        margin: {
+          t: 200,
+          l: 150,
+        },
       };
 
       for (let i = 0; i < this.x.length; i++) {
         for (let j = 0; j < this.x.length; j++) {
           let currentValue = this.heatmap_polarization[i][j];
-          let textColor = currentValue > 0.1 ? "black" : "white";
+          //   let textColor = currentValue >= max ? "black" : "white";
+          let textColor = currentValue > 0 ? "black" : "white";
           let result = {
             xref: "x1",
             yref: "y1",
@@ -87,32 +107,17 @@ export default {
             y: this.x[i],
             text: this.heatmap_polarization[i][j],
             font: {
-              family: "Arial",
+              family: "Roboto",
               size: 12,
-              color: "rgb(50, 171, 96)",
-            },
-            showarrow: false,
-            font: {
               color: textColor,
             },
+            showarrow: false,
           };
           layout.annotations.push(result);
         }
       }
 
       Plotly.newPlot("followers_polatization_heatmap", data, layout);
-
-      //   let traces = [
-      //     {
-      //       x: this.x,
-      //       y: this.y,
-      //       stackgroup: "one",
-      //       name: "#contas",
-      //     },
-      //   ];
-      //   Plotly.newPlot("followers_polatization_heatmap", traces, {
-      //     colorway: ["16DB65", "947BD3", "0CAADC", "EF7B45", "4F6D7A"],
-      //   });
 
       this.loading_plot = false;
     },
