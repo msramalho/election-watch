@@ -116,11 +116,7 @@ export default {
       traces2[0].groupnorm = "percent";
       Plotly.newPlot("types_of_tweets_percent", traces2, {
         ...options,
-<<<<<<< HEAD
-        title: "Valores normalizados",
-=======
         title: "Valores normalizados (percentagem)",
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
       });
       this.loading_plot = false;
     },
