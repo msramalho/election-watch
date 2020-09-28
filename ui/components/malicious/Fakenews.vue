@@ -1,19 +1,17 @@
 <template>
   <div>
     <v-card class="ma-4" :loading="loading_plot ? 'primary' : false">
-      <h2 class="text-center pa-4">Notícias Falsas</h2>
-      <p class="pa-4">
+      <h3 class="text-center pa-4">Notícias Falsas</h3>
+      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
         Nos últimos {{ x.length }} dias, foram partilhados um total de
         <strong>{{ sum(totals) }} tweets</strong>
-        contendo links para sites de notícias falsas.
-
-        <br />Estes tweets receberam um total de
+        contendo links para sites de notícias falsas. Estes tweets receberam um
+        total de
         <strong>{{ sum(favorite_counts) }} <i>likes</i></strong> (média:
         {{ (sum(favorite_counts) / sum(totals)).toFixed(2) }} likes/tweet) e
         <strong>{{ sum(retweet_counts) }} <i>retweets</i></strong> (média:
         {{ (sum(retweet_counts) / sum(totals)).toFixed(2) }} retweets/tweet).
-
-        <br />Neste momento, estamos a monitorizar
+        Neste momento, estamos a monitorizar
         <a @click.stop="dialog_sites = true">
           <strong>{{ sites.length }}</strong> websites e páginas de facebook</a
         >

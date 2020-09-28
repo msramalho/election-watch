@@ -16,7 +16,7 @@
             <v-list-item v-for="(v, k) in stats.tweets" :key="k">
               <v-list-item-content>{{ k }}</v-list-item-content>
               <v-list-item-content class="align-end">{{
-                v
+                v.toLocaleString()
               }}</v-list-item-content>
             </v-list-item>
           </v-list>
@@ -30,7 +30,7 @@
             <v-list-item v-for="(v, k) in stats.users" :key="k">
               <v-list-item-content>{{ k }}</v-list-item-content>
               <v-list-item-content class="align-end">{{
-                v
+                v.toLocaleString()
               }}</v-list-item-content>
             </v-list-item>
           </v-list>
