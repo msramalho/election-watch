@@ -32,11 +32,13 @@ class Task:
         assert n > 0, "n must be greater than 0"
         # retrieve last n entries concatenated
         # self.collection.find({})
-        return list(self.collection.find({}, {"_id": withId, "day": 1, "data": 1}).sort([("day", -1)]).limit(n))
+        res = list(self.collection.find({}, {"_id": withId, "day": 1, "data": 1}).sort([("day", -1)]).limit(n))
+        print(res)
+        return res
 
     def unzip_last_n(self, n=30, withId=True):
         # returns two lists [days], [datas]
-        unzip = list(zip(*[(x["day"], x["data"]) for x in self.get_last_n(n)]))
+        unzip = list(zip(*[(x["day"], x["data"]) for x in self.get_last_n(n, withId)]))
         if len(unzip): return unzip[0], unzip[1]
         return [], []
 
