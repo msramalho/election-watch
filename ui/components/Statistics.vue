@@ -16,7 +16,11 @@
             <v-list-item v-for="(v, k) in stats.tweets" :key="k">
               <v-list-item-content>{{ k }}</v-list-item-content>
               <v-list-item-content class="align-end">{{
+<<<<<<< HEAD
                 v
+=======
+                v.toLocaleString()
+>>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
               }}</v-list-item-content>
             </v-list-item>
           </v-list>
@@ -30,7 +34,11 @@
             <v-list-item v-for="(v, k) in stats.users" :key="k">
               <v-list-item-content>{{ k }}</v-list-item-content>
               <v-list-item-content class="align-end">{{
+<<<<<<< HEAD
                 v
+=======
+                v.toLocaleString()
+>>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
               }}</v-list-item-content>
             </v-list-item>
           </v-list>

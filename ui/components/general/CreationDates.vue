@@ -1,7 +1,14 @@
 <template>
   <div>
+<<<<<<< HEAD
     <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
       <p class="pa-5">
+=======
+    <br />
+    <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
+      <h3 class="text-center pa-4">Contas por ano e mês de criação</h3>
+      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
+>>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
         A data de criação das contas é um dos principais fatores que levantam
         suspeitas sobre intenção de atividade maliciosa. O pico na criação de
         contas registado entre março e abril de 2020 mostra-se como uma
@@ -12,7 +19,10 @@
         >
         que suporta a criação desta ferramenta.
       </p>
+<<<<<<< HEAD
       <h2 class="text-center pa-4">Contas por ano e mês de criação</h2>
+=======
+>>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
       <div id="users_by_creation_date"></div>
     </v-card>
   </div>

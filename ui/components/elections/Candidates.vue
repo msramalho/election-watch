@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- <v-card class="ma-4 my-10" :loading="loading_plot ? 'primary' : false"> -->
+<<<<<<< HEAD
     <h2 class="text-center pa-4">Análise Candidatos</h2>
     <p class="pa-4">Nos últimos {{ x.length }} dias</p>
 
@@ -122,18 +123,179 @@
                 >
                 <v-spacer></v-spacer>
                 <!-- <v-text-field
+=======
+    <v-card class="ma-2" elevation="10">
+      <h3 class="text-center pa-4">
+        Análise das menções por <strong>nome</strong> e por
+        <code>@handle</code> para os diferentes candidatos
+      </h3>
+      <v-progress-circular
+        :size="50"
+        indeterminate
+        color="primary"
+        v-if="loading_plot ? 'primary' : false"
+        class="my-10"
+      ></v-progress-circular>
+
+      <div id="mentions_over_time_all"></div>
+    </v-card>
+    <br />
+    <v-card class="ma-2" elevation="10">
+      <h3 class="text-center pa-4">
+        Análise do impacto direto da atividade de cada candidato<br />medida
+        como a soma do número de <i>likes</i> e <i>retweets</i> aos seus
+        <i>tweets</i>
+      </h3>
+      <v-progress-circular
+        :size="50"
+        indeterminate
+        color="primary"
+        v-if="loading_plot ? 'primary' : false"
+        class="my-10"
+      ></v-progress-circular>
+      <div id="tweet_impact_over_time_all"></div>
+    </v-card>
+    <br />
+
+    <v-card class="ma-0 pa-0" elevation="10">
+      <h3 class="text-center pa-4">
+        Análise das menções por <strong>nome</strong> e por
+        <code>@handle</code> para os diferentes candidatos
+      </h3>
+      <v-expansion-panels class="mb-10" popout>
+        <v-expansion-panel
+          elevation="10"
+          v-for="(candidate, i) in candidateNames"
+          :key="i"
+          @click="displayCandidate(candidate, i)"
+        >
+          <v-expansion-panel-header>
+            {{ candidate }}
+            <v-spacer></v-spacer>
+
+            <v-btn
+              :href="`https://twitter.com/${candidates[candidate].metrics[0].screen_name}`"
+              icon
+              color="primary"
+              rounded
+              max-width="150px"
+            >
+              <v-icon>mdi-twitter</v-icon>&nbsp; perfil
+            </v-btn>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content class="text-left">
+            Neste momento, {{ candidate }} tem
+            <strong>{{
+              candidates[candidate].metrics[0].followers_count.toLocaleString()
+            }}</strong>
+            seguidores.
+            <br />
+            Nos últimos {{ x.length }} dias, publicou
+            {{ sum(candidates[candidate].metrics.map((m) => m.tweets.length)) }}
+            tweets ({{
+              sum(
+                candidates[candidate].metrics.map(
+                  (x) => x.tweets.filter((t) => t.type == "original").length
+                )
+              ).toLocaleString()
+            }}
+            originais,
+            {{
+              sum(
+                candidates[candidate].metrics.map(
+                  (x) => x.tweets.filter((t) => t.type == "retweet").length
+                )
+              ).toLocaleString()
+            }}
+            retweets,
+            {{
+              sum(
+                candidates[candidate].metrics.map(
+                  (x) => x.tweets.filter((t) => t.type == "reply").length
+                )
+              ).toLocaleString()
+            }}
+            replies,
+            {{
+              sum(
+                candidates[candidate].metrics.map(
+                  (x) => x.tweets.filter((t) => t.type == "quote").length
+                )
+              ).toLocaleString()
+            }}
+            quotes).
+            <br />
+            Criando um impacto total (likes+retweets) de
+            {{
+              sum(
+                candidates[candidate].metrics.map((x) => x.tweet_impact)
+              ).toLocaleString()
+            }}
+            ({{
+              (
+                sum(candidates[candidate].metrics.map((z) => z.tweet_impact)) /
+                x.length
+              ).toLocaleString()
+            }}
+            por dia).
+            <!-- {{ candidates[candidate] }} -->
+
+            <!-- <div :id="`performance_over_time_${candidates[candidate]._id}`"></div> -->
+            <div :id="`mentions_over_time_${i}`"></div>
+            <div :id="`tweet_impact_over_time_${i}`"></div>
+            <div :id="`followers_over_time_${i}`"></div>
+
+            <v-data-table
+              :headers="tableHeaders"
+              :items="
+                candidates[candidate].metrics
+                  .map((x) =>
+                    x.tweets.map((t) => {
+                      t.created_at = new Date(
+                        t.created_at
+                      ).toLocaleDateString();
+                      return t;
+                    })
+                  )
+                  .flat()
+              "
+              item-key="_id"
+              class="elevation-1"
+            >
+              <template v-slot:top>
+                <v-toolbar flat>
+                  <v-toolbar-title
+                    >Tweets de {{ candidate }} ({{
+                      candidates[candidate].metrics.map((x) => x.tweets).flat()
+                        .length
+                    }})</v-toolbar-title
+                  >
+                  <v-spacer></v-spacer>
+                  <!-- <v-text-field
+>>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
                   v-model="candidates[candidate].search"
                   append-icon="mdi-magnify"
                   label="Pesquisar"
                   single-line
                   hide-details
                 ></v-text-field> -->
+<<<<<<< HEAD
               </v-toolbar>
             </template>
           </v-data-table>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
+=======
+                </v-toolbar>
+              </template>
+            </v-data-table>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <br />
+    </v-card>
+>>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
     <br />
     <!-- </v-card> -->
   </div>
@@ -279,6 +441,7 @@ export default {
           { ...options, title: `Menções ao longo do tempo para ${cname}` }
         );
         Plotly.newPlot(
+<<<<<<< HEAD
           `followers_over_time_${i}`,
           [
             {
@@ -292,6 +455,8 @@ export default {
           { ...options, title: `Seguidores ao longo do tempo para ${cname}` }
         );
         Plotly.newPlot(
+=======
+>>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
           `tweet_impact_over_time_${i}`,
           [
             {
@@ -329,6 +494,26 @@ export default {
             title: `Tweets e impacto (likes+retweets) para ${cname}`,
           }
         );
+<<<<<<< HEAD
+=======
+        let FIRST_MEASURED_DAY = new Date(2020, 8, 25, 0, 0, 0, 0); // 8 == september
+        let exclude_left = this.x.filter(
+          (d) => d.getTime() < FIRST_MEASURED_DAY.getTime()
+        ).length;
+        Plotly.newPlot(
+          `followers_over_time_${i}`,
+          [
+            {
+              x: this.x.slice(exclude_left - 1),
+              y: followers_count.slice(exclude_left - 1),
+              type: "scatter",
+              mode: "lines+markers",
+              name: "seguidores",
+            },
+          ],
+          { ...options, title: `Seguidores ao longo do tempo para ${cname}` }
+        );
+>>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
       }, 200);
     },
   },
