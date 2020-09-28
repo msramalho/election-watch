@@ -1,30 +1,16 @@
 <template>
   <div>
     <v-card class="ma-4 my-10" :loading="loading_plot ? 'primary' : false">
-<<<<<<< HEAD
-      <h2 class="text-center pa-4">Contas Suspensas</h2>
-      <p class="pa-4">
-        Nos últimos {{ x.length - 1 }} dias, foram suspensas um total de
-        <strong>{{ this.suspended.length }} contas</strong>.
-        <br />
-        Há várias
-=======
       <h3 class="text-center pa-4">Contas Suspensas</h3>
       <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
         Nos últimos {{ x.length - 1 }} dias, foram suspensas um total de
         <strong>{{ this.suspended.length }} contas</strong>. Há várias
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
         <a
           href="https://help.twitter.com/en/managing-your-account/suspended-twitter-accounts#:~:text=In%20order%20to%20maintain%20a,reasons%20for%20suspension%20may%20include%3A&text=Abusive%20Tweets%20or%20behavior%3A%20We,violating%20our%20Rules%20surrounding%20abuse."
         >
           razões para a suspensão de contas </a
-<<<<<<< HEAD
-        >. <br />Nem sempre uma suspensão corresponde a comportamento malicioso
-        para a comunidade.
-=======
         >. Nem sempre uma suspensão corresponde a comportamento malicioso para a
         comunidade.
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
       </p>
       <div id="suspensions_over_time"></div>
 

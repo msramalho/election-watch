@@ -1,11 +1,6 @@
 <template>
   <div>
     <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
-<<<<<<< HEAD
-      <h2 class="text-center pa-4">Tipos de Tweets ao longo do tempo</h2>
-      <div id="types_of_tweets_totals"></div>
-      <div id="types_of_tweets_percent"></div>
-=======
       <h3 class="text-center pa-4">Análise dos diferentes tipos de tweets</h3>
       <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
         Os dois gráficos abaixo mostram a evolução diária dos quatro tipos de tweets possíveis:
@@ -41,7 +36,6 @@
         </v-simple-table>
       </p>
       <br>
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
     </v-card>
   </div>
 </template>
@@ -58,10 +52,7 @@ export default {
 
     this.x = r.data.history[0].map((d) => new Date(d));
     this.y = r.data.history[1];
-<<<<<<< HEAD
-=======
     this.daily = this.y.map((day) => day.total);
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
 
     this.display();
   },
@@ -69,17 +60,12 @@ export default {
     return {
       x: [],
       y: [],
-<<<<<<< HEAD
-=======
       daily: [],
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
       logs: { time: [] },
       loading_plot: false,
     };
   },
   methods: {
-<<<<<<< HEAD
-=======
     sum(arr) {
       return arr.reduce((a, b) => a + b, 0);
     },
@@ -91,7 +77,6 @@ export default {
       if (!arr.length) return 0;
       return arr.reduce((a, b) => Math.min(a, b), arr[0]);
     },
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
     display() {
       let options = {
         colorway: ["16DB65", "947BD3", "0CAADC", "EF7B45", "4F6D7A"],

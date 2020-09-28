@@ -1,29 +1,6 @@
 <template>
   <div>
     <h2 class="text-center pa-4">Polarização entre seguidores de candidatos</h2>
-<<<<<<< HEAD
-    <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
-      <p class="pa-5 pb-0 col-md-12 col-lg-8 mx-auto text-justify">
-        Esta tabela mostra o
-        <a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard Index</a>
-        (JI) para cada par de conjuntos de seguidores no Twitter, entre os
-        diferentes candidatos.<br />
-        Valores mais altos implicam que há uma maior semelhança entre os
-        conjuntos. <br />Se dois candidatos tiverem exatamente os mesmos
-        seguidores, o valor de JI entre eles é 1. <br />
-        Esta é uma possível métrica que indica a polarização entre seguidores,
-        sendo que se espera que candidatos que apelem aos mesmos utilizadores,
-        tenham um índice maior. <br />
-      </p>
-    </v-card>
-    <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
-      <div id="followers_polatization_heatmap"></div>
-      <p class="pa-5 pb-0 col-md-12 col-lg-8 mx-auto text-justify">
-        Por outro lado, esta tabela permite responder à questão: Que percentagem
-        dos seguidores do candidato numa dada linha é que seguem o candidato de
-        uma dada coluna. <br />Naturalmente, exclui-se a diagonal por esse valor
-        ser sempre 1, já que cada candidato partilha todos os seguidores consigo
-=======
     <v-card
       class="ma-2"
       elevation="10"
@@ -58,7 +35,6 @@
         de seguidores do candidato numa dada linha seguem o candidato de uma
         dada coluna. Naturalmente, exclui-se a diagonal por esse valor ser
         sempre 1, já que cada candidato partilha todos os seguidores consigo
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
         mesmo :)
       </p>
       <div id="followers_ratios_heatmap"></div>
