@@ -165,11 +165,7 @@ export default {
           ticksuffix: " ",
           width: 700,
           height: 700,
-<<<<<<< HEAD
-          autosize: false,
-=======
           autosize: true,
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
           autorange: "reversed",
         },
         height: 650,

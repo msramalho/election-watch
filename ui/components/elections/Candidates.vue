@@ -308,22 +308,6 @@ export default {
           { ...options, title: `Menções ao longo do tempo para ${cname}` }
         );
         Plotly.newPlot(
-<<<<<<< HEAD
-          `followers_over_time_${i}`,
-          [
-            {
-              x: this.x,
-              y: followers_count,
-              type: "scatter",
-              mode: "lines+markers",
-              name: "seguidores",
-            },
-          ],
-          { ...options, title: `Seguidores ao longo do tempo para ${cname}` }
-        );
-        Plotly.newPlot(
-=======
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
           `tweet_impact_over_time_${i}`,
           [
             {
@@ -361,8 +345,6 @@ export default {
             title: `Tweets e impacto (likes+retweets) para ${cname}`,
           }
         );
-<<<<<<< HEAD
-=======
         let FIRST_MEASURED_DAY = new Date(2020, 8, 25, 0, 0, 0, 0); // 8 == september
         let exclude_left = this.x.filter(
           (d) => d.getTime() < FIRST_MEASURED_DAY.getTime()
@@ -380,7 +362,6 @@ export default {
           ],
           { ...options, title: `Seguidores ao longo do tempo para ${cname}` }
         );
->>>>>>> d3af856ea436c53198b51f678bf6a636a50c5d17
       }, 200);
     },
   },
