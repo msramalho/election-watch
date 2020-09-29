@@ -21,7 +21,8 @@ core/collection/temp
 local/
 core/report
 TODO.md
-
+_cache_id_screen_name.json
+embeddings/
 
 
 # Byte-compiled / optimized / DLL files

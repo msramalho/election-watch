@@ -62,7 +62,7 @@ class DynamicParallelism:
                 if self.verbose: print("Processing file %s." % f)
                 with open(f, "r", encoding="utf-8") as _in:
                     for l in _in: _out.write(l)
-        return self
+        return out_file
 
     def run(self):
         if self.verbose:

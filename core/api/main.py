@@ -1,7 +1,7 @@
 import sys, os, glob, time, re, json
 sys.path = ['.', '..', '../..'] + sys.path
 
-from flask import Flask, request
+from flask import Flask, request, send_file
 # from flask_pymongo import PyMongo
 from flask_cors import CORS
 from collections import defaultdict
@@ -126,6 +126,24 @@ def task_data():
         try: assert task.exists()
         except: return "task_name not found", 404
         return task.get_api_n(365)  # return data for the last 365 days
+
+
+def read_and_return_file(FILENAME):
+    try:
+        return send_file(FILENAME, mimetype='text/plain')
+    except: return "internal error", 500
+
+
+@app.route("/embeddings_tensors")
+def embeddings_tensors():
+    TENSOR = abs_path("../embeddings/tweet_relations_mentions_tf_out_tensor.tsv")
+    return read_and_return_file(TENSOR)
+
+
+@app.route("/embeddings_metadata")
+def embeddings_metadata():
+    METADATA = abs_path("../embeddings/tweet_relations_mentions_tf_out_metadata_handles.tsv")
+    return read_and_return_file(METADATA)
 
 
 @app.after_request
