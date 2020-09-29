@@ -85,12 +85,24 @@
       <span>&copy; {{ new Date().getFullYear() }}</span>
       <v-spacer></v-spacer>
       <small>
-        <a href="https://github.com/msramalho/election-watch"> Código Fonte</a>
+        <a
+          title="código fonte do projeto"
+          href="https://github.com/msramalho/election-watch"
+        >
+          Código Fonte</a
+        >
         &nbsp;|&nbsp;
-        <a href="https://msramalho.github.io/msc-thesis.pdf"
+        <a
+          title="tese de mestrado na qual este trabalho se baseia"
+          href="https://msramalho.github.io/msc-thesis.pdf"
           >Tese de Mestrado</a
         >
-        &nbsp;|&nbsp; Miguel Ramalho
+        &nbsp;|&nbsp;
+        <a
+          title="autor do election watch"
+          href="https://www.linkedin.com/in/msramalho/"
+          >Miguel Ramalho</a
+        >
       </small>
     </v-footer>
   </v-app>

@@ -8,7 +8,7 @@
         <v-card-text>
           <p class="text-subtitle-1 text-justify" style="font-weight: 500">
             Vivemos tempos atribulados. A tecnologia avança mais rápido do que a
-            sociedade consegue assimilar e traz consigo conseguências, boas e
+            sociedade consegue assimilar e traz consigo consequências, boas e
             más. As boas são insubstituíveis, mas as más são assustadoras. As
             redes sociais são indiscutivelmente um oceano de informação onde a
             mentira se dissolve na verdade e onde qualquer um pode despejar um
@@ -19,7 +19,7 @@
             para vida de cada um de nós. O objetivo deste projeto é dar uma
             visão mais analítica e transparente sobre a realidade das redes
             sociais em Portugal, com particular relevo para as Eleições
-            Presidenciais Portuguesas a occorrer em janeiro de 2021. <br />O
+            Presidenciais Portuguesas a ocorrer em janeiro de 2021. <br />O
             Election Watch é um projeto filho do
             <a href="https://github.com/msramalho/twitter-watch/"
               >Twitter Watch</a
