@@ -154,7 +154,7 @@ export default {
       ];
       let layout = {
         title:
-          "Percentagem de seguidores de Candidato linha que seguem candidato coluna",
+          "Percentagem de seguidores de Candidat@ linha que seguem Candidat@ coluna",
         annotations: [],
         xaxis: {
           ticks: "",

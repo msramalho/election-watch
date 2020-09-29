@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex class="text-center">
-      <h1>Visão Geral</h1>
+      <h1 class="my-10">Visão Geral</h1>
       <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
         Nesta página encontra-se uma descrição geral das contas e respetivos
         tweets que estamos a monitorizar, no contexto do Twitter Português.
