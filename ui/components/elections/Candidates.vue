@@ -70,7 +70,7 @@
         </v-expansion-panel-header>
         <v-expansion-panel-content class="text-left">
           <v-row>
-            <v-col class="col-lg-4">
+            <v-col class="col-sm-2 col-md-3 col-lg-4">
               <v-img
                 :src="
                   candidates[candidate].metrics[0].pic.replace(
@@ -85,7 +85,7 @@
                 class="mx-auto"
               />
             </v-col>
-            <v-col class="col-lg-8" align-self="center">
+            <v-col class="col-sm-10 col-md-9 col-lg-8" align-self="center">
               Neste momento, {{ candidate }} tem
               <strong>{{
                 candidates[
@@ -160,7 +160,7 @@
           <v-data-table
             :headers="tableHeaders"
             sort-by="favorite_count"
-            sort-desc="false"
+            :sort-desc="false"
             :items="
               candidates[candidate].metrics
                 .map((x) =>

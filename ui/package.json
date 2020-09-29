@@ -1,7 +1,7 @@
 {
     "name": "election-watch",
     "version": "1.0.0",
-    "description": "A UI for Election Watch - a platform for monitoring democratic elections and fighting online disinformation",
+    "description": "Election Watch é uma plataforma de monitorização de redes socias, neste caso, para o contexto Português. Procura aumentar o nível de transparência nas eleições presidencias de 2021, e no universo das redes sociais em geral.",
     "author": "msramalho",
     "private": true,
     "scripts": {

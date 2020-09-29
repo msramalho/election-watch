@@ -14,8 +14,9 @@ export default {
      ** Headers of the page
      */
     head: {
-        titleTemplate: '%s - ' + process.env.npm_package_name,
-        title: process.env.npm_package_name || '',
+        // titleTemplate: '%s - ' + process.env.npm_package_name,
+        // title: process.env.npm_package_name || '',
+        title: "Election Watch",
         meta: [{
                 charset: 'utf-8'
             },
@@ -27,12 +28,27 @@ export default {
                 hid: 'description',
                 name: 'description',
                 content: process.env.npm_package_description || ''
+            }, {
+                property: 'og:image',
+                content: "https://msramalho.github.io/election-watch/favicon.ico"
+            }, {
+                property: 'og:title',
+                content: "Election Watch"
+            }, {
+                property: 'og:description',
+                content: process.env.npm_package_description || ''
+            }, {
+                property: 'og:url',
+                content: "https://msramalho.github.io/election-watch"
+            }, {
+                property: 'og:locale',
+                content: "pt"
             }
         ],
         link: [{
             rel: 'icon',
             type: 'image/x-icon',
-            href: '/favicon.ico'
+            href: process.env.DEPLOY_ENV === 'GH_PAGES' ? '/election-watch/favicon.ico' : '/favicon.ico'
         }]
     },
     /*
@@ -63,8 +79,8 @@ export default {
     modules: [
         // Doc: https://axios.nuxtjs.org/usage
         ['@nuxtjs/axios', {
-            baseURL: "http://35.234.106.142/"
-            // baseURL: "https://efec2a8e6a84.ngrok.io/"
+            baseURL: "http://35.234.106.142/",
+            // baseURL: process.env.DEPLOY_ENV === 'GH_PAGES' ? "https://peaceful-forest-55095.herokuapp.com/http://35.234.106.142/" : "http://localhost:5000/"
             // baseURL: "http://localhost:5000/"
         }],
         'cookie-universal-nuxt',

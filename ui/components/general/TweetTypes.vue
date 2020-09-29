@@ -10,6 +10,8 @@
           <li><i>quotes</i> : um retweet com novo conteúdo textual adicionado</li>
           <li><i>reply</i> : uma resposta direta a um tweet, aparecendo tipicamente abaixo do mesmo</li>
         </ul>
+        <br>
+        É importante realçar que o número de contas observadas pode variar e, com elas, o número de tweets diários. Contudo isto pode ser cruzado com os valores na página <nuxt-link to="/stats">Estatísticas BD</nuxt-link>.
         <br/>
       </p>
       <div id="types_of_tweets_totals"></div>
