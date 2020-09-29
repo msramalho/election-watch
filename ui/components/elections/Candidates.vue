@@ -48,7 +48,7 @@
               :src="
                 candidates[candidate].metrics[0].pic.replace(
                   '_normal',
-                  '_200x200'
+                  '_bigger'
                 )
               "
               alt="imagem de perfil"
@@ -69,60 +69,87 @@
           </v-btn>
         </v-expansion-panel-header>
         <v-expansion-panel-content class="text-left">
-          Neste momento, {{ candidate }} tem
-          <strong>{{
-            candidates[candidate].metrics[0].followers_count.toLocaleString()
-          }}</strong>
-          seguidores.
-          <br />
-          Nos últimos {{ x.length }} dias, publicou
-          {{ sum(candidates[candidate].metrics.map((m) => m.tweets.length)) }}
-          tweets ({{
-            sum(
-              candidates[candidate].metrics.map(
-                (x) => x.tweets.filter((t) => t.type == "original").length
-              )
-            ).toLocaleString()
-          }}
-          originais,
-          {{
-            sum(
-              candidates[candidate].metrics.map(
-                (x) => x.tweets.filter((t) => t.type == "retweet").length
-              )
-            ).toLocaleString()
-          }}
-          retweets,
-          {{
-            sum(
-              candidates[candidate].metrics.map(
-                (x) => x.tweets.filter((t) => t.type == "reply").length
-              )
-            ).toLocaleString()
-          }}
-          replies,
-          {{
-            sum(
-              candidates[candidate].metrics.map(
-                (x) => x.tweets.filter((t) => t.type == "quote").length
-              )
-            ).toLocaleString()
-          }}
-          quotes).
-          <br />
-          Criando um impacto total (likes+retweets) de
-          {{
-            sum(
-              candidates[candidate].metrics.map((x) => x.tweet_impact)
-            ).toLocaleString()
-          }}
-          ({{
-            (
-              sum(candidates[candidate].metrics.map((z) => z.tweet_impact)) /
-              x.length
-            ).toLocaleString()
-          }}
-          por dia).
+          <v-row>
+            <v-col class="col-lg-4">
+              <v-img
+                :src="
+                  candidates[candidate].metrics[0].pic.replace(
+                    '_normal',
+                    '_200x200'
+                  )
+                "
+                :lazy-src="candidates[candidate].metrics[0].pic"
+                aspect-ratio="1"
+                max-height="200"
+                max-width="200"
+                class="mx-auto"
+              />
+            </v-col>
+            <v-col class="col-lg-8" align-self="center">
+              Neste momento, {{ candidate }} tem
+              <strong>{{
+                candidates[
+                  candidate
+                ].metrics[0].followers_count.toLocaleString()
+              }}</strong>
+              seguidores.
+              <br />
+              Nos últimos {{ x.length }} dias, publicou
+              <strong>
+                {{
+                  sum(candidates[candidate].metrics.map((m) => m.tweets.length))
+                }}
+                tweets
+              </strong>
+              ({{
+                sum(
+                  candidates[candidate].metrics.map(
+                    (x) => x.tweets.filter((t) => t.type == "original").length
+                  )
+                ).toLocaleString()
+              }}
+              originais,
+              {{
+                sum(
+                  candidates[candidate].metrics.map(
+                    (x) => x.tweets.filter((t) => t.type == "retweet").length
+                  )
+                ).toLocaleString()
+              }}
+              retweets,
+              {{
+                sum(
+                  candidates[candidate].metrics.map(
+                    (x) => x.tweets.filter((t) => t.type == "reply").length
+                  )
+                ).toLocaleString()
+              }}
+              replies,
+              {{
+                sum(
+                  candidates[candidate].metrics.map(
+                    (x) => x.tweets.filter((t) => t.type == "quote").length
+                  )
+                ).toLocaleString()
+              }}
+              quotes).
+              <br />
+              Criando um impacto total (likes+retweets) de
+              {{
+                sum(
+                  candidates[candidate].metrics.map((x) => x.tweet_impact)
+                ).toLocaleString()
+              }}
+              ({{
+                (
+                  sum(
+                    candidates[candidate].metrics.map((z) => z.tweet_impact)
+                  ) / x.length
+                ).toLocaleString()
+              }}
+              por dia).
+            </v-col>
+          </v-row>
           <!-- {{ candidates[candidate] }} -->
 
           <!-- <div :id="`performance_over_time_${candidates[candidate]._id}`"></div> -->
@@ -132,11 +159,15 @@
 
           <v-data-table
             :headers="tableHeaders"
+            sort-by="favorite_count"
+            sort-desc="false"
             :items="
               candidates[candidate].metrics
                 .map((x) =>
                   x.tweets.map((t) => {
-                    t.created_at = new Date(t.created_at).toLocaleDateString();
+                    t.created_at = new Date(t.created_at).toLocaleDateString(
+                      'pt-PT'
+                    );
                     return t;
                   })
                 )

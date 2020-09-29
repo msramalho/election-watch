@@ -75,7 +75,9 @@ export default {
       .map((user) => {
         // apply any transformation here
         if (user.created_at !== undefined) {
-          user.created_at = new Date(user.created_at).toLocaleDateString();
+          user.created_at = new Date(user.created_at).toLocaleDateString(
+            "pt-PT"
+          );
         }
         return user;
       });
