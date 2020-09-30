@@ -127,9 +127,14 @@ export default {
         {
           action: "mdi-twitter",
           title: "Twitter",
-          open: ["general", "elections", "malicious", "stats", "logs"].includes(
-            this.$route.name
-          ),
+          open: [
+            "general",
+            "elections",
+            "malicious",
+            "stats",
+            "logs",
+            "embeddings",
+          ].includes(this.$route.name),
           items: [
             {
               title: "Visão Geral",
@@ -153,9 +158,9 @@ export default {
             {
               title: "Representação 3D",
               tooltip:
-                "Explorar a atividade maliciosa: fake news, contas suspensas, ...",
-              to: "/malicious",
-              action: "mdi-shield-alert-outline",
+                "Representação das relações estruturais mapeadas por embeddings",
+              to: "/embeddings",
+              action: "mdi-svg",
             },
             {
               title: "Estatísticas BD",
