@@ -28,7 +28,7 @@
       elevation="10"
       :loading="loading_plot ? 'primary' : false"
     >
-      <h3 class="text-center pa-4">Análise da interseção de utilizadores</h3>
+      <h3 class="text-center pa-4">Análise da interseção de seguidores</h3>
       <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
         Por outro lado, esta tabela permite responder à questão: Que percentagem
         dos seguidores de um candidato seguem outro. Neste caso, que percentagem
