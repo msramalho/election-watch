@@ -151,6 +151,13 @@ export default {
               action: "mdi-shield-alert-outline",
             },
             {
+              title: "Representação 3D",
+              tooltip:
+                "Explorar a atividade maliciosa: fake news, contas suspensas, ...",
+              to: "/malicious",
+              action: "mdi-shield-alert-outline",
+            },
+            {
               title: "Estatísticas BD",
               tooltip: "Estado atual da Base de Dados",
               to: "/stats",

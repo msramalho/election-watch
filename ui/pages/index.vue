@@ -1,7 +1,7 @@
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
-      <v-card class="col-md-8 mx-auto my-10">
+      <v-card class="col-sm-12 col-md-8 col-lg-8 mx-auto my-10">
         <v-card-title style="text-align: center"
           >Bem-vind@ ao Election Watch</v-card-title
         >
@@ -59,18 +59,6 @@
         </v-card-text>
       </v-card>
     </v-flex>
-    <a href="https://projector.tensorflow.org/">See source</a>
-    <!-- <iframe
-      src="https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/msramalho/0ab73d31cd6008486f3e08dd663b3c0b/raw/5b1dcfbda42420b13591da5ceec23893e0f6afd8/config.json"
-      style="width: 100%; height: 800px"
-      title="Embeddings visualization"
-    > -->
-    <iframe
-      src="https://projector.tensorflow.org/"
-      style="width: 100%; height: 800px"
-      title="Embeddings visualization"
-    >
-    </iframe>
   </v-layout>
 </template>
 
