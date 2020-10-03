@@ -11,12 +11,12 @@
         cidadãos de uma cidade, fãs de um clube de futebol. Pode abri esta
         visualização numa página dedicada
         <a
-          href="https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/msramalho/0ab73d31cd6008486f3e08dd663b3c0b/raw/fe6c91930124a9aed1e67fb2ab7cdf3470ae7c28/config.json"
+          href="https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/msramalho/0ab73d31cd6008486f3e08dd663b3c0b/raw/8d38fef2e0780a5a1022659efc48ed873ee5ca9e/config.json"
           >aqui</a
         >.
       </p>
       <iframe
-        src="https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/msramalho/0ab73d31cd6008486f3e08dd663b3c0b/raw/fe6c91930124a9aed1e67fb2ab7cdf3470ae7c28/config.json"
+        src="https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/msramalho/0ab73d31cd6008486f3e08dd663b3c0b/raw/8d38fef2e0780a5a1022659efc48ed873ee5ca9e/config.json"
         style="width: 100%; height: 800px"
         title="Embeddings visualization"
       >
