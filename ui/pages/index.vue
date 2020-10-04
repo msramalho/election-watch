@@ -1,7 +1,10 @@
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
-      <v-card class="col-sm-12 col-md-8 col-lg-8 mx-auto my-10">
+      <v-card
+        class="col-sm-12 col-md-8 col-lg-8 mx-auto my-10"
+        style="max-width: 800px"
+      >
         <v-card-title style="text-align: center"
           >Bem-vind@ ao Election Watch</v-card-title
         >

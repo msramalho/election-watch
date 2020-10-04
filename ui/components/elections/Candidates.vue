@@ -46,7 +46,7 @@
           <v-avatar size="48" max-width="48px" class="elevation-2">
             <img
               :src="
-                candidates[candidate].metrics[0].pic.replace(
+                candidates[candidate._id].metrics[0].pic.replace(
                   '_normal',
                   '_bigger'
                 )
@@ -55,11 +55,13 @@
             />
           </v-avatar>
           &nbsp; &nbsp;
-          {{ candidate }}
+          {{ candidate.name }}
           <v-spacer></v-spacer>
 
           <v-btn
-            :href="`https://twitter.com/${candidates[candidate].metrics[0].screen_name}`"
+            :href="`https://twitter.com/${
+              candidates[candidate._id].metrics[0].screen_name
+            }`"
             icon
             color="primary"
             rounded
@@ -73,12 +75,12 @@
             <v-col class="col-sm-2 col-md-3 col-lg-4">
               <v-img
                 :src="
-                  candidates[candidate].metrics[0].pic.replace(
+                  candidates[candidate._id].metrics[0].pic.replace(
                     '_normal',
                     '_200x200'
                   )
                 "
-                :lazy-src="candidates[candidate].metrics[0].pic"
+                :lazy-src="candidates[candidate._id].metrics[0].pic"
                 aspect-ratio="1"
                 max-height="200"
                 max-width="200"
@@ -86,10 +88,10 @@
               />
             </v-col>
             <v-col class="col-sm-10 col-md-9 col-lg-8" align-self="center">
-              Neste momento, {{ candidate }} tem
+              Neste momento, {{ candidate._name }} tem
               <strong>{{
                 candidates[
-                  candidate
+                  candidate._id
                 ].metrics[0].followers_count.toLocaleString()
               }}</strong>
               seguidores.
@@ -97,13 +99,17 @@
               Nos últimos {{ x.length }} dias, publicou
               <strong>
                 {{
-                  sum(candidates[candidate].metrics.map((m) => m.tweets.length))
+                  sum(
+                    candidates[candidate._id].metrics.map(
+                      (m) => m.tweets.length
+                    )
+                  )
                 }}
                 tweets
               </strong>
               ({{
                 sum(
-                  candidates[candidate].metrics.map(
+                  candidates[candidate._id].metrics.map(
                     (x) => x.tweets.filter((t) => t.type == "original").length
                   )
                 ).toLocaleString()
@@ -111,7 +117,7 @@
               originais,
               {{
                 sum(
-                  candidates[candidate].metrics.map(
+                  candidates[candidate._id].metrics.map(
                     (x) => x.tweets.filter((t) => t.type == "retweet").length
                   )
                 ).toLocaleString()
@@ -119,7 +125,7 @@
               retweets,
               {{
                 sum(
-                  candidates[candidate].metrics.map(
+                  candidates[candidate._id].metrics.map(
                     (x) => x.tweets.filter((t) => t.type == "reply").length
                   )
                 ).toLocaleString()
@@ -127,7 +133,7 @@
               replies,
               {{
                 sum(
-                  candidates[candidate].metrics.map(
+                  candidates[candidate._id].metrics.map(
                     (x) => x.tweets.filter((t) => t.type == "quote").length
                   )
                 ).toLocaleString()
@@ -137,32 +143,32 @@
               Criando um impacto total (likes+retweets) de
               {{
                 sum(
-                  candidates[candidate].metrics.map((x) => x.tweet_impact)
+                  candidates[candidate._id].metrics.map((x) => x.tweet_impact)
                 ).toLocaleString()
               }}
               ({{
                 (
                   sum(
-                    candidates[candidate].metrics.map((z) => z.tweet_impact)
+                    candidates[candidate._id].metrics.map((z) => z.tweet_impact)
                   ) / x.length
                 ).toLocaleString()
               }}
               por dia).
             </v-col>
           </v-row>
-          <!-- {{ candidates[candidate] }} -->
+          <!-- {{ candidates[candidate.name] }} -->
 
-          <!-- <div :id="`performance_over_time_${candidates[candidate]._id}`"></div> -->
-          <div :id="`mentions_over_time_${i}`"></div>
-          <div :id="`tweet_impact_over_time_${i}`"></div>
-          <!-- <div :id="`followers_over_time_${i}`"></div> -->
+          <!-- <div :id="`performance_over_time_${candidate._id}`"></div> -->
+          <div :id="`mentions_over_time_${candidate._id}`"></div>
+          <div :id="`tweet_impact_over_time_${candidate._id}`"></div>
+          <!-- <div :id="`followers_over_time_${candidate._id}`"></div> -->
 
           <v-data-table
             :headers="tableHeaders"
             sort-by="favorite_count"
             :sort-desc="false"
             :items="
-              candidates[candidate].metrics
+              candidates[candidate._id].metrics
                 .map((x) =>
                   x.tweets.map((t) => {
                     t.created_at = new Date(t.created_at).toLocaleDateString(
@@ -180,13 +186,14 @@
               <v-toolbar flat>
                 <v-toolbar-title
                   >Tweets de {{ candidate }} ({{
-                    candidates[candidate].metrics.map((x) => x.tweets).flat()
-                      .length
+                    candidates[candidate._id].metrics
+                      .map((x) => x.tweets)
+                      .flat().length
                   }})</v-toolbar-title
                 >
                 <v-spacer></v-spacer>
                 <!-- <v-text-field
-                  v-model="candidates[candidate].search"
+                  v-model="candidates[candidate._id].search"
                   append-icon="mdi-magnify"
                   label="Pesquisar"
                   single-line
@@ -222,13 +229,20 @@ export default {
       let _ids = Object.keys(list.candidates);
       _ids.forEach((_id) => {
         let name = list.candidates[_id].name;
-        if (this.candidates[name] === undefined)
-          this.candidates[name] = { _id, metrics: [], search: "" };
-        this.candidates[name].metrics.push(list.candidates[_id]);
+        if (this.candidates[_id] === undefined)
+          this.candidates[_id] = { _id, name, metrics: [], search: "" };
+        this.candidates[_id].metrics.push(list.candidates[_id]);
       });
     });
-    this.candidateNames = Object.keys(this.candidates);
-    this.candidateNames.sort();
+    // transform object into sorted array
+    // this.candidates = Object.values(this.candidates);
+
+    this.candidateNames = Object.values(this.candidates).map((c) => {
+      return { name: c.name, _id: c._id };
+    }); // retrieves the last screen_name only
+    console.log(this.candidateNames);
+    this.candidateNames.sort((c1, c2) => c1.name < c2.name);
+    console.log(this.candidateNames);
     this.display();
     this.loading_plot = false;
   },
@@ -257,14 +271,14 @@ export default {
       return arr.reduce((a, b) => Math.max(a, b));
     },
     display() {
-      let tracesMentions = this.candidateNames.map((cname, i) => {
-        let c = this.candidates[cname];
+      let tracesMentions = this.candidateNames.map((cand, i) => {
+        let c = this.candidates[cand._id];
         return {
           x: this.x,
           y: c.metrics.map((m) => m.name_mentions + m.mentions),
           type: "scatter",
           mode: "lines+markers",
-          name: `menções ${cname}`,
+          name: `menções ${cand.name.replace(/[0-9]/g, "")}`,
         };
       });
       Plotly.newPlot(`mentions_over_time_all`, tracesMentions, {
@@ -282,14 +296,14 @@ export default {
         ],
         title: `Menções ao longo do tempo`,
       });
-      let tracesImpact = this.candidateNames.map((cname, i) => {
-        let c = this.candidates[cname];
+      let tracesImpact = this.candidateNames.map((cand, i) => {
+        let c = this.candidates[cand._id];
         return {
           x: this.x,
           y: c.metrics.map((m) => m.tweet_impact),
           type: "scatter",
           mode: "lines+markers",
-          name: `impacto ${cname}`,
+          name: `impacto ${cand.name}`,
         };
       });
       Plotly.newPlot(`tweet_impact_over_time_all`, tracesImpact, {
@@ -308,9 +322,9 @@ export default {
         title: `Impacto ao longo do tempo (likes+retweets)`,
       });
     },
-    displayCandidate(cname, i) {
+    displayCandidate(cand, i) {
       setTimeout(() => {
-        let c = this.candidates[cname];
+        let c = this.candidates[cand._id];
         let followers_count = c.metrics.map((x) => x.followers_count);
         let name_mentions = c.metrics.map((x) => x.name_mentions);
         let mentions = c.metrics.map((x) => x.mentions);
@@ -323,14 +337,14 @@ export default {
           colorway: ["EF7B45", "4F6D7A", "16DB65", "947BD3", "0CAADC"],
         };
         Plotly.newPlot(
-          `mentions_over_time_${i}`,
+          `mentions_over_time_${c._id}`,
           [
             {
               x: this.x,
               y: name_mentions,
               type: "scatter",
               mode: "lines+markers",
-              name: `menções '${cname}'`,
+              name: `menções '${c.name.replace(/[0-9]/g, "")}'`,
             },
             {
               x: this.x,
@@ -340,10 +354,10 @@ export default {
               name: `menções '@${c.metrics[0].screen_name}'`,
             },
           ],
-          { ...options, title: `Menções ao longo do tempo para ${cname}` }
+          { ...options, title: `Menções ao longo do tempo para ${c.name}` }
         );
         Plotly.newPlot(
-          `tweet_impact_over_time_${i}`,
+          `tweet_impact_over_time_${c._id}`,
           [
             {
               x: this.x,
@@ -377,7 +391,7 @@ export default {
               overlaying: "y",
               side: "right",
             },
-            title: `Tweets e impacto (likes+retweets) para ${cname}`,
+            title: `Tweets e impacto (likes+retweets) para ${c.name}`,
           }
         );
         // let FIRST_MEASURED_DAY = new Date(2020, 8, 25, 0, 0, 0, 0); // 8 == september
@@ -385,7 +399,7 @@ export default {
         //   (d) => d.getTime() < FIRST_MEASURED_DAY.getTime()
         // ).length;
         // Plotly.newPlot(
-        //   `followers_over_time_${i}`,
+        //   `followers_over_time_${c._id}`,
         //   [
         //     {
         //       x: this.x.slice(exclude_left - 1),
@@ -395,7 +409,7 @@ export default {
         //       name: "seguidores",
         //     },
         //   ],
-        //   { ...options, title: `Seguidores ao longo do tempo para ${cname}` }
+        //   { ...options, title: `Seguidores ao longo do tempo para ${c.name}` }
         // );
       }, 200);
     },
