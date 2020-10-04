@@ -155,7 +155,7 @@
           <!-- <div :id="`performance_over_time_${candidates[candidate]._id}`"></div> -->
           <div :id="`mentions_over_time_${i}`"></div>
           <div :id="`tweet_impact_over_time_${i}`"></div>
-          <div :id="`followers_over_time_${i}`"></div>
+          <!-- <div :id="`followers_over_time_${i}`"></div> -->
 
           <v-data-table
             :headers="tableHeaders"
@@ -213,7 +213,6 @@ export default {
     const r = await this.$axios.get(`task_data`, {
       params: { task_name: "measure candidates" },
     });
-
     // read relevant data
     this.x = r.data.history[0].map((d) => new Date(d)).reverse();
     // this.totals = r.data.history[1].map((x) => x.total).reverse();
@@ -381,23 +380,23 @@ export default {
             title: `Tweets e impacto (likes+retweets) para ${cname}`,
           }
         );
-        let FIRST_MEASURED_DAY = new Date(2020, 8, 25, 0, 0, 0, 0); // 8 == september
-        let exclude_left = this.x.filter(
-          (d) => d.getTime() < FIRST_MEASURED_DAY.getTime()
-        ).length;
-        Plotly.newPlot(
-          `followers_over_time_${i}`,
-          [
-            {
-              x: this.x.slice(exclude_left - 1),
-              y: followers_count.slice(exclude_left - 1),
-              type: "scatter",
-              mode: "lines+markers",
-              name: "seguidores",
-            },
-          ],
-          { ...options, title: `Seguidores ao longo do tempo para ${cname}` }
-        );
+        // let FIRST_MEASURED_DAY = new Date(2020, 8, 25, 0, 0, 0, 0); // 8 == september
+        // let exclude_left = this.x.filter(
+        //   (d) => d.getTime() < FIRST_MEASURED_DAY.getTime()
+        // ).length;
+        // Plotly.newPlot(
+        //   `followers_over_time_${i}`,
+        //   [
+        //     {
+        //       x: this.x.slice(exclude_left - 1),
+        //       y: followers_count.slice(exclude_left - 1),
+        //       type: "scatter",
+        //       mode: "lines+markers",
+        //       name: "seguidores",
+        //     },
+        //   ],
+        //   { ...options, title: `Seguidores ao longo do tempo para ${cname}` }
+        // );
       }, 200);
     },
   },
