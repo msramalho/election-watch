@@ -185,7 +185,7 @@
             <template v-slot:top>
               <v-toolbar flat>
                 <v-toolbar-title
-                  >Tweets de {{ candidate }} ({{
+                  >Tweets de {{ candidate.name }} ({{
                     candidates[candidate._id].metrics
                       .map((x) => x.tweets)
                       .flat().length
