@@ -241,7 +241,7 @@ export default {
       return { name: c.name, _id: c._id };
     }); // retrieves the last screen_name only
     console.log(this.candidateNames);
-    this.candidateNames.sort((c1, c2) => c1.name < c2.name);
+    this.candidateNames.sort((c1, c2) => c1.name.localeCompare(c2.name));
     console.log(this.candidateNames);
     this.display();
     this.loading_plot = false;
