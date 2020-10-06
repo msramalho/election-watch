@@ -39,6 +39,20 @@
       </p>
       <div id="followers_ratios_heatmap"></div>
     </v-card>
+    <br />
+    <v-card
+      class="ma-2"
+      elevation="10"
+      :loading="loading_plot ? 'primary' : false"
+    >
+      <h3 class="text-center pa-4">Análise da interseção de seguidores</h3>
+      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
+        Neste gráfico podemos ver a informação da tabela anterior de uma nova
+        forma, que realça as diferenças entre a capacidade de cada candidato de
+        apelar a seguidores de outros.
+      </p>
+      <div id="followers_ratios_radar"></div>
+    </v-card>
   </div>
 </template>
 
@@ -56,7 +70,7 @@ export default {
     this.candidates = r.data.history[1][0].candidates;
     this.polarization = r.data.history[1][0].polarization;
     this.ratios = r.data.history[1][0].ratios;
-    this.x = this.candidates.map((c) => `#${c[0]}`);
+    this.x = this.candidates.map((c) => `@${c[0]}`);
 
     this.display();
   },
@@ -69,6 +83,12 @@ export default {
     };
   },
   methods: {
+    max(arr) {
+      return arr.reduce((a, b) => Math.max(a, b));
+    },
+    transpose(matrix) {
+      return matrix[0].map((_, colIndex) => matrix.map((row) => row[colIndex]));
+    },
     displayPolarization() {
       this.polarization = this.polarization.map((row) =>
         row.map((cell) => cell.toFixed(4))
@@ -134,12 +154,12 @@ export default {
       Plotly.newPlot("followers_polatization_heatmap", data, layout);
     },
     displayRatios() {
-      this.ratios = this.ratios.map((row) =>
+      let ratios = this.ratios.map((row) =>
         row.map((cell) => (cell * 100).toFixed(2))
       );
       let data = [
         {
-          z: this.ratios,
+          z: ratios,
           x: this.x,
           y: this.x,
           type: "heatmap",
@@ -177,14 +197,14 @@ export default {
 
       for (let i = 0; i < this.x.length; i++) {
         for (let j = 0; j < this.x.length; j++) {
-          let currentValue = this.ratios[i][j];
+          let currentValue = ratios[i][j];
           let textColor = currentValue > 0 ? "black" : "white";
           let result = {
             xref: "x1",
             yref: "y1",
             x: this.x[j],
             y: this.x[i],
-            text: this.ratios[i][j],
+            text: ratios[i][j],
             font: {
               family: "Roboto",
               size: 12,
@@ -198,9 +218,46 @@ export default {
 
       Plotly.newPlot("followers_ratios_heatmap", data, layout);
     },
+    displayRatiosRadar() {
+      let ratios = this.ratios.map((row, i) => {
+        row[i] = 1;
+        return row;
+      });
+      ratios = this.transpose(ratios);
+      console.log(ratios);
+      console.log(this.ratios);
+      console.log(this.candidates);
+      let candidateNames = this.candidates.map((c) => c[0]);
+      let data = this.candidates.map((c, i) => {
+        return {
+          type: "scatterpolar",
+          r: ratios[i],
+          theta: candidateNames,
+          fill: "toself",
+          name: candidateNames[i],
+          closedTrace: true,
+        };
+      });
+
+      let layout = {
+        title: "Visualização em radar da interseção de seguidores",
+        polar: {
+          radialaxis: {
+            visible: true,
+            range: [0, this.max(this.ratios.flat())],
+          },
+        },
+        autosize: true,
+        // width: 500,
+        height: 600,
+      };
+
+      Plotly.newPlot("followers_ratios_radar", data, layout);
+    },
     display() {
       this.displayPolarization();
       this.displayRatios();
+      this.displayRatiosRadar();
       this.loading_plot = false;
     },
   },
