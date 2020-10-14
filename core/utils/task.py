@@ -19,8 +19,11 @@ class Task:
     def exists(self):
         return self.name in self.db.list_collection_names()
 
+    def find_day(self, day):
+        return self.collection.find_one({"day": get_filter_by_day(day)})
+
     def exists_day(self, day):
-        return self.collection.find_one({"day": get_filter_by_day(day)}) is not None
+        return self.find_day(day) is not None
 
     def insert(self, day, data):
         if self.only_one:
