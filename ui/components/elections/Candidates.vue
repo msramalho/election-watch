@@ -376,7 +376,7 @@ export default {
       });
       Plotly.newPlot(`followers_over_time_all`, tracesFollowers, {
         colorway: colorway,
-        title: `Variação de seguidores ao longo do tempo`,
+        title: `Novos seguidores diários`,
       });
     },
 
@@ -493,7 +493,7 @@ export default {
           ],
           {
             ...options,
-            title: `Variação de seguidores ao longo do tempo para ${c.name}`,
+            title: `Novos seguidores diários para ${c.name}`,
           }
         );
       }, 200);
