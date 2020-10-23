@@ -37,12 +37,10 @@
     <br />
     <v-card class="ma-2" elevation="10">
       <h3 class="text-center pa-4">
-        Evolução temporal do número de seguidores de cada candidato.
+        Evolução temporal da variação diária do número de seguidores de cada
+        candidato.
       </h3>
-      <small
-        >(Há um período em que os valores se mantêm constantes para todos e que
-        corresponde a quando estes dados pararam de ser recolhidos)</small
-      >
+      <small>(o período sem alterações corresponde a falta de dados)</small>
       <v-progress-circular
         :size="50"
         indeterminate
@@ -311,6 +309,11 @@ export default {
     max(arr) {
       return arr.reduce((a, b) => Math.max(a, b));
     },
+    calculate_deltas(arr) {
+      let res = [0];
+      for (let i = 0; i < arr.length - 1; i++) res.push(arr[i] - arr[i + 1]);
+      return res;
+    },
     display() {
       let colorway = [
         "EF7B45",
@@ -331,7 +334,7 @@ export default {
           y: c.metrics.map((m) => m.name_mentions + m.mentions),
           type: "scatter",
           mode: "lines+markers",
-          name: `menções ${cand.name.replace(/[0-9]/g, "")}`,
+          name: `${cand.name.replace(/[0-9]/g, "")} menções`,
         };
       });
       Plotly.newPlot(`mentions_over_time_all`, tracesMentions, {
@@ -353,7 +356,7 @@ export default {
           y: tweet_impact, //c.metrics.map((m) => m.tweet_impact), // bad historically
           type: "scatter",
           mode: "lines+markers",
-          name: `impacto ${cand.name}`,
+          name: `${cand.name} impacto`,
         };
       });
       Plotly.newPlot(`tweet_impact_over_time_all`, tracesImpact, {
@@ -365,22 +368,24 @@ export default {
         let c = this.candidates[cand._id];
         return {
           x: this.x,
-          y: c.metrics.map((m) => m.followers_count),
+          y: this.calculate_deltas(c.metrics.map((m) => m.followers_count)),
           type: "scatter",
           mode: "lines+markers",
-          name: `seguidores ${cand.name}`,
+          name: `Δ ${cand.name}`,
         };
       });
       Plotly.newPlot(`followers_over_time_all`, tracesFollowers, {
         colorway: colorway,
-        title: `Seguidores ao longo do tempo`,
+        title: `Variação de seguidores ao longo do tempo`,
       });
     },
 
     displayCandidate(cand, i) {
       setTimeout(() => {
         let c = this.candidates[cand._id];
-        let followers_count = c.metrics.map((x) => x.followers_count);
+        let followers_count = this.calculate_deltas(
+          c.metrics.map((x) => x.followers_count)
+        );
         let name_mentions = c.metrics.map((x) => x.name_mentions);
         let mentions = c.metrics.map((x) => x.mentions);
         //  let tweet_impact = c.metrics.map((x) => x.tweet_impact);
@@ -483,10 +488,13 @@ export default {
               y: followers_count,
               type: "scatter",
               mode: "lines+markers",
-              name: "seguidores",
+              name: "Δ seguidores",
             },
           ],
-          { ...options, title: `Seguidores ao longo do tempo para ${c.name}` }
+          {
+            ...options,
+            title: `Variação de seguidores ao longo do tempo para ${c.name}`,
+          }
         );
       }, 200);
     },
