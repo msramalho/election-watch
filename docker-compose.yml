@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    volumes: # does not work on windows
+      - ./local/data/db:/data/db
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env
+  core:
+    build:
+      context: ./core/
+    volumes:
+      - ./core:/usr/src/app
+    ports:
+      - "80:5000"
+      - "443:5000"
+    depends_on:
+      - mongo
+    # if env_file contains MONGO_ADDRESS it is used
+    # if not the value mongo.address in config.json is used
+    env_file:
+      - ./core/.env
+

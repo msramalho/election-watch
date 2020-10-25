@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "TW jupyter",
+        "type": "shell",
+        "command": "./envw/Scripts/activate; jupyter notebook",
+        "options": {
+            "cwd": "${workspaceFolder}/core"
+        },
+        "presentation": {
+            "reveal": "never",
+            "panel": "shared"
+        }
+    }, {
+        "label": "Nuxt dev",
+        "type": "shell",
+        "command": "npm run dev",
+        "options": {
+            "cwd": "${workspaceFolder}/ui"
+        },
+        "presentation": {
+            "reveal": "never",
+            "panel": "shared"
+        }
+    }, {
+        "label": "Nuxt deploy gh-pages",
+        "type": "shell",
+        "command": "npm run generate:gh-pages . ; npm run deploy",
+        "options": {
+            "cwd": "${workspaceFolder}/ui"
+        },
+        "presentation": {
+            "reveal": "always"
+        }
+    }]
+}

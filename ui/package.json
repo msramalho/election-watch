@@ -1,0 +1,37 @@
+{
+    "name": "election-watch",
+    "version": "1.0.0",
+    "description": "Election Watch é uma plataforma de monitorização de redes socias, neste caso, para o contexto Português. Procura aumentar o nível de transparência nas eleições presidencias de 2021, e no universo das redes sociais em geral.",
+    "author": "msramalho",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate",
+        "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "lint_fix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+        "build:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt build",
+        "generate:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate",
+        "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    },
+    "dependencies": {
+        "@nuxtjs/axios": "^5.12.1",
+        "cookie-universal-nuxt": "^2.1.4",
+        "dotenv": "^8.2.0",
+        "npm-install-peers": "^1.2.1",
+        "nuxt": "^2.14.3",
+        "plotly.js-dist": "^1.54.7",
+        "vue-i18n": "^8.22.1"
+    },
+    "devDependencies": {
+        "@nuxtjs/eslint-config": "^2.0.0",
+        "@nuxtjs/eslint-module": "^1.2.0",
+        "@nuxtjs/vuetify": "^1.11.2",
+        "babel-eslint": "^10.0.1",
+        "cross-env": "^7.0.2",
+        "eslint": "^6.1.0",
+        "eslint-plugin-nuxt": "^1.0.0",
+        "push-dir": "^0.4.1"
+    }
+}

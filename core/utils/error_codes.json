@@ -1,0 +1,230 @@
+{
+    "3": {
+        "text": "Invalid coordinates.",
+        "description": "Corresponds with HTTP 400. The coordinates provided as parameters were not valid for the request."
+    },
+    "13": {
+        "text": "No location associated with the specified IP address.",
+        "description": "Corresponds with HTTP 404. It was not possible to derive a location for the IP address provided as a parameter on the geo search request."
+    },
+    "17": {
+        "text": "No user matches for specified terms.",
+        "description": "Corresponds with HTTP 404. It was not possible to find a user profile matching the parameters specified."
+    },
+    "32": {
+        "text": "Could not authenticate you",
+        "description": "Corresponds with HTTP 401. There was an issue with the authentication data for the request."
+    },
+    "34": {
+        "text": "Sorry, that page does not exist",
+        "description": "Corresponds with HTTP 404. The specified resource was not found."
+    },
+    "36": {
+        "text": "You cannot report yourself for spam.",
+        "description": "Corresponds with HTTP 403. You cannot use your own user ID in a report spam call."
+    },
+    "38": {
+        "text": "<named> parameter is missing.",
+        "description": "Corresponds with HTTP 403. The request is missing the <named> parameter (such as media, text, etc.) in the request."
+    },
+    "44": {
+        "text": "attachment_url parameter is invalid",
+        "description": "Corresponds with HTTP 400. The URL value provided is not a URL that can be attached to this Tweet."
+    },
+    "50": {
+        "text": "User not found.",
+        "description": "Corresponds with HTTP 404. The user is not found."
+    },
+    "63": {
+        "text": "User has been suspended.",
+        "description": "Corresponds with HTTP 403 The user account has been suspended and information cannot be retrieved."
+    },
+    "64": {
+        "text": "Your account is suspended and is not permitted to access this feature",
+        "description": "Corresponds with HTTP 403. The access token being used belongs to a suspended user."
+    },
+    "68": {
+        "text": "The Twitter REST API v1 is no longer active. Please migrate to API v1.1.",
+        "description": "Corresponds to a HTTP request to a retired v1-era URL."
+    },
+    "87": {
+        "text": "Client is not permitted to perform this action.",
+        "description": "Corresponds with HTTP 403. The endpoint called is not a permitted URL."
+    },
+    "88": {
+        "text": "Rate limit exceeded",
+        "description": "The request limit for this resource has been reached for the current rate limit window."
+    },
+    "89": {
+        "text": "Invalid or expired token",
+        "description": "The access token used in the request is incorrect or has expired."
+    },
+    "92": {
+        "text": "SSL is required",
+        "description": "Only SSL connections are allowed in the API. Update the request to a secure connection. See "
+    },
+    "93": {
+        "text": "This application is not allowed to access or delete your direct messages",
+        "description": "Corresponds with HTTP 403. The OAuth token does not provide access to Direct Messages."
+    },
+    "99": {
+        "text": "Unable to verify your credentials.",
+        "description": "Corresponds with HTTP 403. The OAuth credentials cannot be validated. Check that the token is still valid."
+    },
+    "120": {
+        "text": "Account update failed: ",
+        "description": "Corresponds with HTTP 403. Thrown when one of the "
+    },
+    "130": {
+        "text": "Over capacity",
+        "description": "Corresponds with HTTP 503. Twitter is temporarily over capacity."
+    },
+    "131": {
+        "text": "Internal error",
+        "description": "Corresponds with HTTP 500. An unknown internal error occurred."
+    },
+    "135": {
+        "text": "Could not authenticate you",
+        "description": "Corresponds with HTTP 401. Timestamp out of bounds (often caused by a clock drift when authenticating - check your system clock)"
+    },
+    "139": {
+        "text": "You have already favorited this status.",
+        "description": "Corresponds with HTTP 403. A Tweet cannot be favorited (liked) more than once."
+    },
+    "144": {
+        "text": "No status found with that ID.",
+        "description": "Corresponds with HTTP 404. The requested Tweet ID is not found (if it existed, it was probably deleted)"
+    },
+    "150": {
+        "text": "You cannot send messages to users who are not following you.",
+        "description": "Corresponds with HTTP 403. Sending a Direct Message failed."
+    },
+    "151": {
+        "text": "There was an error sending your message: ",
+        "description": "Corresponds with HTTP 403. Sending a Direct Message failed. The "
+    },
+    "160": {
+        "text": "You've already requested to follow ",
+        "description": "Corresponds with HTTP 403. This was a duplicated follow request and a previous request was not yet acknowleged."
+    },
+    "161": {
+        "text": "You are unable to follow more people at this time",
+        "description": "Corresponds with HTTP 403. Thrown when a user cannot follow another user due to reaching the limit. This limit is applied to each user individually, independent of the applications they use to access the Twitter platform."
+    },
+    "179": {
+        "text": "Sorry, you are not authorized to see this status",
+        "description": "Corresponds with HTTP 403. Thrown when a Tweet cannot be viewed by the authenticating user, usually due to the Tweet’s author having protected their Tweets."
+    },
+    "185": {
+        "text": "User is over daily status update limit",
+        "description": "Corresponds with HTTP 403. Thrown when a Tweet cannot be posted due to the user having no allowance remaining to post. Despite the text in the error message indicating that this error is only thrown when a daily limit is reached, this error will be thrown whenever a posting limitation has been reached. Posting allowances have roaming windows of time of unspecified duration."
+    },
+    "186": {
+        "text": "Tweet needs to be a bit shorter.",
+        "description": "Corresponds with HTTP 403. The status text is too long."
+    },
+    "187": {
+        "text": "Status is a duplicate",
+        "description": "The status text has already been Tweeted by the authenticated account."
+    },
+    "195": {
+        "text": "Missing or invalid url parameter",
+        "description": "Corresponds with HTTP 403.  The request needs to have a valid url parameter."
+    },
+    "205": {
+        "text": "You are over the limit for spam reports.",
+        "description": "Corresponds with HTTP 403. The account limit for reporting spam has been reached. Try again later."
+    },
+    "214": {
+        "text": "Owner must allow dms from anyone.",
+        "description": "Corresponsds with HTTP 403.  The user is not set up to have open Direct Messages when trying to set up a welcome message."
+    },
+    "215": {
+        "text": "Bad authentication data",
+        "description": "Corresponds with HTTP 400. The method requires authentication but it was not presented or was wholly invalid."
+    },
+    "220": {
+        "text": "Your credentials do not allow access to this resource.",
+        "description": "Corresponds with HTTP 403. The authentication token in use is restricted and cannot access the requested resource."
+    },
+    "226": {
+        "text": "This request looks like it might be automated. To protect our users from spam and other malicious activity, we can’t complete this action right now.",
+        "description": "We constantly monitor and adjust our filters to block spam and malicious activity on the Twitter platform. These systems are tuned in real-time. If you get this response our systems have flagged the Tweet or Direct Message as possibly fitting this profile. If you believe that the Tweet or DM you attempted to create was flagged in error, report the details by filing a ticket at "
+    },
+    "231": {
+        "text": "User must verify login",
+        "description": "Returned as a challenge in xAuth when the user has login verification enabled on their account and needs to be directed to twitter.com to "
+    },
+    "251": {
+        "text": "This endpoint has been retired and should not be used.",
+        "description": "Corresponds to a HTTP request to a retired URL."
+    },
+    "261": {
+        "text": "Application cannot perform write actions.",
+        "description": "Corresponds with HTTP 403. Thrown when the app is restricted from POST, PUT, or DELETE actions. Check the information on your "
+    },
+    "271": {
+        "text": "You can’t mute yourself.",
+        "description": "Corresponds with HTTP 403. The authenticated user account cannot mute itself."
+    },
+    "272": {
+        "text": "You are not muting the specified user.",
+        "description": "Corresponds with HTTP 403. The authenticated user account is not muting the account a call is attempting to unmute."
+    },
+    "323": {
+        "text": "Animated GIFs are not allowed when uploading multiple images.",
+        "description": "Corresponds with HTTP 400. Only one animated GIF may be attached to a single Tweet."
+    },
+    "324": {
+        "text": "The validation of media ids failed.",
+        "description": "Corresponds with HTTP 400. There was a problem with the media ID submitted with the Tweet."
+    },
+    "325": {
+        "text": "A media id was not found.",
+        "description": "Corresponds with HTTP 400. The media ID attached to the Tweet was not found."
+    },
+    "326": {
+        "text": "To protect our users from spam and other malicious activity, this account is temporarily locked.",
+        "description": "Corresponds with HTTP 403. The user should log in to twitter.com"
+    },
+    "327": {
+        "text": "You have already retweeted this Tweet.",
+        "description": "Corresponds with HTTP 403. The user cannot retweet the same Tweet more than once. "
+    },
+    "349": {
+        "text": "You cannot send messages to this user.",
+        "description": "Corresponds with HTTP 403. The sender does not have privileges to Direct Message the recipient."
+    },
+    "354": {
+        "text": "The text of your direct message is over the max character limit.",
+        "description": "Corresponds with HTTP 403. The message size exceeds the number of characters permitted in a Direct Message."
+    },
+    "355": {
+        "text": "Subscription already exists.",
+        "description": "Corresponds with HTTP 409 Conflict.  Related to Account Activity API request to add a new subscription for an authenticated user."
+    },
+    "385": {
+        "text": "You attempted to reply to a Tweet that is deleted or not visible to you.",
+        "description": "Corresponds with HTTP 403. A reply can only be sent with reference to an existing public Tweet."
+    },
+    "386": {
+        "text": "The Tweet exceeds the number of allowed attachment types.",
+        "description": "Corresponds with HTTP 403. A Tweet is limited to a single attachment resource (media, Quote Tweet, etc.)"
+    },
+    "407": {
+        "text": "The given URL is invalid.",
+        "description": "Corresponds with HTTP 400. A URL included in the Tweet could not be handled. This may be because a non-ASCII URL could not be converted, or for other reasons."
+    },
+    "415": {
+        "text": "Callback URL not approved for this client application. Approved callback URLs can be adjusted in your application settings",
+        "description": "Corresponds with HTTP 403. The app callback URLs must be whitelisted via the "
+    },
+    "416": {
+        "text": "Invalid / suspended application",
+        "description": "Corresponds with HTTP 401. The app has been suspended and cannot be used with "
+    },
+    "417": {
+        "text": "Desktop applications only support the oauth_callback value 'oob'",
+        "description": "Corresponds with HTTP 401. The application is attempting to use "
+    }
+}

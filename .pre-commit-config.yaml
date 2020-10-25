@@ -1,0 +1,31 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.1.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-ast # check valid python files
+    -   id: check-yaml
+    -   id: check-xml
+    -   id: check-json # validate json files
+    -   id: check-added-large-files
+    -   id: check-merge-conflict
+    -   id: detect-private-key
+    # -   id: fix-encoding-pragma # buggy
+    # -   id: requirements-txt-fixer # pydrive bug
+
+-   repo: https://github.com/kynan/nbstripout
+    rev: master
+    hooks:
+    -   id: nbstripout
+        files: ".ipynb"
+
+# -   repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+#     rev: v1.1.0
+#     hooks:
+#     -   id: python-safety-dependencies-check
+
+# -   repo: https://github.com/asottile/dead
+#     rev: v1.3.0
+#     hooks:
+#     -   id: dead
