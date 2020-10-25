@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex class="text-center">
-      <h1 class="my-10">Presidenciais 2021</h1>
+      <h1 class="my-10">{{ $t("elections.title") }}</h1>
       <candidates />
       <polarization />
     </v-flex>

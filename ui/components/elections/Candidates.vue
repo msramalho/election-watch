@@ -2,10 +2,7 @@
   <div>
     <!-- <v-card class="ma-4 my-10" :loading="loading_plot ? 'primary' : false"> -->
     <v-card class="ma-2" elevation="10">
-      <h3 class="text-center pa-4">
-        Análise das menções por <strong>nome</strong> e por
-        <code>@handle</code> para os diferentes candidatos
-      </h3>
+      <h3 class="text-center pa-4" v-html="$t('elections.mentions.title')"></h3>
       <v-progress-circular
         :size="50"
         indeterminate
@@ -18,11 +15,7 @@
     </v-card>
     <br />
     <v-card class="ma-2" elevation="10">
-      <h3 class="text-center pa-4">
-        Análise do impacto direto da atividade de cada candidato<br />medida
-        como a soma do número de <i>likes</i> e <i>retweets</i> aos seus
-        <i>tweets</i>
-      </h3>
+      <h3 class="text-center pa-4" v-html="$t('elections.impact.title')"></h3>
       <v-progress-circular
         :size="50"
         indeterminate
@@ -37,10 +30,9 @@
     <br />
     <v-card class="ma-2" elevation="10">
       <h3 class="text-center pa-4">
-        Evolução temporal da variação diária do número de seguidores de cada
-        candidato.
+        {{ $t("elections.followers.title") }}
       </h3>
-      <small>(o período sem alterações corresponde a falta de dados)</small>
+      <small> {{ $t("elections.followers.note") }}</small>
       <v-progress-circular
         :size="50"
         indeterminate
@@ -52,7 +44,7 @@
     </v-card>
     <br />
 
-    <h2 class="text-center pa-4">Análise individual de cada candidato</h2>
+    <h2 class="text-center pa-4">{{ $t("elections.individual.title") }}</h2>
     <v-expansion-panels class="my-10" popout multiple>
       <v-expansion-panel
         class="elevation-10"
@@ -106,15 +98,23 @@
               />
             </v-col>
             <v-col class="col-sm-10 col-md-9 col-lg-8" align-self="center">
-              Neste momento, {{ candidate._name }} tem
+              {{
+                $t("elections.individual.has_followers.01") +
+                candidate.name +
+                $t("elections.individual.has_followers.02")
+              }}
               <strong>{{
                 candidates[
                   candidate._id
                 ].metrics[0].followers_count.toLocaleString()
               }}</strong>
-              seguidores.
+              {{ $t("elections.individual.has_followers.03") }}
               <br />
-              Nos últimos {{ x.length }} dias, publicou
+              {{
+                $t("elections.individual.published.01") +
+                x.length +
+                $t("elections.individual.published.02")
+              }}
               <strong>
                 {{
                   sum(
@@ -123,7 +123,7 @@
                     )
                   )
                 }}
-                tweets
+                {{ $t("elections.individual.published.03") }}
               </strong>
               ({{
                 sum(
@@ -132,7 +132,7 @@
                   )
                 ).toLocaleString()
               }}
-              originais,
+              {{ $t("elections.individual.published.04") }}
               {{
                 sum(
                   candidates[candidate._id].metrics.map(
@@ -140,7 +140,7 @@
                   )
                 ).toLocaleString()
               }}
-              retweets,
+              {{ $t("elections.individual.published.05") }}
               {{
                 sum(
                   candidates[candidate._id].metrics.map(
@@ -148,7 +148,7 @@
                   )
                 ).toLocaleString()
               }}
-              replies,
+              {{ $t("elections.individual.published.06") }}
               {{
                 sum(
                   candidates[candidate._id].metrics.map(
@@ -156,9 +156,9 @@
                   )
                 ).toLocaleString()
               }}
-              quotes).
+              {{ $t("elections.individual.published.07") }}
               <br />
-              Criando um impacto total (likes+retweets) de
+              {{ $t("elections.individual.published.08") }}
               {{
                 sum(
                   candidates[candidate._id].metrics.map((m) =>
@@ -189,18 +189,28 @@
                   .toFixed(1)
                   .toLocaleString()
               }}
-              por dia).
+              {{ $t("elections.individual.published.09") }}).
             </v-col>
           </v-row>
           <!-- {{ candidates[candidate.name] }} -->
 
           <!-- <div :id="`performance_over_time_${candidate._id}`"></div> -->
+
+          <h3 class="mb-0 pb-0 mx-auto" style="display: table">
+            {{ $t("elections.individual.plots.mentions") + candidate.name }}
+          </h3>
           <div :id="`mentions_over_time_${candidate._id}`"></div>
+          <h3 class="mb-0 pb-0 mx-auto" style="display: table">
+            {{ $t("elections.individual.plots.impact") + candidate.name }}
+          </h3>
           <div :id="`tweet_impact_over_time_${candidate._id}`"></div>
+          <h3 class="mb-0 pb-0 mx-auto" style="display: table">
+            {{ $t("elections.individual.plots.followers") + candidate.name }}
+          </h3>
           <div :id="`followers_over_time_${candidate._id}`"></div>
 
           <v-data-table
-            :headers="tableHeaders"
+            :headers="tableHeaders()"
             sort-by="favorite_count"
             :sort-desc="false"
             :items="
@@ -226,11 +236,12 @@
             <template v-slot:top>
               <v-toolbar flat>
                 <v-toolbar-title
-                  >Tweets de {{ candidate.name }} ({{
+                  >{{ candidate.name }} ({{
                     candidates[candidate._id].metrics
                       .map((x) => x.tweets)
                       .flat().length
-                  }})</v-toolbar-title
+                  }}
+                  tweets)</v-toolbar-title
                 >
                 <v-spacer></v-spacer>
                 <!-- <v-text-field
@@ -285,21 +296,12 @@ export default {
     this.display();
     this.loading_plot = false;
   },
-  data() {
+  data: function () {
     return {
       x: [],
       totals: [],
       loading_plot: false,
       candidateNames: [],
-      tableHeaders: [
-        { text: "ID", value: "_id", align: "center" },
-        { text: "Tipo", value: "type", align: "center" },
-        { text: "Texto", value: "full_text", align: "center" },
-        { text: "Likes", value: "favorite_count", align: "center" },
-        { text: "Retweets", value: "retweet_count", align: "center" },
-        { text: "Data", value: "created_at", align: "center" },
-        // { text: "", value: "data-table-expand" },
-      ],
     };
   },
   methods: {
@@ -308,6 +310,43 @@ export default {
     },
     max(arr) {
       return arr.reduce((a, b) => Math.max(a, b));
+    },
+    tableHeaders() {
+      return [
+        {
+          text: this.$i18n.tc("elections.individual.tweets_table._id"),
+          value: "_id",
+          align: "center",
+        },
+        {
+          text: this.$i18n.t("elections.individual.tweets_table.type"),
+          value: "type",
+          align: "center",
+        },
+        {
+          text: this.$i18n.t("elections.individual.tweets_table.full_text"),
+          value: "full_text",
+          align: "center",
+        },
+        {
+          text: this.$i18n.t(
+            "elections.individual.tweets_table.favorite_count"
+          ),
+          value: "favorite_count",
+          align: "center",
+        },
+        {
+          text: this.$i18n.t("elections.individual.tweets_table.retweet_count"),
+          value: "retweet_count",
+          align: "center",
+        },
+        {
+          text: this.$i18n.t("elections.individual.tweets_table.created_at"),
+          value: "created_at",
+          align: "center",
+        },
+        // { text: "", value: "data-table-expand" },
+      ];
     },
     calculate_deltas(arr) {
       let res = [0];
@@ -334,12 +373,12 @@ export default {
           y: c.metrics.map((m) => m.name_mentions + m.mentions),
           type: "scatter",
           mode: "lines+markers",
-          name: `${cand.name.replace(/[0-9]/g, "")} menções`,
+          name: `${cand.name.replace(/[0-9]/g, "").trim()}`,
         };
       });
       Plotly.newPlot(`mentions_over_time_all`, tracesMentions, {
         colorway: colorway,
-        title: `Menções ao longo do tempo`,
+        // title: `Menções ao longo do tempo`,
       });
       let tracesImpact = this.candidateNames.map((cand, i) => {
         let c = this.candidates[cand._id];
@@ -356,12 +395,12 @@ export default {
           y: tweet_impact, //c.metrics.map((m) => m.tweet_impact), // bad historically
           type: "scatter",
           mode: "lines+markers",
-          name: `${cand.name} impacto`,
+          name: `${cand.name}`,
         };
       });
       Plotly.newPlot(`tweet_impact_over_time_all`, tracesImpact, {
         colorway: colorway,
-        title: `Impacto ao longo do tempo (likes+retweets)`,
+        // title: `Impacto ao longo do tempo (likes+retweets)`,
       });
 
       let tracesFollowers = this.candidateNames.map((cand, i) => {
@@ -376,7 +415,7 @@ export default {
       });
       Plotly.newPlot(`followers_over_time_all`, tracesFollowers, {
         colorway: colorway,
-        title: `Novos seguidores diários`,
+        // title: `Novos seguidores diários`,
       });
     },
 
@@ -412,17 +451,20 @@ export default {
               y: name_mentions,
               type: "scatter",
               mode: "lines+markers",
-              name: `menções '${c.name.replace(/[0-9]/g, "")}'`,
+              name: `'${c.name.replace(/[0-9]/g, "").trim()}'`,
             },
             {
               x: this.x,
               y: mentions,
               type: "scatter",
               mode: "lines+markers",
-              name: `menções '@${c.metrics[0].screen_name}'`,
+              name: `'@${c.metrics[0].screen_name}'`,
             },
           ],
-          { ...options, title: `Menções ao longo do tempo para ${c.name}` }
+          {
+            ...options,
+            // , title: `Menções ao longo do tempo para ${c.name}`
+          }
         );
         Plotly.newPlot(
           `tweet_impact_over_time_${c._id}`,
@@ -432,14 +474,14 @@ export default {
               y: tweet_impact,
               type: "scatter",
               mode: "lines+markers",
-              name: "impacto",
+              name: this.$i18n.t("elections.individual.plots.impact_label"),
             },
             {
               x: this.x,
               y: tweet_count,
               type: "scatter",
               mode: "lines+markers",
-              name: "#tweets totais",
+              name: this.$i18n.t("elections.individual.plots.total_tweets"),
               yaxis: "y2",
             },
             {
@@ -447,19 +489,21 @@ export default {
               y: tweet_count_original,
               type: "scatter",
               mode: "lines+markers",
-              name: "#tweets originais",
+              name: this.$i18n.t("elections.individual.plots.original_tweets"),
               yaxis: "y2",
             },
           ],
           {
             ...options,
-            yaxis: { title: "impacto diário" },
+            yaxis: {
+              title: this.$i18n.t("elections.individual.plots.daily_impact"),
+            },
             yaxis2: {
-              title: "tweets diários",
+              title: this.$i18n.t("elections.individual.plots.daily_tweets"),
               overlaying: "y",
               side: "right",
             },
-            title: `Tweets e impacto (likes+retweets) para ${c.name}`,
+            // title: `Tweets e impacto (likes+retweets) para ${c.name}`,
           }
         );
         //   let FIRST_MEASURED_DAY = new Date(2020, 8, 25, 0, 0, 0, 0); // 8 == september
@@ -493,7 +537,7 @@ export default {
           ],
           {
             ...options,
-            title: `Novos seguidores diários para ${c.name}`,
+            // title: `Novos seguidores diários para ${c.name}`,
           }
         );
       }, 200);

@@ -85,5 +85,55 @@
             "title":"Contas por ano e mês de criação",
             "explanation":"A data de criação das contas é um dos principais fatores que levantam suspeitas sobre intenção de atividade maliciosa. O pico na criação de contas registado entre março e abril de 2020 mostra-se como uma consequência direta do confinamento imposto pela pandemia Covid-19. Este fenómeno foi também descrito na <a href='https://msramalho.github.io/msc-thesis.pdf'>tese de mestrado</a> que suporta a criação do Election Watch."
         }
+    },
+    "elections":{
+        "title":"Eleições Presidenciais 2021",
+        "mentions":{
+            "title": "Menções diárias por <strong>nome</strong> e por <code>@handle</code> para os diferentes candidatos"
+        },
+        "impact":{
+            "title":"Impacto diário da atividade de cada candidato<br />medida como a soma do número de <i>likes</i> e <i>retweets</i> aos seus <i>tweets</i>"
+        },
+        "followers":{
+            "title": "Novos seguidores diários de cada candidato.",
+            "note": "(o período sem alterações corresponde a falta de dados)"
+        },
+        "individual":{
+            "title":"Análise individual de cada candidato",
+            "has_followers":{
+                "01":"Neste momento, ",
+                "02":" tem ",
+                "03":" seguidores."
+            },
+            "published": {
+                "01":"Nos últimos ",
+                "02":" dias, publicou ",
+                "03":" tweets ",
+                "04":" originais, ",
+                "05":" retweets, ",
+                "06":" replies, ",
+                "07":" quotes).",
+                "08":"Criando um impacto total (likes+retweets) de ",
+                "09":" por dia"
+            },
+            "plots": {
+                "mentions": "Menções ao longo do tempo para ",
+                "impact": "Tweets e impacto (likes+retweets) para ",
+                "followers": "Novos seguidores diários para ",
+                "daily_impact": "impacto diário",
+                "daily_tweets": "tweets diários",
+                "impact_label":"impacto",
+                "total_tweets":"#tweets totais",
+                "original_tweets":"#tweets originais"
+            },
+            "tweets_table":{
+                "_id": "ID",
+                "type": "Tipo",
+                "full_text": "Texto",
+                "favorite_count": "Likes",
+                "retweet_count": "Retweets",
+                "created_at": "Data"
+            }
+        }
     }
 }

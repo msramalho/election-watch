@@ -85,5 +85,55 @@
             "title":"Year and month of account creation",
             "explanation":"The creation date of accounts is one of the main factors that raise suspicions of malicious intent. The peak of account creation registered between March and April 2020 is naturally a consequence of the Covid-19 pandemic and the isolation measures taken in Portugal. This phenomenon was also described in the <a href='https://msramalho.github.io/msc-thesis.pdf'>MSc Thesis</a> that supports the creation of Election Watch."
         }
+    },
+    "elections":{
+        "title":"2021 Presidential Elections",
+        "mentions":{
+            "title": "Daily mentions by <strong>name</strong> and <code>@handle</code> for the different candidates"
+        },
+        "impact":{
+            "title":"Daily impact of each candidate's activity<br>as a sum of the number of <i>likes</i> and <i>retweets</i> of their <i>tweets</i>"
+        },
+        "followers":{
+            "title": "Daily new followers for each candidate",
+            "note": "(the period without changes corresponds to missing data)"
+        },
+        "individual":{
+            "title":"Individual Analysis of each candidate",
+            "has_followers":{
+                "01":"Right now, ",
+                "02":" has ",
+                "03":" followers."
+            },
+            "published": {
+                "01":"In the past ",
+                "02":" days, published ",
+                "03":" tweets ",
+                "04":" original, ",
+                "05":" retweets, ",
+                "06":" replies, ",
+                "07":" quotes).",
+                "08":"Making a total impact (likes+retweets) of ",
+                "09":" per day"
+            },
+            "plots": {
+                "mentions": "Metions over time for ",
+                "impact": "Tweets and impact (likes+retweets) for ",
+                "followers": "New daily followers for ",
+                "daily_impact": "daily impact",
+                "daily_tweets": "daily tweets",
+                "impact_label":"impact",
+                "total_tweets":"#total tweets",
+                "original_tweets":"#original tweets"
+            },
+            "tweets_table":{
+                "_id": "ID",
+                "type": "Type",
+                "full_text": "Text",
+                "favorite_count": "Likes",
+                "retweet_count": "Retweets",
+                "created_at": "Date"
+            }
+        }
     }
 }
