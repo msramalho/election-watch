@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1 class="text-center my-10">Estatísticas Base de Dados</h1>
+      <h1 class="text-center my-10">{{ $t("statistics.title") }}</h1>
       <statistics />
       <plot-stats />
     </v-flex>

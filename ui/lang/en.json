@@ -177,7 +177,17 @@
         "description": "In this page, you can find a 3D representation of the proximity of relationships among different accounts, mapped from tweets where they are co-mentioned. It is expectable that <i>more similar</i> accounts, therefore closer together in the visualization, share some context. Examples of contexts go from political sphere, political party, country, citizens of a city, fans of a football club, You can open this visualization in a <a href='{href}'>dedicated page</a>. Feel free to try the UMAP visualization as it yields a different perspective. You can also search for account handles on the right, try <code>antoniocostapm</code>, the current Portuguese prime minister."
     },
     "statistics": {
-        "size": "DB size: {mb}MB ({gb}GB)",
-        "users": "Accounts"
+        "title": "Database Statistics",
+        "statistics": {
+            "size": "DB size: {mb}MB ({gb}GB)",
+            "users": "Accounts"
+        },
+        "plot_stats": {
+            "points_shown": "Points displayed: {points}",
+            "last_updated": "(last updated: {last_updated})",
+            "plot_1_title": "Tweets and Accounts over time",
+            "plot_2_title": "Database size over time",
+            "accounts": "#accounts"
+        }
     }
 }

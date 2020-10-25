@@ -2,7 +2,7 @@
   <div>
     <h3 class="ma-4">
       {{
-        $t("statistics.size", {
+        $t("statistics.statistics.size", {
           mb: Math.round(stats.mb),
           gb: Math.round(stats.mb / 1024, 2),
         })
@@ -28,7 +28,7 @@
       <v-col cols="12" sm="12" md="6" lg="4">
         <v-card>
           <v-card-title class="subheading font-weight-bold">{{
-            $t("statistics.accounts")
+            $t("statistics.statistics.accounts")
           }}</v-card-title>
           <v-divider />
           <v-list>

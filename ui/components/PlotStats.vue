@@ -2,18 +2,24 @@
   <!-- <div v-if="logs.time.length"> -->
   <div>
     <h3 class="ma-4">
-      Pontos mostrados: {{ logs.time.length }}
-      <small v-if="logs.last_updated"
-        >(úlitma atualização: {{ logs.last_updated }})</small
-      >
+      {{
+        $t("statistics.plot_stats.points_shown", { points: logs.time.length })
+      }}
+      <small v-if="logs.last_updated">{{
+        $t("statistics.plot_stats.last_updated", {
+          last_updated: logs.last_updated,
+        })
+      }}</small>
     </h3>
     <v-card class="ma-2" :loading="loading_user_tweets ? 'primary' : false">
-      <h2 class="text-center pa-4">Tweets e Contas ao longo do tempo</h2>
+      <h2 class="text-center pa-4">
+        {{ $t("statistics.plot_stats.plot_1_title") }}
+      </h2>
       <div id="scatter_users_tweets"></div>
     </v-card>
     <v-card class="ma-2" :loading="loading_mb ? 'primary' : false">
       <h2 class="text-center pa-4">
-        Tamanho da base de dados ao longo do tempo
+        {{ $t("statistics.plot_stats.plot_2_title") }}
       </h2>
       <div id="scatter_mb"></div>
     </v-card>
@@ -49,7 +55,7 @@ export default {
         x: this.logs.time,
         y: this.logs.users,
         mode: "markers",
-        name: "#contas",
+        name: this.$i18n.t("statistics.plot_stats.accounts"),
         type: "scatter",
       };
       let trace_tweets = {
