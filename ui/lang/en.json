@@ -4,8 +4,49 @@
         "as": "the"
     },
     "default": {
-        "source_code": "Source Code",
-        "change_lang": "Ver em Português"
+        "home": "Home",
+        "change_lang": "Ver em Português",
+        "title": "Election Watch - 2021 Portuguese Presidentials",
+        "links": {
+            "source_code": {
+                "title": "project's source code",
+                "text": "Source Code"
+            },
+            "msc_thesis": {
+                "title": "master thesis that led to this project",
+                "text": "MSc Thesis"
+            },
+            "author": {
+                "title": "election watch's author",
+                "text": "Miguel Ramalho"
+            }
+        },
+        "sidebar": {
+            "general": {
+                "title": "Overview",
+                "tooltip": "Global overview over Twitter activity in Portugal"
+            },
+            "elections": {
+                "title": "2021 Presidentials",
+                "tooltip": "Detailed analysis of the presidential candidates"
+            },
+            "malicious": {
+                "title": "Malicious Activity",
+                "tooltip": "Explore malicious activity: fake news, suspended accounts, ..."
+            },
+            "embeddings": {
+                "title": "3D Embeddings",
+                "tooltip": "Representation of structural mention relationships in embeddings"
+            },
+            "stats": {
+                "title": "DB Stats",
+                "tooltip": "An overview of the underlying database"
+            },
+            "logs": {
+                "title": "Logs",
+                "tooltip": "Data collection and processing logs"
+            }
+        }
     },
     "error": {
         "not_found": "404 Not found",

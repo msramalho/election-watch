@@ -13,38 +13,118 @@
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Início</v-list-item-title>
+          <v-list-item-title>{{ $t("default.home") }}</v-list-item-title>
         </v-list-item>
         <!-- nested -->
         <v-list-group
-          v-for="item in nestedItems"
-          :key="item.title"
-          v-model="item.open"
-          :prepend-icon="item.action"
+          v-model="nestedItems[0].open"
+          :prepend-icon="nestedItems[0].action"
         >
           <template v-slot:activator>
             <v-list-item-content>
-              <v-list-item-title v-text="item.title"></v-list-item-title>
+              <v-list-item-title>Twitter</v-list-item-title>
             </v-list-item-content>
           </template>
-          <v-list-item
-            dense
-            v-for="child in item.items"
-            :key="child.title"
-            :to="child.to"
-            router
-            exact
-          >
+
+          <v-list-item dense key="general" to="/general" router exact>
             <v-list-item-action style="margin-left: 10px">
-              <v-icon>{{ child.action }}</v-icon>
+              <v-icon>mdi-chart-line</v-icon>
             </v-list-item-action>
             <v-tooltip right open-delay="500">
               <template v-slot:activator="{ on }">
                 <v-list-item-content v-on="on">
-                  <v-list-item-title v-text="child.title"></v-list-item-title>
+                  <v-list-item-title
+                    v-text="$t('default.sidebar.general.title')"
+                  ></v-list-item-title>
                 </v-list-item-content>
               </template>
-              <span>{{ child.tooltip }}</span>
+              <span>{{ this.$i18n.t("default.sidebar.general.tooltip") }}</span>
+            </v-tooltip>
+          </v-list-item>
+
+          <v-list-item dense key="elections" to="/elections" router exact>
+            <v-list-item-action style="margin-left: 10px">
+              <v-icon>mdi-vote-outline</v-icon>
+            </v-list-item-action>
+            <v-tooltip right open-delay="500">
+              <template v-slot:activator="{ on }">
+                <v-list-item-content v-on="on">
+                  <v-list-item-title
+                    v-text="$t('default.sidebar.elections.title')"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </template>
+              <span>{{
+                this.$i18n.t("default.sidebar.elections.tooltip")
+              }}</span>
+            </v-tooltip>
+          </v-list-item>
+
+          <v-list-item dense key="malicious" to="/malicious" router exact>
+            <v-list-item-action style="margin-left: 10px">
+              <v-icon>mdi-shield-alert-outline</v-icon>
+            </v-list-item-action>
+            <v-tooltip right open-delay="500">
+              <template v-slot:activator="{ on }">
+                <v-list-item-content v-on="on">
+                  <v-list-item-title
+                    v-text="$t('default.sidebar.malicious.title')"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </template>
+              <span>{{
+                this.$i18n.t("default.sidebar.malicious.tooltip")
+              }}</span>
+            </v-tooltip>
+          </v-list-item>
+
+          <v-list-item dense key="embeddings" to="/embeddings" router exact>
+            <v-list-item-action style="margin-left: 10px">
+              <v-icon>mdi-svg</v-icon>
+            </v-list-item-action>
+            <v-tooltip right open-delay="500">
+              <template v-slot:activator="{ on }">
+                <v-list-item-content v-on="on">
+                  <v-list-item-title
+                    v-text="$t('default.sidebar.embeddings.title')"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </template>
+              <span>{{
+                this.$i18n.t("default.sidebar.embeddings.tooltip")
+              }}</span>
+            </v-tooltip>
+          </v-list-item>
+
+          <v-list-item dense key="stats" to="/stats" router exact>
+            <v-list-item-action style="margin-left: 10px">
+              <v-icon>mdi-database-check</v-icon>
+            </v-list-item-action>
+            <v-tooltip right open-delay="500">
+              <template v-slot:activator="{ on }">
+                <v-list-item-content v-on="on">
+                  <v-list-item-title
+                    v-text="$t('default.sidebar.stats.title')"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </template>
+              <span>{{ this.$i18n.t("default.sidebar.stats.tooltip") }}</span>
+            </v-tooltip>
+          </v-list-item>
+
+          <v-list-item dense key="logs" to="/logs" router exact>
+            <v-list-item-action style="margin-left: 10px">
+              <v-icon>mdi-text-box-multiple-outline</v-icon>
+            </v-list-item-action>
+            <v-tooltip right open-delay="500">
+              <template v-slot:activator="{ on }">
+                <v-list-item-content v-on="on">
+                  <v-list-item-title
+                    v-text="$t('default.sidebar.logs.title')"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </template>
+              <span>{{ this.$i18n.t("default.sidebar.logs.tooltip") }}</span>
             </v-tooltip>
           </v-list-item>
         </v-list-group>
@@ -64,7 +144,7 @@
       <v-btn v-if="drawer" icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="this.$t('default.title')" />
       <v-spacer />
       <!-- <v-text-field
         flat
@@ -99,22 +179,24 @@
       <v-spacer></v-spacer>
       <small>
         <a
-          title="código fonte do projeto"
+          :title="this.$t('default.links.source_code.title')"
           href="https://github.com/msramalho/election-watch"
         >
-          Código Fonte</a
+          {{ this.$t("default.links.source_code.text") }}</a
         >
         &nbsp;|&nbsp;
         <a
-          title="tese de mestrado na qual este trabalho se baseia"
+          :title="this.$t('default.links.msc_thesis.title')"
           href="https://msramalho.github.io/msc-thesis.pdf"
-          >Tese de Mestrado</a
+        >
+          {{ this.$t("default.links.msc_thesis.text") }}</a
         >
         &nbsp;|&nbsp;
         <a
-          title="autor do election watch"
+          :title="this.$t('default.links.author.title')"
           href="https://www.linkedin.com/in/msramalho/"
-          >Miguel Ramalho</a
+        >
+          {{ this.$t("default.links.author.text") }}</a
         >
       </small>
     </v-footer>
@@ -154,40 +236,38 @@ export default {
           ].includes(this.$route.name),
           items: [
             {
-              title: "Visão Geral",
-              tooltip: "Visão geral sobre a atividade do Twitter em Portugal",
+              title: this.$i18n.t("default.sidebar.general.title"),
+              tooltip: this.$i18n.t("default.sidebar.general.tooltip"),
               to: "/general",
               action: "mdi-chart-line",
             },
             {
-              title: "Presidenciais 2021",
-              tooltip: "Análise da atividade dos candidatos presidenciais",
+              title: this.$i18n.t("default.sidebar.elections.title"),
+              tooltip: this.$i18n.t("default.sidebar.elections.tooltip"),
               to: "/elections",
               action: "mdi-vote-outline",
             },
             {
-              title: "Atividade Maliciosa",
-              tooltip:
-                "Explorar a atividade maliciosa: fake news, contas suspensas, ...",
+              title: this.$i18n.t("default.sidebar.malicious.title"),
+              tooltip: this.$i18n.t("default.sidebar.malicious.tooltip"),
               to: "/malicious",
               action: "mdi-shield-alert-outline",
             },
             {
-              title: "Representação 3D",
-              tooltip:
-                "Representação das relações estruturais mapeadas por embeddings",
+              title: this.$i18n.t("default.sidebar.embeddings.title"),
+              tooltip: this.$i18n.t("default.sidebar.embeddings.tooltip"),
               to: "/embeddings",
               action: "mdi-svg",
             },
             {
-              title: "Estatísticas BD",
-              tooltip: "Estado atual da Base de Dados",
+              title: this.$i18n.t("default.sidebar.stats.title"),
+              tooltip: this.$i18n.t("default.sidebar.stats.tooltip"),
               to: "/stats",
               action: "mdi-database-check",
             },
             {
-              title: "Logs",
-              tooltip: "Registos do processo de recolha de dados",
+              title: this.$i18n.t("default.sidebar.logs.title"),
+              tooltip: this.$i18n.t("default.sidebar.logs.tooltip"),
               to: "/logs",
               action: "mdi-text-box-multiple-outline",
             },
@@ -210,7 +290,6 @@ export default {
         // },
       ],
       miniVariant: false,
-      title: "Election Watch - presidenciais 2021",
     };
   },
   methods: {

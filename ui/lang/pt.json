@@ -4,8 +4,49 @@
         "as": "as"
     },
     "default": {
-        "source_code": "Código Fonte",
-        "change_lang": "View in English"
+        "home": "Início",
+        "change_lang": "View in English",
+        "title": "Election Watch - Presidenciais Portuguesas 2021",
+        "links": {
+            "source_code": {
+                "title": "código fonte do projeto",
+                "text": "Código Fonte"
+            },
+            "msc_thesis": {
+                "title": "tese de mestrado na qual este trabalho se baseia",
+                "text": "Tese de Mestrado"
+            },
+            "author": {
+                "title": "autor do election watch",
+                "text": "Miguel Ramalho"
+            }
+        },
+        "sidebar": {
+            "general": {
+                "title": "Visão Geral",
+                "tooltip": "Visão geral sobre a atividade do Twitter em Portugal"
+            },
+            "elections": {
+                "title": "Presidenciais 2021",
+                "tooltip": "Análise da atividade dos candidatos presidenciais"
+            },
+            "malicious": {
+                "title": "Atividade Maliciosa",
+                "tooltip": "Explorar a atividade maliciosa: fake news, contas suspensas, ..."
+            },
+            "embeddings": {
+                "title": "Representação 3D",
+                "tooltip": "Representação das relações estruturais mapeadas por embeddings"
+            },
+            "stats": {
+                "title": "Estatísticas BD",
+                "tooltip": "Estado atual da Base de Dados"
+            },
+            "logs": {
+                "title": "Logs",
+                "tooltip": "Registos do processo de recolha de dados"
+            }
+        }
     },
     "error": {
         "not_found": "404 Não encontrado",
