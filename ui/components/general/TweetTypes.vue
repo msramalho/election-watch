@@ -6,8 +6,10 @@
         class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify"
         v-html="$t('general.tweet_types.explanation')"
       ></p>
+      <h3 class="mb-0 pb-0">{{ $t("general.tweet_types.plot_1_title") }}</h3>
       <div id="types_of_tweets_totals"></div>
       <br />
+      <h3 class="mb-0 pb-0">{{ $t("general.tweet_types.plot_2_title") }}</h3>
       <div id="types_of_tweets_percent"></div>
 
       <h3 class="text-center pa-4">
@@ -127,14 +129,14 @@ export default {
       ];
       Plotly.newPlot("types_of_tweets_totals", traces, {
         ...options,
-        title: this.$i18n.t("general.tweet_types.plot_1_title"),
+        // title: this.$i18n.t("general.tweet_types.plot_1_title"),
       });
 
       let traces2 = JSON.parse(JSON.stringify(traces));
       traces2[0].groupnorm = "percent";
       Plotly.newPlot("types_of_tweets_percent", traces2, {
         ...options,
-        title: this.$i18n.t("general.tweet_types.plot_2_title"),
+        // title: this.$i18n.t("general.tweet_types.plot_2_title"),
       });
       this.loading_plot = false;
     },

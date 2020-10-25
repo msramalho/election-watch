@@ -2,18 +2,11 @@
   <div>
     <br />
     <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
-      <h3 class="text-center pa-4">Contas por ano e mês de criação</h3>
-      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
-        A data de criação das contas é um dos principais fatores que levantam
-        suspeitas sobre intenção de atividade maliciosa. O pico na criação de
-        contas registado entre março e abril de 2020 mostra-se como uma
-        consequência direta do confinamento imposto pela pandemia Covid-19. Este
-        fenómeno foi também descrito na
-        <a href="https://msramalho.github.io/msc-thesis.pdf"
-          >tese de mestrado</a
-        >
-        que suporta a criação desta ferramenta.
-      </p>
+      <h3 class="text-center pa-4">{{ $t("general.creation_dates.title") }}</h3>
+      <p
+        class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify"
+        v-html="$t('general.creation_dates.explanation')"
+      ></p>
       <div id="users_by_creation_date"></div>
     </v-card>
   </div>

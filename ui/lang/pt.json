@@ -80,6 +80,10 @@
             },
             "plot_1_title": "Valores totais",
             "plot_2_title": "Valores normalizados (percentagem)"
+        },
+        "creation_dates": {
+            "title":"Contas por ano e mês de criação",
+            "explanation":"A data de criação das contas é um dos principais fatores que levantam suspeitas sobre intenção de atividade maliciosa. O pico na criação de contas registado entre março e abril de 2020 mostra-se como uma consequência direta do confinamento imposto pela pandemia Covid-19. Este fenómeno foi também descrito na <a href='https://msramalho.github.io/msc-thesis.pdf'>tese de mestrado</a> que suporta a criação do Election Watch."
         }
     }
 }

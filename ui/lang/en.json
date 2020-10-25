@@ -80,6 +80,10 @@
             },
             "plot_1_title": "Total values",
             "plot_2_title": "Normalized values (percentage)"
+        },
+        "creation_dates": {
+            "title":"Year and month of account creation",
+            "explanation":"The creation date of accounts is one of the main factors that raise suspicions of malicious intent. The peak of account creation registered between March and April 2020 is naturally a consequence of the Covid-19 pandemic and the isolation measures taken in Portugal. This phenomenon was also described in the <a href='https://msramalho.github.io/msc-thesis.pdf'>MSc Thesis</a> that supports the creation of Election Watch."
         }
     }
 }
