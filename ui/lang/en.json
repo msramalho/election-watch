@@ -1,0 +1,15 @@
+{
+    "basic": {
+        "and": "and",
+        "as": "the"
+    },
+    "default": {
+        "source_code": "Source Code",
+        "change_lang": "Ver em Português"
+    },
+    "error": {
+        "not_found": "404 Not found",
+        "other": "Non-existent page",
+        "main_page": "Main page"
+    }
+}

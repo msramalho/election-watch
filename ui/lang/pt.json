@@ -1,0 +1,15 @@
+{
+    "basic": {
+        "and": "e",
+        "as": "as"
+    },
+    "default": {
+        "source_code": "Código Fonte",
+        "change_lang": "View in English"
+    },
+    "error": {
+        "not_found": "404 Não encontrado",
+        "other": "Página inexistente",
+        "main_page": "Página Inicial"
+    }
+}

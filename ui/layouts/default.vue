@@ -66,7 +66,7 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-text-field
+      <!-- <v-text-field
         flat
         solo
         hide-details
@@ -74,7 +74,20 @@
         label="endpoint URL"
         v-model="baseURL"
         @keydown.enter="reload"
-      />
+      /> -->
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            class="mx-2"
+            v-on:click="changeLang"
+            v-bind="attrs"
+            v-on="on"
+            >{{ lang == "pt" ? "en" : "pt" }}</v-btn
+          >
+        </template>
+        <span>{{ $t("default.change_lang") }}</span>
+      </v-tooltip>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -116,8 +129,12 @@ export default {
     );
     this.baseURL = this.$axios.defaults.baseURL;
   },
+  mounted() {
+    this.$i18n.locale = this.lang;
+  },
   data() {
     return {
+      lang: this.$cookies.get("app-lang") || this.$store.state.locale || "pt",
       baseURL: this.baseURL,
       clipped: true,
       // drawer: this.$vuetify.lgAndUp ? true : false,
@@ -204,6 +221,13 @@ export default {
         maxAge: 60 * 60 * 24 * 7 * 52 * 100,
       });
       window.location.reload(true);
+    },
+    changeLang() {
+      // toggle between portuguese and english
+      this.lang = this.lang == "pt" ? "en" : "pt";
+      this.$store.commit("SET_LANG", this.lang);
+      this.$cookies.set("app-lang", this.lang);
+      this.$i18n.locale = this.lang;
     },
   },
 };
