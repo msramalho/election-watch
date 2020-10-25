@@ -100,22 +100,7 @@
         },
         "individual": {
             "title": "Individual Analysis of each candidate",
-            "has_followers": {
-                "01": "Right now, ",
-                "02": " has ",
-                "03": " followers."
-            },
-            "published": {
-                "01": "In the past ",
-                "02": " days, published ",
-                "03": " tweets ",
-                "04": " original, ",
-                "05": " retweets, ",
-                "06": " replies, ",
-                "07": " quotes).",
-                "08": "Making a total impact (likes+retweets) of ",
-                "09": " per day"
-            },
+            "description": "Right now, {candidate} has <strong>{followers}</strong> followers.<br>In the past {days} dias, {candidate} published <strong>{tweets} tweets</strong> ({original} originals, {retweets} retweets, {replies} replies, {quotes} quotes). Having a total impact (likes + retweets) of {impact} ({impact_daily} per day).",
             "plots": {
                 "mentions": "Metions over time for ",
                 "impact": "Tweets and impact (likes+retweets) for ",
@@ -187,5 +172,12 @@
                 }
             }
         }
+    },
+    "embeddings": {
+        "description": "In this page, you can find a 3D representation of the proximity of relationships among different accounts, mapped from tweets where they are co-mentioned. It is expectable that <i>more similar</i> accounts, therefore closer together in the visualization, share some context. Examples of contexts go from political sphere, political party, country, citizens of a city, fans of a football club, You can open this visualization in a <a href='{href}'>dedicated page</a>. Feel free to try the UMAP visualization as it yields a different perspective. You can also search for account handles on the right, try <code>antoniocostapm</code>, the current Portuguese prime minister."
+    },
+    "statistics": {
+        "size": "DB size: {mb}MB ({gb}GB)",
+        "users": "Accounts"
     }
 }

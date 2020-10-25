@@ -97,99 +97,70 @@
                 class="mx-auto"
               />
             </v-col>
-            <v-col class="col-sm-10 col-md-9 col-lg-8" align-self="center">
-              {{
-                $t("elections.individual.has_followers.01") +
-                candidate.name +
-                $t("elections.individual.has_followers.02")
-              }}
-              <strong>{{
-                candidates[
-                  candidate._id
-                ].metrics[0].followers_count.toLocaleString()
-              }}</strong>
-              {{ $t("elections.individual.has_followers.03") }}
-              <br />
-              {{
-                $t("elections.individual.published.01") +
-                x.length +
-                $t("elections.individual.published.02")
-              }}
-              <strong>
-                {{
-                  sum(
+            <v-col
+              class="col-sm-10 col-md-9 col-lg-8"
+              align-self="center"
+              v-html="
+                $t('elections.individual.description', {
+                  candidate: candidate.name,
+                  followers: candidates[
+                    candidate._id
+                  ].metrics[0].followers_count.toLocaleString(),
+                  days: x.length,
+                  tweets: sum(
                     candidates[candidate._id].metrics.map(
                       (m) => m.tweets.length
                     )
-                  )
-                }}
-                {{ $t("elections.individual.published.03") }}
-              </strong>
-              ({{
-                sum(
-                  candidates[candidate._id].metrics.map(
-                    (x) => x.tweets.filter((t) => t.type == "original").length
-                  )
-                ).toLocaleString()
-              }}
-              {{ $t("elections.individual.published.04") }}
-              {{
-                sum(
-                  candidates[candidate._id].metrics.map(
-                    (x) => x.tweets.filter((t) => t.type == "retweet").length
-                  )
-                ).toLocaleString()
-              }}
-              {{ $t("elections.individual.published.05") }}
-              {{
-                sum(
-                  candidates[candidate._id].metrics.map(
-                    (x) => x.tweets.filter((t) => t.type == "reply").length
-                  )
-                ).toLocaleString()
-              }}
-              {{ $t("elections.individual.published.06") }}
-              {{
-                sum(
-                  candidates[candidate._id].metrics.map(
-                    (x) => x.tweets.filter((t) => t.type == "quote").length
-                  )
-                ).toLocaleString()
-              }}
-              {{ $t("elections.individual.published.07") }}
-              <br />
-              {{ $t("elections.individual.published.08") }}
-              {{
-                sum(
-                  candidates[candidate._id].metrics.map((m) =>
-                    sum(
-                      m.tweets.map(
-                        (t) =>
-                          t.favorite_count +
-                          (t.type == "retweet" ? 0 : t.retweet_count)
-                      )
+                  ),
+                  original: sum(
+                    candidates[candidate._id].metrics.map(
+                      (x) => x.tweets.filter((t) => t.type == 'original').length
                     )
-                  )
-                ).toLocaleString()
-              }}
-              ({{
-                (
-                  sum(
+                  ).toLocaleString(),
+                  retweets: sum(
+                    candidates[candidate._id].metrics.map(
+                      (x) => x.tweets.filter((t) => t.type == 'retweet').length
+                    )
+                  ).toLocaleString(),
+                  replies: sum(
+                    candidates[candidate._id].metrics.map(
+                      (x) => x.tweets.filter((t) => t.type == 'reply').length
+                    )
+                  ).toLocaleString(),
+                  quotes: sum(
+                    candidates[candidate._id].metrics.map(
+                      (x) => x.tweets.filter((t) => t.type == 'quote').length
+                    )
+                  ).toLocaleString(),
+                  impact: sum(
                     candidates[candidate._id].metrics.map((m) =>
                       sum(
                         m.tweets.map(
                           (t) =>
                             t.favorite_count +
-                            (t.type == "retweet" ? 0 : t.retweet_count)
+                            (t.type == 'retweet' ? 0 : t.retweet_count)
                         )
                       )
                     )
-                  ) / x.length
-                )
-                  .toFixed(1)
-                  .toLocaleString()
-              }}
-              {{ $t("elections.individual.published.09") }}).
+                  ).toLocaleString(),
+                  impact_daily: (
+                    sum(
+                      candidates[candidate._id].metrics.map((m) =>
+                        sum(
+                          m.tweets.map(
+                            (t) =>
+                              t.favorite_count +
+                              (t.type == 'retweet' ? 0 : t.retweet_count)
+                          )
+                        )
+                      )
+                    ) / x.length
+                  )
+                    .toFixed(1)
+                    .toLocaleString(),
+                })
+              "
+            >
             </v-col>
           </v-row>
           <!-- {{ candidates[candidate.name] }} -->

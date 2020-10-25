@@ -100,22 +100,7 @@
         },
         "individual": {
             "title": "Análise individual de cada candidato",
-            "has_followers": {
-                "01": "Neste momento, ",
-                "02": " tem ",
-                "03": " seguidores."
-            },
-            "published": {
-                "01": "Nos últimos ",
-                "02": " dias, publicou ",
-                "03": " tweets ",
-                "04": " originais, ",
-                "05": " retweets, ",
-                "06": " replies, ",
-                "07": " quotes).",
-                "08": "Criando um impacto total (likes+retweets) de ",
-                "09": " por dia"
-            },
+            "description": "Neste momento, {candidate} tem <strong>{followers}</strong> seguidores.<br>Nos últimos {days} dias, publicou <strong>{tweets} tweets</strong> ({original} originais, {retweets} retweets, {replies} replies, {quotes} quotes). Tendo um impacto total (likes + retweets) de {impact} ({impact_daily} por dia).",
             "plots": {
                 "mentions": "Menções ao longo do tempo para ",
                 "impact": "Tweets e impacto (likes+retweets) para ",
@@ -187,5 +172,12 @@
                 }
             }
         }
+    },
+    "embeddings": {
+        "description": "Nesta página encontra-se uma representação 3D da proximidade das relações entre diferentes contas, mapeada a partir das menções que co-ocorrem. É expectável que as contas mais parecidas e, portanto, visualmente próximas, partilham do seu contexto. Exemplos de contextos de diferentes magnitudes: espaço político, partido político, país, cidadãos de uma cidade, fãs de um clube de futebol. Pode abrir esta visualização numa <a href='{href}'>página dedicada</a>. Experimenta também a visualização UMAP que mostra uma representatção visual diferente. Também podes procurar por handle, experimenta <code>antoniocostapm</code> que é o handle do atual primeiro ministro. "
+    },
+    "statistics": {
+        "size": "Tamanho BD: {mb}MB ({gb}GB)",
+        "accounts": "Contas"
     }
 }

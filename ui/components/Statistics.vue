@@ -1,9 +1,12 @@
 <template>
   <div>
     <h3 class="ma-4">
-      Tamanho BD: {{ Math.round(stats.mb) }}MB ({{
-        Math.round(stats.mb / 1024, 2)
-      }}GB)
+      {{
+        $t("statistics.size", {
+          mb: Math.round(stats.mb),
+          gb: Math.round(stats.mb / 1024, 2),
+        })
+      }}
     </h3>
     <v-row>
       <v-col cols="12" sm="12" md="6" lg="4">
@@ -24,7 +27,9 @@
       </v-col>
       <v-col cols="12" sm="12" md="6" lg="4">
         <v-card>
-          <v-card-title class="subheading font-weight-bold">Users</v-card-title>
+          <v-card-title class="subheading font-weight-bold">{{
+            $t("statistics.accounts")
+          }}</v-card-title>
           <v-divider />
           <v-list>
             <v-list-item v-for="(v, k) in stats.users" :key="k">
@@ -43,7 +48,6 @@
 <script>
 export default {
   async fetch() {
-    console.log();
     const data = await this.$axios.get(`stats`);
     this.stats = data.data;
   },

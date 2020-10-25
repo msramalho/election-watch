@@ -307,6 +307,8 @@ export default {
       this.$store.commit("SET_LANG", this.lang);
       this.$cookies.set("app-lang", this.lang);
       this.$i18n.locale = this.lang;
+      // take care of pages that require reload because of dynamic content
+      if (["elections", "malicious"].includes(this.$route.name)) this.reload();
     },
   },
 };
