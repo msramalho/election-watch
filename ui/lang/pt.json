@@ -57,5 +57,29 @@
         "title":"Bem-vind@ ao Election Watch",
         "manifest":"Vivemos tempos atribulados. A tecnologia avança mais rápido do que a sociedade consegue assimilar e traz consigo consequências, boas e más. As boas são insubstituíveis, mas as más são assustadoras. As redes sociais são indiscutivelmente um oceano de informação onde a mentira se dissolve na verdade e onde qualquer um pode despejar um balde daquilo que acha ser a verdade, ou daquilo que quer que ela seja. Este projeto é um pequeno esforço de <i>separar as águas</i>, de mostrar e evidenciar que há um perigo para a verdade, para justiça, para o planeta, para a democracia e, em última análise, para vida de cada um de nós. O objetivo deste projeto é dar uma visão mais analítica e transparente sobre a realidade das redes sociais em Portugal, com particular relevo para as Eleições Presidenciais Portuguesas a ocorrer em janeiro de 2021. <br />O Election Watch é um projeto filho do <a href='https://github.com/msramalho/twitter-watch/'>Twitter Watch</a>, uma ferramenta de recolha de dados desenvolvida no âmbito de uma <a href='https://msramalho.github.io/msc-thesis.pdf'>tese de mestrado</a> na Faculdade de Engenharia da Universidade do Porto. O código fonte é <a href='https://github.com/msramalho/election-watch'>aberto</a> e qualquer cidadão pode <a href='https://github.com/msramalho/election-watch/issues'>fazer sugestões ou reportar erros</a>.",
         "footer":"De momento, ainda só estamos a monitorizar o Twitter português, mas planeamos integrar outras análises e outras redes sociais em breve."
+    },
+    "general": {
+        "title":"Visão Geral",
+        "description":"Nesta página encontra-se uma descrição geral das contas e respetivos tweets que estamos a monitorizar, no contexto do Twitter Português.",
+        "tweet_types": {
+            "title":"Análise dos diferentes tipos de tweets",
+            "explanation":"Os dois gráficos abaixo mostram a evolução diária dos quatro tipos de tweets possíveis: <ul> <li><i>originals</i> : texto escrito diretamente pelo dono de uma conta</li> <li><i>retweets</i> : tweet original partilhado por outro utilizador</li> <li><i>quotes</i> : um retweet com novo conteúdo textual adicionado</li> <li><i>reply</i> : uma resposta direta a um tweet, aparecendo tipicamente abaixo do mesmo</li> </ul> <br> É importante realçar que o número de contas observadas pode variar e, com elas, o número de tweets diários. Contudo isto pode ser cruzado com os valores na página <a href='/stats'>Estatísticas BD</a>.<br/>",
+            "statistics": {
+                "title":"Algumas estatísticas gerais",
+                "col_stats":{
+                    "title": "Estatística",
+                    "total_start":"Total de tweets nos últimos ",
+                    "total_end":" dias",
+                    "avg":"Média diária",
+                    "max":"Máximo diário",
+                    "min":"Mínimo diário"
+                },
+                "col_values": {
+                    "title":"Valor"
+                }
+            },
+            "plot_1_title": "Valores totais",
+            "plot_2_title": "Valores normalizados (percentagem)"
+        }
     }
 }

@@ -57,5 +57,29 @@
         "title":"Welcome to Election Watch",
         "manifest":"We live troubled times. Technology advances at a faster pace than that which society can accommodate, and that has consequences, good and bad. The good ones are irreplaceable, yet the bad are terrifying. Social Networks represent an ocean of information, where lie dissolves in truth, where anyone can dump a bucket of what they think is truth, or whatever they feel. This project is a small effort to <i>separate the waters</i>, of showing and acknowledging there the truth is in danger, just like justice, the planet, democracies and, <i>in extremis</i>, all of our lives and ways of living. The goal of this project is to give a more analytical and transparent look upon the reality of social networks in Portugal. In particular, to the Portuguese Presidential Elections of January 2021. <br> Election Watch is a child project of <a href='https://github.com/msramalho/twitter-watch/'>Twitter Watch</a>, a tool for data collection developed in the context of my <a href='https://msramalho.github.io/msc-thesis.pdf'>MSc thesis</a> at the Faculty of Engineering of the University of Porto. The source code is <a href='https://github.com/msramalho/election-watch'>open-source</a> and any citizen can <a href='https://github.com/msramalho/election-watch/issues'>make suggestions or report bugs</a>.",
         "footer":"At the moment, we are only monitoring Twitter, but we plan to further extend our analyses and also expand them to other social networks."
+    },
+    "general": {
+        "title":"General Overview",
+        "description":"In this page, you can find an overall description  of the data we are collecting over time, in the context of the Portuguese Twitter.",
+        "tweet_types": {
+            "title":"Analysis of the different tweet types",
+            "explanation":"The two plots below show the daily evolution of the four types of tweets possible: <ul> <li><i>originals</i> : text produced directly by the account</li> <li><i>retweets</i> : original tweet shared by another user</li> <li><i>quotes</i> : retweet with novel content added</li> <li><i>reply</i> : a direct reply to a tweet, typical show in a reply thread below the tweet</li> </ul> <br> It is important to highlight that the number of watched accounts can vary and, with them, the number of daily tweets can also vary. However, this can be cross-checked with the values in our <a href='/stats'>DB Stats</a> page.<br/>",
+            "statistics": {
+                "title":"Some general statistics",
+                "col_stats":{
+                    "title": "Statistic",
+                    "total_start":"Total tweets in the past ",
+                    "total_end":" days",
+                    "avg":"Daily Average",
+                    "max":"Daily Maximum",
+                    "min":"Daily Minimum"
+                },
+                "col_values": {
+                    "title":"Value"
+                }
+            },
+            "plot_1_title": "Total values",
+            "plot_2_title": "Normalized values (percentage)"
+        }
     }
 }

@@ -1,43 +1,59 @@
 <template>
   <div>
     <v-card class="ma-2" :loading="loading_plot ? 'primary' : false">
-      <h3 class="text-center pa-4">Análise dos diferentes tipos de tweets</h3>
-      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
-        Os dois gráficos abaixo mostram a evolução diária dos quatro tipos de tweets possíveis:
-        <ul>
-          <li><i>originals</i> : texto escrito diretamente pelo dono de uma conta</li>
-          <li><i>retweets</i> : tweet original partilhado por outro utilizador</li>
-          <li><i>quotes</i> : um retweet com novo conteúdo textual adicionado</li>
-          <li><i>reply</i> : uma resposta direta a um tweet, aparecendo tipicamente abaixo do mesmo</li>
-        </ul>
-        <br>
-        É importante realçar que o número de contas observadas pode variar e, com elas, o número de tweets diários. Contudo isto pode ser cruzado com os valores na página <nuxt-link to="/stats">Estatísticas BD</nuxt-link>.
-        <br/>
-      </p>
+      <h3 class="text-center pa-4">{{ $t("general.tweet_types.title") }}</h3>
+      <p
+        class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify"
+        v-html="$t('general.tweet_types.explanation')"
+      ></p>
       <div id="types_of_tweets_totals"></div>
-      <br>
+      <br />
       <div id="types_of_tweets_percent"></div>
 
-      <h3 class="text-center pa-4">Algumas estatísticas gerais</h3>
+      <h3 class="text-center pa-4">
+        {{ $t("general.tweet_types.statistics.title") }}
+      </h3>
       <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
         <v-simple-table>
           <thead>
             <tr>
-              <td>Estatística</td>
-              <td>Valor</td>
+              <td>
+                {{ $t("general.tweet_types.statistics.col_stats.title") }}
+              </td>
+              <td>
+                {{ $t("general.tweet_types.statistics.col_values.title") }}
+              </td>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Total de tweets nos últimos {{x.length}} dias</td><td>{{sum(daily).toLocaleString()}}</td>
+              <td>
+                {{
+                  $t("general.tweet_types.statistics.col_stats.total_start") +
+                  x.length +
+                  $t("general.tweet_types.statistics.col_stats.total_end")
+                }}
+              </td>
+              <td>{{ sum(daily).toLocaleString() }}</td>
             </tr>
-            <tr><td>Média diária</td><td>{{parseInt((sum(daily)/daily.length)).toLocaleString()}}</td></tr>
-            <tr><td>Máximo diário</td><td>{{max(daily).toLocaleString()}}</td></tr>
-            <tr><td>Mínimo diário</td><td>{{min(daily).toLocaleString()}}</td></tr>
+            <tr>
+              <td>{{ $t("general.tweet_types.statistics.col_stats.avg") }}</td>
+              <td>
+                {{ parseInt(sum(daily) / daily.length).toLocaleString() }}
+              </td>
+            </tr>
+            <tr>
+              <td>{{ $t("general.tweet_types.statistics.col_stats.max") }}</td>
+              <td>{{ max(daily).toLocaleString() }}</td>
+            </tr>
+            <tr>
+              <td>{{ $t("general.tweet_types.statistics.col_stats.min") }}</td>
+              <td>{{ min(daily).toLocaleString() }}</td>
+            </tr>
           </tbody>
         </v-simple-table>
       </p>
-      <br>
+      <br />
     </v-card>
   </div>
 </template>
@@ -111,14 +127,14 @@ export default {
       ];
       Plotly.newPlot("types_of_tweets_totals", traces, {
         ...options,
-        title: "Valores totais",
+        title: this.$i18n.t("general.tweet_types.plot_1_title"),
       });
 
       let traces2 = JSON.parse(JSON.stringify(traces));
       traces2[0].groupnorm = "percent";
       Plotly.newPlot("types_of_tweets_percent", traces2, {
         ...options,
-        title: "Valores normalizados (percentagem)",
+        title: this.$i18n.t("general.tweet_types.plot_2_title"),
       });
       this.loading_plot = false;
     },
