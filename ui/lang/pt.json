@@ -189,5 +189,13 @@
             "plot_2_title": "Tamanho da base de dados ao longo do tempo",
             "accounts": "#contas"
         }
+    },
+    "logs":{
+        "title": "Logs de Recolha de Dados",
+        "loading": "A carregar...",
+        "logs_erro": "Não foi possível carregar os logs",
+        "running": "a executar há {time}",
+        "started_at": "começou a {started}",
+        "communication_error": "Erro de comunicação, por favor tente novamente."
     }
 }

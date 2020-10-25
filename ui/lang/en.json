@@ -189,5 +189,13 @@
             "plot_2_title": "Database size over time",
             "accounts": "#accounts"
         }
+    },
+    "logs":{
+        "title": "Data Collection Logs",
+        "loading": "Loading...",
+        "logs_erro": "We could not load the logs right now",
+        "running": "running for {time}",
+        "started_at": "started on {started}",
+        "communication_error": "Communication error, please try again."
     }
 }

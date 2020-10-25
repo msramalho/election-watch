@@ -8,10 +8,10 @@
           :loading="$fetchState.pending ? 'primary' : false"
         >
           <h3 v-if="$fetchState.pending" class="text-center ma-4">
-            A carregar...
+            {{ $t("logs.loading") }}
           </h3>
           <h3 v-if="$fetchState.error" class="red--text text-center">
-            Não foi possível carregar os logs
+            {{ $t("logs.logs_erro") }}
           </h3>
           <span v-else-if="!$fetchState.pending">
             <v-list>
@@ -26,9 +26,11 @@
                           >
                         </template>
                         <span>
-                          a executar há {{ log.elapsed[1] }}
+                          {{ $t("logs.running", { time: log.elapsed[1] }) }}
                           <br />
-                          começou em {{ log.elapsed[0] }}
+                          {{
+                            $t("logs.started_at", { started: log.elapsed[0] })
+                          }}
                         </span>
                       </v-tooltip>
                       <span>
@@ -66,7 +68,7 @@
           max-width="100%"
         >
           <h3 v-if="selected.loading" class="text-center ma-4">
-            A carregar...
+            {{ $t("logs.loading") }}
           </h3>
           <!-- <h3 v-if=".error" class="red--text text-center">Could not load logs</h3> -->
           <div v-else>
@@ -142,7 +144,7 @@ export default {
           this.selected.loading = false;
         })
         .catch((_error) => {
-          this.content = "Erro de comunicação, por favor tente novamente.";
+          this.content = this.$i18n.t("communication_error");
           this.selected.loading = false;
         });
     },
