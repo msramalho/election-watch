@@ -160,6 +160,20 @@
           <v-btn
             icon
             class="mx-2"
+            href="https://github.com/msramalho/election-watch"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon large>mdi-github</v-icon>
+          </v-btn>
+        </template>
+        <span>{{ $t("default.source_code") }}</span>
+      </v-tooltip>
+      <v-tooltip left>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            class="mx-2"
             v-on:click="changeLang"
             v-bind="attrs"
             v-on="on"
