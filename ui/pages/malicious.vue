@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex class="text-center">
-      <h1 class="my-10">Atividade Maliciosa</h1>
+      <h1 class="my-10">{{ $t("malicious.title") }}</h1>
       <fakenews />
       <suspensions />
     </v-flex>

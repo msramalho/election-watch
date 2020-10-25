@@ -140,7 +140,7 @@
             "similarity": {
                 "title": "Análise da semelhança entre os seguidores dos diferentes candidatos",
                 "description": "Esta tabela mostra o <a href='https://en.wikipedia.org/wiki/Jaccard_index'>Jaccard Index</a> (JI) para cada par de conjuntos de seguidores no Twitter, entre os diferentes candidatos. Valores mais altos implicam que há uma maior semelhança entre os conjuntos. Se dois candidatos tiverem exatamente os mesmos seguidores, o valor de JI entre eles é 1. Esta é uma possível métrica que indica a polarização entre seguidores, sendo que se espera que candidatos que apelem aos mesmos utilizadores, tenham um JI maior. <br>",
-                "plot_title":"Semelhança entre os conjuntos de seguidores (Jaccard Index)"
+                "plot_title": "Semelhança entre os conjuntos de seguidores (Jaccard Index)"
             },
             "intersection": {
                 "title": "Análise da interseção de seguidores",
@@ -150,8 +150,26 @@
             "radar": {
                 "title": "Análise da interseção de seguidores",
                 "description": "Neste gráfico podemos ver a informação da tabela anterior de uma nova forma, que realça as diferenças entre a capacidade de cada candidato de apelar a seguidores de outros.",
-                "plot_title":"Visualização em radar da interseção de seguidores"
+                "plot_title": "Visualização em radar da interseção de seguidores"
             }
+        }
+    },
+    "malicious": {
+        "title": "Atividade Maliciosa",
+        "fakenews": {
+            "title":"Notícias Falsas",
+            "description":"Nos últimos {days} dias, foram partilhados um total de <strong>{tweets} tweets</strong> contendo links para sites de notícias falsas. Estes tweets receberam um total de <strong>{likes} likes</strong> (média: {likes_per_tweet} likes/tweet) e <strong>{retweets} retweets</strong> (média: {retweets_per_tweet} retweets/tweet). Neste momento, estamos a monitorizar ",
+            "monitoring": "<strong>{websites}</strong> websites e páginas de facebook de notícias falsas.",
+            "plot_daily":"Notícias Falsas por dia",
+            "plot_websites":"Partilhas por site do notícias falsas,<br> filtrado para mínimo de 5 num dos dias",
+            "histogram_websites":"Notícias falsas partilhadas, valor total por site nos últimos {days} dias",
+            "modal":{
+                "title":"Fontes de notícias falsas ({websites})",
+                "suggest": "Podes sugerir novas editanto <a href='https://github.com/msramalho/election-watch/blob/master/core/fakenews.txt'>este ficheiro</a> no nosso repositório."
+            }
+        },
+        "suspensions": {
+
         }
     }
 }

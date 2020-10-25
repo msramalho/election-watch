@@ -1,24 +1,42 @@
 <template>
   <div>
     <v-card class="ma-4" :loading="loading_plot ? 'primary' : false">
-      <h3 class="text-center pa-4">Notícias Falsas</h3>
+      <h3 class="text-center pa-4">{{ $t("malicious.fakenews.title") }}</h3>
       <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
-        Nos últimos {{ x.length }} dias, foram partilhados um total de
-        <strong>{{ sum(totals) }} tweets</strong>
-        contendo links para sites de notícias falsas. Estes tweets receberam um
-        total de
-        <strong>{{ sum(favorite_counts) }} <i>likes</i></strong> (média:
-        {{ (sum(favorite_counts) / sum(totals)).toFixed(2) }} likes/tweet) e
-        <strong>{{ sum(retweet_counts) }} <i>retweets</i></strong> (média:
-        {{ (sum(retweet_counts) / sum(totals)).toFixed(2) }} retweets/tweet).
-        Neste momento, estamos a monitorizar
-        <a @click.stop="dialog_sites = true">
-          <strong>{{ sites.length }}</strong> websites e páginas de facebook</a
+        <span
+          v-html="
+            $t('malicious.fakenews.description', {
+              days: x.length,
+              tweets: sum(totals),
+              likes: sum(favorite_counts),
+              likes_per_tweet: (sum(favorite_counts) / sum(totals)).toFixed(2),
+              retweets: sum(retweet_counts),
+              retweets_per_tweet: (sum(retweet_counts) / sum(totals)).toFixed(
+                2
+              ),
+            })
+          "
+        ></span>
+        <a
+          @click.stop="dialog_sites = true"
+          v-html="
+            $t('malicious.fakenews.monitoring', { websites: sites.length })
+          "
         >
-        de notícias falsas.
+        </a>
       </p>
+      <h3 class="mb-0 pb-0 mx-auto">
+        {{ $t("malicious.fakenews.plot_daily") }}
+      </h3>
       <div id="fakenews_over_time"></div>
+      <h3
+        class="mb-0 pb-0 mx-auto"
+        v-html="$t('malicious.fakenews.plot_websites')"
+      ></h3>
       <div id="fakenews_by_website_more_than_5"></div>
+      <h3 class="mb-0 pb-0 mx-auto">
+        {{ $t("malicious.fakenews.histogram_websites", { days: x.length }) }}
+      </h3>
       <div id="fakenews_by_website_grouped"></div>
       <!-- <div id="fakenews_by_website_heatmap"></div> -->
     </v-card>
@@ -26,18 +44,11 @@
     <v-dialog v-model="dialog_sites" max-width="750">
       <v-card class="text-center">
         <h2 class="headline text-center pa-3">
-          Fontes de notícias falsas ({{ this.sites.length }})
+          {{ $t("malicious.fakenews.modal.title", { websites: sites.length }) }}
         </h2>
 
         <v-card-text>
-          <p class="mb-2">
-            Podes sugerir novas editanto
-            <a
-              href="https://github.com/msramalho/election-watch/blob/master/core/fakenews.txt"
-              >este ficheiro</a
-            >
-            no nosso repositório.
-          </p>
+          <p class="mb-2" v-html="$t('malicious.fakenews.modal.suggest')"></p>
           <v-btn
             v-for="(site, k) in this.sites"
             :key="k"
@@ -130,7 +141,7 @@ export default {
       ];
       Plotly.newPlot("fakenews_over_time", traces, {
         ...options,
-        title: "Notícias Falsas por dia",
+        // title: "Notícias Falsas por dia",
       });
 
       //lineplots
@@ -144,8 +155,7 @@ export default {
         };
       });
       let layoutLines = {
-        title:
-          "Partilhas por site do notícias falsas, <br>filtrado para mínimo de 5 num dos dias",
+        // title: "Partilhas por site do notícias falsas, <br>filtrado para mínimo de 5 num dos dias",
         height: 500,
         colorway: [
           "16DB65",
@@ -187,7 +197,7 @@ export default {
       };
 
       let layout = {
-        title: `Notícias falsas partilhadas, valor total por site nos últimos ${this.x.length} dias`,
+        // title: `Notícias falsas partilhadas, valor total por site nos últimos ${this.x.length} dias`,
         showlegend: false,
         xaxis: {
           tickangle: -45,

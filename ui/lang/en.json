@@ -54,67 +54,67 @@
         }
     },
     "index": {
-        "title":"Welcome to Election Watch",
-        "manifest":"We live troubled times. Technology advances at a faster pace than that which society can accommodate, and that has consequences, good and bad. The good ones are irreplaceable, yet the bad are terrifying. Social Networks represent an ocean of information, where lie dissolves in truth, where anyone can dump a bucket of what they think is truth, or whatever they feel. This project is a small effort to <i>separate the waters</i>, of showing and acknowledging there the truth is in danger, just like justice, the planet, democracies and, <i>in extremis</i>, all of our lives and ways of living. The goal of this project is to give a more analytical and transparent look upon the reality of social networks in Portugal. In particular, to the Portuguese Presidential Elections of January 2021. <br> Election Watch is a child project of <a href='https://github.com/msramalho/twitter-watch/'>Twitter Watch</a>, a tool for data collection developed in the context of my <a href='https://msramalho.github.io/msc-thesis.pdf'>MSc thesis</a> at the Faculty of Engineering of the University of Porto. The source code is <a href='https://github.com/msramalho/election-watch'>open-source</a> and any citizen can <a href='https://github.com/msramalho/election-watch/issues'>make suggestions or report bugs</a>.",
-        "footer":"At the moment, we are only monitoring Twitter, but we plan to further extend our analyses and also expand them to other social networks."
+        "title": "Welcome to Election Watch",
+        "manifest": "We live troubled times. Technology advances at a faster pace than that which society can accommodate, and that has consequences, good and bad. The good ones are irreplaceable, yet the bad are terrifying. Social Networks represent an ocean of information, where lie dissolves in truth, where anyone can dump a bucket of what they think is truth, or whatever they feel. This project is a small effort to <i>separate the waters</i>, of showing and acknowledging there the truth is in danger, just like justice, the planet, democracies and, <i>in extremis</i>, all of our lives and ways of living. The goal of this project is to give a more analytical and transparent look upon the reality of social networks in Portugal. In particular, to the Portuguese Presidential Elections of January 2021. <br> Election Watch is a child project of <a href='https://github.com/msramalho/twitter-watch/'>Twitter Watch</a>, a tool for data collection developed in the context of my <a href='https://msramalho.github.io/msc-thesis.pdf'>MSc thesis</a> at the Faculty of Engineering of the University of Porto. The source code is <a href='https://github.com/msramalho/election-watch'>open-source</a> and any citizen can <a href='https://github.com/msramalho/election-watch/issues'>make suggestions or report bugs</a>.",
+        "footer": "At the moment, we are only monitoring Twitter, but we plan to further extend our analyses and also expand them to other social networks."
     },
     "general": {
-        "title":"General Overview",
-        "description":"In this page, you can find an overall description  of the data we are collecting over time, in the context of the Portuguese Twitter.",
+        "title": "General Overview",
+        "description": "In this page, you can find an overall description  of the data we are collecting over time, in the context of the Portuguese Twitter.",
         "tweet_types": {
-            "title":"Analysis of the different tweet types",
-            "explanation":"The two plots below show the daily evolution of the four types of tweets possible: <ul> <li><i>originals</i> : text produced directly by the account</li> <li><i>retweets</i> : original tweet shared by another user</li> <li><i>quotes</i> : retweet with novel content added</li> <li><i>reply</i> : a direct reply to a tweet, typical show in a reply thread below the tweet</li> </ul> <br> It is important to highlight that the number of watched accounts can vary and, with them, the number of daily tweets can also vary. However, this can be cross-checked with the values in our <a href='/stats'>DB Stats</a> page.<br/>",
+            "title": "Analysis of the different tweet types",
+            "explanation": "The two plots below show the daily evolution of the four types of tweets possible: <ul> <li><i>originals</i> : text produced directly by the account</li> <li><i>retweets</i> : original tweet shared by another user</li> <li><i>quotes</i> : retweet with novel content added</li> <li><i>reply</i> : a direct reply to a tweet, typical show in a reply thread below the tweet</li> </ul> <br> It is important to highlight that the number of watched accounts can vary and, with them, the number of daily tweets can also vary. However, this can be cross-checked with the values in our <a href='/stats'>DB Stats</a> page.<br/>",
             "statistics": {
-                "title":"Some general statistics",
-                "col_stats":{
+                "title": "Some general statistics",
+                "col_stats": {
                     "title": "Statistic",
-                    "total_start":"Total tweets in the past ",
-                    "total_end":" days",
-                    "avg":"Daily Average",
-                    "max":"Daily Maximum",
-                    "min":"Daily Minimum"
+                    "total_start": "Total tweets in the past ",
+                    "total_end": " days",
+                    "avg": "Daily Average",
+                    "max": "Daily Maximum",
+                    "min": "Daily Minimum"
                 },
                 "col_values": {
-                    "title":"Value"
+                    "title": "Value"
                 }
             },
             "plot_1_title": "Total values",
             "plot_2_title": "Normalized values (percentage)"
         },
         "creation_dates": {
-            "title":"Year and month of account creation",
-            "explanation":"The creation date of accounts is one of the main factors that raise suspicions of malicious intent. The peak of account creation registered between March and April 2020 is naturally a consequence of the Covid-19 pandemic and the isolation measures taken in Portugal. This phenomenon was also described in the <a href='https://msramalho.github.io/msc-thesis.pdf'>MSc Thesis</a> that supports the creation of Election Watch."
+            "title": "Year and month of account creation",
+            "explanation": "The creation date of accounts is one of the main factors that raise suspicions of malicious intent. The peak of account creation registered between March and April 2020 is naturally a consequence of the Covid-19 pandemic and the isolation measures taken in Portugal. This phenomenon was also described in the <a href='https://msramalho.github.io/msc-thesis.pdf'>MSc Thesis</a> that supports the creation of Election Watch."
         }
     },
-    "elections":{
-        "title":"2021 Presidential Elections",
-        "mentions":{
+    "elections": {
+        "title": "2021 Presidential Elections",
+        "mentions": {
             "title": "Daily mentions by <strong>name</strong> and <code>@handle</code> for the different candidates"
         },
-        "impact":{
-            "title":"Daily impact of each candidate's activity<br>as a sum of the number of <i>likes</i> and <i>retweets</i> of their <i>tweets</i>"
+        "impact": {
+            "title": "Daily impact of each candidate's activity<br>as a sum of the number of <i>likes</i> and <i>retweets</i> of their <i>tweets</i>"
         },
-        "followers":{
+        "followers": {
             "title": "Daily new followers for each candidate",
             "note": "(the period without changes corresponds to missing data)"
         },
-        "individual":{
-            "title":"Individual Analysis of each candidate",
-            "has_followers":{
-                "01":"Right now, ",
-                "02":" has ",
-                "03":" followers."
+        "individual": {
+            "title": "Individual Analysis of each candidate",
+            "has_followers": {
+                "01": "Right now, ",
+                "02": " has ",
+                "03": " followers."
             },
             "published": {
-                "01":"In the past ",
-                "02":" days, published ",
-                "03":" tweets ",
-                "04":" original, ",
-                "05":" retweets, ",
-                "06":" replies, ",
-                "07":" quotes).",
-                "08":"Making a total impact (likes+retweets) of ",
-                "09":" per day"
+                "01": "In the past ",
+                "02": " days, published ",
+                "03": " tweets ",
+                "04": " original, ",
+                "05": " retweets, ",
+                "06": " replies, ",
+                "07": " quotes).",
+                "08": "Making a total impact (likes+retweets) of ",
+                "09": " per day"
             },
             "plots": {
                 "mentions": "Metions over time for ",
@@ -122,11 +122,11 @@
                 "followers": "New daily followers for ",
                 "daily_impact": "daily impact",
                 "daily_tweets": "daily tweets",
-                "impact_label":"impact",
-                "total_tweets":"#total tweets",
-                "original_tweets":"#original tweets"
+                "impact_label": "impact",
+                "total_tweets": "#total tweets",
+                "original_tweets": "#original tweets"
             },
-            "tweets_table":{
+            "tweets_table": {
                 "_id": "ID",
                 "type": "Type",
                 "full_text": "Text",
@@ -140,7 +140,7 @@
             "similarity": {
                 "title": "Analysis of the similarity of followeres among the different candidates",
                 "description": "This table shows the <a href='https://en.wikipedia.org/wiki/Jaccard_index'>Jaccard Index</a> (JI) for the followers of each pair of candidates. Higher values mean a greater similarity between the two follower sets. If two candidates have exactly the same number of followers, the JI value will be 1. This is one possible metric of polarization between followers. It is expected that candidates that appeal to the same users share a larger JI value. <br>",
-                "plot_title":"Similarity between sets of followers (Jaccard Index)"
+                "plot_title": "Similarity between sets of followers (Jaccard Index)"
             },
             "intersection": {
                 "title": "Analysis of followers intersection",
@@ -150,8 +150,26 @@
             "radar": {
                 "title": "Analysis of follower intersection",
                 "description": "In this plot, we can see the same information as in the previous table in a new way, which highlights the differences in how each candidate can appeal to the followers of other candidates.",
-                "plot_title":"Radar plot of followers intersection"
+                "plot_title": "Radar plot of followers intersection"
             }
+        }
+    },
+    "malicious": {
+        "title": "Malicious Activity",
+        "fakenews": {
+            "title": "Fake news",
+            "description": "In the past {days} days, we found a total of <strong>{tweets} tweets</strong> with links to fake news websites. This tweets received a total of <strong>{likes} likes</strong> (avg: {likes_per_tweet} likes/tweet) and <strong>{retweets} retweets</strong> (avg: {retweets_per_tweet} retweets/tweet). Right now, we are monitoring ",
+            "monitoring": "<strong>{websites}</strong> websites and facebook pages that post fake news. ",
+            "plot_daily": "Fake news per day",
+            "plot_websites": "Shares by fake news website,<br> filtered by a minimum of 5 in any day",
+            "histogram_websites": "Fake news shared, totals by website, in the past {days} days",
+            "modal": {
+                "title": "Fake news sources ({websites})",
+                "suggest": "You can suggest new ones by editing <a href='https://github.com/msramalho/election-watch/blob/master/core/fakenews.txt'>this file</a> in our repository."
+            }
+        },
+        "suspensions": {
+
         }
     }
 }
