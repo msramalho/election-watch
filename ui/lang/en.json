@@ -3,6 +3,11 @@
         "and": "and",
         "as": "the"
     },
+    "error": {
+        "not_found": "404 Not found",
+        "other": "Non-existent page",
+        "main_page": "Main page"
+    },
     "default": {
         "home": "Home",
         "change_lang": "Ver em Português",
@@ -48,9 +53,9 @@
             }
         }
     },
-    "error": {
-        "not_found": "404 Not found",
-        "other": "Non-existent page",
-        "main_page": "Main page"
+    "index": {
+        "title":"Welcome to Election Watch",
+        "manifest":"We live troubled times. Technology advances at a faster pace than that which society can accommodate, and that has consequences, good and bad. The good ones are irreplaceable, yet the bad are terrifying. Social Networks represent an ocean of information, where lie dissolves in truth, where anyone can dump a bucket of what they think is truth, or whatever they feel. This project is a small effort to <i>separate the waters</i>, of showing and acknowledging there the truth is in danger, just like justice, the planet, democracies and, <i>in extremis</i>, all of our lives and ways of living. The goal of this project is to give a more analytical and transparent look upon the reality of social networks in Portugal. In particular, to the Portuguese Presidential Elections of January 2021. <br> Election Watch is a child project of <a href='https://github.com/msramalho/twitter-watch/'>Twitter Watch</a>, a tool for data collection developed in the context of my <a href='https://msramalho.github.io/msc-thesis.pdf'>MSc thesis</a> at the Faculty of Engineering of the University of Porto. The source code is <a href='https://github.com/msramalho/election-watch'>open-source</a> and any citizen can <a href='https://github.com/msramalho/election-watch/issues'>make suggestions or report bugs</a>.",
+        "footer":"At the moment, we are only monitoring Twitter, but we plan to further extend our analyses and also expand them to other social networks."
     }
 }

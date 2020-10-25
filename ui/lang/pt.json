@@ -3,6 +3,11 @@
         "and": "e",
         "as": "as"
     },
+    "error": {
+        "not_found": "404 Não encontrado",
+        "other": "Página inexistente",
+        "main_page": "Página Inicial"
+    },
     "default": {
         "home": "Início",
         "change_lang": "View in English",
@@ -48,9 +53,9 @@
             }
         }
     },
-    "error": {
-        "not_found": "404 Não encontrado",
-        "other": "Página inexistente",
-        "main_page": "Página Inicial"
+    "index": {
+        "title":"Bem-vind@ ao Election Watch",
+        "manifest":"Vivemos tempos atribulados. A tecnologia avança mais rápido do que a sociedade consegue assimilar e traz consigo consequências, boas e más. As boas são insubstituíveis, mas as más são assustadoras. As redes sociais são indiscutivelmente um oceano de informação onde a mentira se dissolve na verdade e onde qualquer um pode despejar um balde daquilo que acha ser a verdade, ou daquilo que quer que ela seja. Este projeto é um pequeno esforço de <i>separar as águas</i>, de mostrar e evidenciar que há um perigo para a verdade, para justiça, para o planeta, para a democracia e, em última análise, para vida de cada um de nós. O objetivo deste projeto é dar uma visão mais analítica e transparente sobre a realidade das redes sociais em Portugal, com particular relevo para as Eleições Presidenciais Portuguesas a ocorrer em janeiro de 2021. <br />O Election Watch é um projeto filho do <a href='https://github.com/msramalho/twitter-watch/'>Twitter Watch</a>, uma ferramenta de recolha de dados desenvolvida no âmbito de uma <a href='https://msramalho.github.io/msc-thesis.pdf'>tese de mestrado</a> na Faculdade de Engenharia da Universidade do Porto. O código fonte é <a href='https://github.com/msramalho/election-watch'>aberto</a> e qualquer cidadão pode <a href='https://github.com/msramalho/election-watch/issues'>fazer sugestões ou reportar erros</a>.",
+        "footer":"De momento, ainda só estamos a monitorizar o Twitter português, mas planeamos integrar outras análises e outras redes sociais em breve."
     }
 }
