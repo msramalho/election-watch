@@ -157,19 +157,35 @@
     "malicious": {
         "title": "Atividade Maliciosa",
         "fakenews": {
-            "title":"Notícias Falsas",
-            "description":"Nos últimos {days} dias, foram partilhados um total de <strong>{tweets} tweets</strong> contendo links para sites de notícias falsas. Estes tweets receberam um total de <strong>{likes} likes</strong> (média: {likes_per_tweet} likes/tweet) e <strong>{retweets} retweets</strong> (média: {retweets_per_tweet} retweets/tweet). Neste momento, estamos a monitorizar ",
+            "title": "Notícias Falsas",
+            "description": "Nos últimos {days} dias, foram partilhados um total de <strong>{tweets} tweets</strong> contendo links para sites de notícias falsas. Estes tweets receberam um total de <strong>{likes} likes</strong> (média: {likes_per_tweet} likes/tweet) e <strong>{retweets} retweets</strong> (média: {retweets_per_tweet} retweets/tweet). Neste momento, estamos a monitorizar ",
             "monitoring": "<strong>{websites}</strong> websites e páginas de facebook de notícias falsas.",
-            "plot_daily":"Notícias Falsas por dia",
-            "plot_websites":"Partilhas por site do notícias falsas,<br> filtrado para mínimo de 5 num dos dias",
-            "histogram_websites":"Notícias falsas partilhadas, valor total por site nos últimos {days} dias",
-            "modal":{
-                "title":"Fontes de notícias falsas ({websites})",
+            "plot_daily": "Notícias Falsas por dia",
+            "plot_websites": "Partilhas por site do notícias falsas,<br> filtrado para mínimo de 5 num dos dias",
+            "histogram_websites": "Notícias falsas partilhadas, valor total por site nos últimos {days} dias",
+            "modal": {
+                "title": "Fontes de notícias falsas ({websites})",
                 "suggest": "Podes sugerir novas editanto <a href='https://github.com/msramalho/election-watch/blob/master/core/fakenews.txt'>este ficheiro</a> no nosso repositório."
             }
         },
         "suspensions": {
-
+            "title": "Contas Suspensas",
+            "description": "Nos últimos {days} dias, foram suspensas um total de <strong>{suspended} contas</strong>. Há várias <a href='https://help.twitter.com/en/managing-your-account/suspended-twitter-accounts#:~:text=In%20order%20to%20maintain%20a,reasons%20for%20suspension%20may%20include%3A&text=Abusive%20Tweets%20or%20behavior%3A%20We,violating%20our%20Rules%20surrounding%20abuse.'>razões para a suspensão de contas </a>. Nem sempre uma suspensão corresponde a comportamento malicioso para a comunidade.",
+            "table": {
+                "title": "Lista de contas suspensas",
+                "toolbar_title": "Contas suspensas",
+                "search_label": "Pesquisar",
+                "headers": {
+                    "_id": "ID",
+                    "screen_name": "Handle",
+                    "favourites_count": "Likes",
+                    "followers_count": "Seguidores",
+                    "friends_count": "Segue",
+                    "statuses_count": "Tweets",
+                    "description": "Descrição",
+                    "created_at": "Criada"
+                }
+            }
         }
     }
 }

@@ -2,21 +2,22 @@
   <div>
     <v-card class="ma-4 my-10" :loading="loading_plot ? 'primary' : false">
       <h3 class="text-center pa-4">Contas Suspensas</h3>
-      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
-        Nos últimos {{ x.length - 1 }} dias, foram suspensas um total de
-        <strong>{{ this.suspended.length }} contas</strong>. Há várias
-        <a
-          href="https://help.twitter.com/en/managing-your-account/suspended-twitter-accounts#:~:text=In%20order%20to%20maintain%20a,reasons%20for%20suspension%20may%20include%3A&text=Abusive%20Tweets%20or%20behavior%3A%20We,violating%20our%20Rules%20surrounding%20abuse."
-        >
-          razões para a suspensão de contas </a
-        >. Nem sempre uma suspensão corresponde a comportamento malicioso para a
-        comunidade.
-      </p>
+      <p
+        class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify"
+        v-html="
+          $t('malicious.suspensions.description', {
+            days: x.length - 1,
+            suspended: this.suspended.length,
+          })
+        "
+      ></p>
       <div id="suspensions_over_time"></div>
 
-      <h2 class="text-center pa-4">Lista de contas suspensas</h2>
+      <h2 class="text-center pa-4">
+        {{ $t("malicious.suspensions.table.title") }}
+      </h2>
       <v-data-table
-        :headers="tableHeaders"
+        :headers="tableHeaders()"
         :items="suspended"
         item-key="_id"
         class="elevation-1"
@@ -24,19 +25,18 @@
       >
         <template v-slot:top>
           <v-toolbar flat>
-            <v-toolbar-title>Contas suspensas</v-toolbar-title>
+            <v-toolbar-title>{{
+              $t("malicious.suspensions.table.toolbar_title")
+            }}</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
-              label="Pesquisar"
+              :label="$t('malicious.suspensions.table.search_label')"
               single-line
               hide-details
             ></v-text-field>
           </v-toolbar>
-        </template>
-        <template v-slot:expanded-item="{ headers, item }">
-          <td :colspan="headers.length">More info about {{ item.name }}</td>
         </template>
       </v-data-table>
     </v-card>
@@ -81,7 +81,7 @@ export default {
         }
         return user;
       });
-    this.suspended = this.uniqBy(this.suspended, (x) => x._id);
+    this.suspended = this.uniqueBy(this.suspended, (x) => x._id);
 
     this.display();
   },
@@ -94,24 +94,69 @@ export default {
       dialog_sites: false,
       suspended: [],
       search: "",
-      tableHeaders: [
-        { text: "ID", value: "_id", align: "center" },
-        { text: "Handle", value: "screen_name", align: "center" },
-        { text: "Likes", value: "favourites_count", align: "center" },
-        { text: "Seguidores", value: "followers_count", align: "center" },
-        { text: "Segue", value: "friends_count", align: "center" },
-        { text: "Total Tweets", value: "statuses_count", align: "center" },
-        { text: "Descrição", value: "description", align: "center" },
-        { text: "Criada", value: "created_at", align: "center" },
-        // { text: "", value: "data-table-expand" },
-      ],
     };
   },
   methods: {
     sum(arr) {
       return arr.reduce((a, b) => a + b, 0);
     },
-    uniqBy(a, key) {
+    tableHeaders() {
+      return [
+        {
+          text: this.$i18n.tc("malicious.suspensions.table.headers._id"),
+          value: "_id",
+          align: "center",
+        },
+        {
+          text: this.$i18n.tc(
+            "malicious.suspensions.table.headers.screen_name"
+          ),
+          value: "screen_name",
+          align: "center",
+        },
+        {
+          text: this.$i18n.tc(
+            "malicious.suspensions.table.headers.favourites_count"
+          ),
+          value: "favourites_count",
+          align: "center",
+        },
+        {
+          text: this.$i18n.tc(
+            "malicious.suspensions.table.headers.followers_count"
+          ),
+          value: "followers_count",
+          align: "center",
+        },
+        {
+          text: this.$i18n.tc(
+            "malicious.suspensions.table.headers.friends_count"
+          ),
+          value: "friends_count",
+          align: "center",
+        },
+        {
+          text: this.$i18n.tc(
+            "malicious.suspensions.table.headers.statuses_count"
+          ),
+          value: "statuses_count",
+          align: "center",
+        },
+        {
+          text: this.$i18n.tc(
+            "malicious.suspensions.table.headers.description"
+          ),
+          value: "description",
+          align: "center",
+        },
+        {
+          text: this.$i18n.tc("malicious.suspensions.table.headers.created_at"),
+          value: "created_at",
+          align: "center",
+        },
+      ];
+    },
+    uniqueBy(a, key) {
       var seen = {};
       return a.filter(function (item) {
         var k = key(item);

@@ -169,7 +169,23 @@
             }
         },
         "suspensions": {
-
+            "title": "Suspended Accounts",
+            "description": "In the past {days} days, a total of <strong>{suspended} accounts</strong> were suspended. There are <a href='https://help.twitter.com/en/managing-your-account/suspended-twitter-accounts#:~:text=In%20order%20to%20maintain%20a,reasons%20for%20suspension%20may%20include%3A&text=Abusive%20Tweets%20or%20behavior%3A%20We,violating%20our%20Rules%20surrounding%20abuse.'>many reasons</a> that trigger suspensions. Not all of them correspond to strictly malicious behavior for the community.",
+            "table": {
+                "title": "List of suspended accounts",
+                "toolbar_title": "Suspended accounts",
+                "search_label": "Search",
+                "headers": {
+                    "_id": "ID",
+                    "screen_name": "Handle",
+                    "favourites_count": "Likes",
+                    "followers_count": "Followers",
+                    "friends_count": "Friends",
+                    "statuses_count": "Tweets",
+                    "description": "Description",
+                    "created_at": "Created"
+                }
+            }
         }
     }
 }
