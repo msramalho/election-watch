@@ -1,25 +1,21 @@
 <template>
   <div>
-    <h2 class="text-center pa-4">Polarização entre seguidores de candidatos</h2>
+    <h2 class="text-center pa-4">{{ $t("elections.polarization.title") }}</h2>
     <v-card
       class="ma-2"
       elevation="10"
       :loading="loading_plot ? 'primary' : false"
     >
       <h3 class="text-center pa-4">
-        Análise da semelhança entre os seguidores dos diferentes candidatos
+        {{ $t("elections.polarization.similarity.title") }}
       </h3>
-      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
-        Esta tabela mostra o
-        <a href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard Index</a>
-        (JI) para cada par de conjuntos de seguidores no Twitter, entre os
-        diferentes candidatos. Valores mais altos implicam que há uma maior
-        semelhança entre os conjuntos. Se dois candidatos tiverem exatamente os
-        mesmos seguidores, o valor de JI entre eles é 1. Esta é uma possível
-        métrica que indica a polarização entre seguidores, sendo que se espera
-        que candidatos que apelem aos mesmos utilizadores, tenham um índice
-        maior. <br />
-      </p>
+      <p
+        class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify"
+        v-html="$t('elections.polarization.similarity.description')"
+      ></p>
+      <h3 class="mb-0 pb-0 mx-auto">
+        {{ $t("elections.polarization.similarity.plot_title") }}
+      </h3>
       <div id="followers_polatization_heatmap"></div>
     </v-card>
     <br />
@@ -28,15 +24,16 @@
       elevation="10"
       :loading="loading_plot ? 'primary' : false"
     >
-      <h3 class="text-center pa-4">Análise da interseção de seguidores</h3>
-      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
-        Por outro lado, esta tabela permite responder à questão: Que percentagem
-        dos seguidores de um candidato seguem outro. Neste caso, que percentagem
-        de seguidores do candidato numa dada linha seguem o candidato de uma
-        dada coluna. Naturalmente, exclui-se a diagonal por esse valor ser
-        sempre 1, já que cada candidato partilha todos os seguidores consigo
-        mesmo :)
-      </p>
+      <h3 class="text-center pa-4">
+        {{ $t("elections.polarization.intersection.title") }}
+      </h3>
+      <p
+        class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify"
+        v-html="$t('elections.polarization.intersection.description')"
+      ></p>
+      <h3 class="mb-0 pb-0 mx-auto">
+        {{ $t("elections.polarization.intersection.plot_title") }}
+      </h3>
       <div id="followers_ratios_heatmap"></div>
     </v-card>
     <br />
@@ -45,12 +42,16 @@
       elevation="10"
       :loading="loading_plot ? 'primary' : false"
     >
-      <h3 class="text-center pa-4">Análise da interseção de seguidores</h3>
-      <p class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify">
-        Neste gráfico podemos ver a informação da tabela anterior de uma nova
-        forma, que realça as diferenças entre a capacidade de cada candidato de
-        apelar a seguidores de outros.
-      </p>
+      <h3 class="text-center pa-4">
+        {{ $t("elections.polarization.radar.title") }}
+      </h3>
+      <p
+        class="pa-5 pb-0 col-sm-12 col-md-10 col-lg-8 mx-auto text-justify"
+        v-html="$t('elections.polarization.radar.description')"
+      ></p>
+      <h3 class="mb-0 pb-0 mx-auto">
+        {{ $t("elections.polarization.radar.plot_title") }}
+      </h3>
       <div id="followers_ratios_radar"></div>
     </v-card>
   </div>
@@ -109,7 +110,7 @@ export default {
         },
       ];
       let layout = {
-        title: "Semelhança entre os conjuntos de seguidores (Jaccard Index)",
+        // title: "Semelhança entre os conjuntos de seguidores (Jaccard Index)",
         annotations: [],
         xaxis: {
           ticks: "",
@@ -173,8 +174,7 @@ export default {
         },
       ];
       let layout = {
-        title:
-          "Percentagem de seguidores de Candidat@ linha que seguem Candidat@ coluna",
+        // title: "Percentagem de seguidores de Candidat@ linha que seguem Candidat@ coluna",
         annotations: [],
         xaxis: {
           ticks: "",
@@ -224,9 +224,9 @@ export default {
         return row;
       });
       ratios = this.transpose(ratios);
-      console.log(ratios);
-      console.log(this.ratios);
-      console.log(this.candidates);
+      // console.log(ratios);
+      // console.log(this.ratios);
+      // console.log(this.candidates);
       let candidateNames = this.candidates.map((c) => c[0]);
       let data = this.candidates.map((c, i) => {
         return {
@@ -240,7 +240,7 @@ export default {
       });
 
       let layout = {
-        title: "Visualização em radar da interseção de seguidores",
+        // title: "Visualização em radar da interseção de seguidores",
         polar: {
           radialaxis: {
             visible: true,

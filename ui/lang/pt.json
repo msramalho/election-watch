@@ -54,67 +54,67 @@
         }
     },
     "index": {
-        "title":"Bem-vind@ ao Election Watch",
-        "manifest":"Vivemos tempos atribulados. A tecnologia avança mais rápido do que a sociedade consegue assimilar e traz consigo consequências, boas e más. As boas são insubstituíveis, mas as más são assustadoras. As redes sociais são indiscutivelmente um oceano de informação onde a mentira se dissolve na verdade e onde qualquer um pode despejar um balde daquilo que acha ser a verdade, ou daquilo que quer que ela seja. Este projeto é um pequeno esforço de <i>separar as águas</i>, de mostrar e evidenciar que há um perigo para a verdade, para justiça, para o planeta, para a democracia e, em última análise, para vida de cada um de nós. O objetivo deste projeto é dar uma visão mais analítica e transparente sobre a realidade das redes sociais em Portugal, com particular relevo para as Eleições Presidenciais Portuguesas a ocorrer em janeiro de 2021. <br />O Election Watch é um projeto filho do <a href='https://github.com/msramalho/twitter-watch/'>Twitter Watch</a>, uma ferramenta de recolha de dados desenvolvida no âmbito de uma <a href='https://msramalho.github.io/msc-thesis.pdf'>tese de mestrado</a> na Faculdade de Engenharia da Universidade do Porto. O código fonte é <a href='https://github.com/msramalho/election-watch'>aberto</a> e qualquer cidadão pode <a href='https://github.com/msramalho/election-watch/issues'>fazer sugestões ou reportar erros</a>.",
-        "footer":"De momento, ainda só estamos a monitorizar o Twitter português, mas planeamos integrar outras análises e outras redes sociais em breve."
+        "title": "Bem-vind@ ao Election Watch",
+        "manifest": "Vivemos tempos atribulados. A tecnologia avança mais rápido do que a sociedade consegue assimilar e traz consigo consequências, boas e más. As boas são insubstituíveis, mas as más são assustadoras. As redes sociais são indiscutivelmente um oceano de informação onde a mentira se dissolve na verdade e onde qualquer um pode despejar um balde daquilo que acha ser a verdade, ou daquilo que quer que ela seja. Este projeto é um pequeno esforço de <i>separar as águas</i>, de mostrar e evidenciar que há um perigo para a verdade, para justiça, para o planeta, para a democracia e, em última análise, para vida de cada um de nós. O objetivo deste projeto é dar uma visão mais analítica e transparente sobre a realidade das redes sociais em Portugal, com particular relevo para as Eleições Presidenciais Portuguesas a ocorrer em janeiro de 2021. <br />O Election Watch é um projeto filho do <a href='https://github.com/msramalho/twitter-watch/'>Twitter Watch</a>, uma ferramenta de recolha de dados desenvolvida no âmbito de uma <a href='https://msramalho.github.io/msc-thesis.pdf'>tese de mestrado</a> na Faculdade de Engenharia da Universidade do Porto. O código fonte é <a href='https://github.com/msramalho/election-watch'>aberto</a> e qualquer cidadão pode <a href='https://github.com/msramalho/election-watch/issues'>fazer sugestões ou reportar erros</a>.",
+        "footer": "De momento, ainda só estamos a monitorizar o Twitter português, mas planeamos integrar outras análises e outras redes sociais em breve."
     },
     "general": {
-        "title":"Visão Geral",
-        "description":"Nesta página encontra-se uma descrição geral das contas e respetivos tweets que estamos a monitorizar, no contexto do Twitter Português.",
+        "title": "Visão Geral",
+        "description": "Nesta página encontra-se uma descrição geral das contas e respetivos tweets que estamos a monitorizar, no contexto do Twitter Português.",
         "tweet_types": {
-            "title":"Análise dos diferentes tipos de tweets",
-            "explanation":"Os dois gráficos abaixo mostram a evolução diária dos quatro tipos de tweets possíveis: <ul> <li><i>originals</i> : texto escrito diretamente pelo dono de uma conta</li> <li><i>retweets</i> : tweet original partilhado por outro utilizador</li> <li><i>quotes</i> : um retweet com novo conteúdo textual adicionado</li> <li><i>reply</i> : uma resposta direta a um tweet, aparecendo tipicamente abaixo do mesmo</li> </ul> <br> É importante realçar que o número de contas observadas pode variar e, com elas, o número de tweets diários. Contudo isto pode ser cruzado com os valores na página <a href='/stats'>Estatísticas BD</a>.<br/>",
+            "title": "Análise dos diferentes tipos de tweets",
+            "explanation": "Os dois gráficos abaixo mostram a evolução diária dos quatro tipos de tweets possíveis: <ul> <li><i>originals</i> : texto escrito diretamente pelo dono de uma conta</li> <li><i>retweets</i> : tweet original partilhado por outro utilizador</li> <li><i>quotes</i> : um retweet com novo conteúdo textual adicionado</li> <li><i>reply</i> : uma resposta direta a um tweet, aparecendo tipicamente abaixo do mesmo</li> </ul> <br> É importante realçar que o número de contas observadas pode variar e, com elas, o número de tweets diários. Contudo isto pode ser cruzado com os valores na página <a href='/stats'>Estatísticas BD</a>.<br/>",
             "statistics": {
-                "title":"Algumas estatísticas gerais",
-                "col_stats":{
+                "title": "Algumas estatísticas gerais",
+                "col_stats": {
                     "title": "Estatística",
-                    "total_start":"Total de tweets nos últimos ",
-                    "total_end":" dias",
-                    "avg":"Média diária",
-                    "max":"Máximo diário",
-                    "min":"Mínimo diário"
+                    "total_start": "Total de tweets nos últimos ",
+                    "total_end": " dias",
+                    "avg": "Média diária",
+                    "max": "Máximo diário",
+                    "min": "Mínimo diário"
                 },
                 "col_values": {
-                    "title":"Valor"
+                    "title": "Valor"
                 }
             },
             "plot_1_title": "Valores totais",
             "plot_2_title": "Valores normalizados (percentagem)"
         },
         "creation_dates": {
-            "title":"Contas por ano e mês de criação",
-            "explanation":"A data de criação das contas é um dos principais fatores que levantam suspeitas sobre intenção de atividade maliciosa. O pico na criação de contas registado entre março e abril de 2020 mostra-se como uma consequência direta do confinamento imposto pela pandemia Covid-19. Este fenómeno foi também descrito na <a href='https://msramalho.github.io/msc-thesis.pdf'>tese de mestrado</a> que suporta a criação do Election Watch."
+            "title": "Contas por ano e mês de criação",
+            "explanation": "A data de criação das contas é um dos principais fatores que levantam suspeitas sobre intenção de atividade maliciosa. O pico na criação de contas registado entre março e abril de 2020 mostra-se como uma consequência direta do confinamento imposto pela pandemia Covid-19. Este fenómeno foi também descrito na <a href='https://msramalho.github.io/msc-thesis.pdf'>tese de mestrado</a> que suporta a criação do Election Watch."
         }
     },
-    "elections":{
-        "title":"Eleições Presidenciais 2021",
-        "mentions":{
+    "elections": {
+        "title": "Eleições Presidenciais 2021",
+        "mentions": {
             "title": "Menções diárias por <strong>nome</strong> e por <code>@handle</code> para os diferentes candidatos"
         },
-        "impact":{
-            "title":"Impacto diário da atividade de cada candidato<br />medida como a soma do número de <i>likes</i> e <i>retweets</i> aos seus <i>tweets</i>"
+        "impact": {
+            "title": "Impacto diário da atividade de cada candidato<br />medida como a soma do número de <i>likes</i> e <i>retweets</i> aos seus <i>tweets</i>"
         },
-        "followers":{
+        "followers": {
             "title": "Novos seguidores diários de cada candidato.",
             "note": "(o período sem alterações corresponde a falta de dados)"
         },
-        "individual":{
-            "title":"Análise individual de cada candidato",
-            "has_followers":{
-                "01":"Neste momento, ",
-                "02":" tem ",
-                "03":" seguidores."
+        "individual": {
+            "title": "Análise individual de cada candidato",
+            "has_followers": {
+                "01": "Neste momento, ",
+                "02": " tem ",
+                "03": " seguidores."
             },
             "published": {
-                "01":"Nos últimos ",
-                "02":" dias, publicou ",
-                "03":" tweets ",
-                "04":" originais, ",
-                "05":" retweets, ",
-                "06":" replies, ",
-                "07":" quotes).",
-                "08":"Criando um impacto total (likes+retweets) de ",
-                "09":" por dia"
+                "01": "Nos últimos ",
+                "02": " dias, publicou ",
+                "03": " tweets ",
+                "04": " originais, ",
+                "05": " retweets, ",
+                "06": " replies, ",
+                "07": " quotes).",
+                "08": "Criando um impacto total (likes+retweets) de ",
+                "09": " por dia"
             },
             "plots": {
                 "mentions": "Menções ao longo do tempo para ",
@@ -122,17 +122,35 @@
                 "followers": "Novos seguidores diários para ",
                 "daily_impact": "impacto diário",
                 "daily_tweets": "tweets diários",
-                "impact_label":"impacto",
-                "total_tweets":"#tweets totais",
-                "original_tweets":"#tweets originais"
+                "impact_label": "impacto",
+                "total_tweets": "#tweets totais",
+                "original_tweets": "#tweets originais"
             },
-            "tweets_table":{
+            "tweets_table": {
                 "_id": "ID",
                 "type": "Tipo",
                 "full_text": "Texto",
                 "favorite_count": "Likes",
                 "retweet_count": "Retweets",
                 "created_at": "Data"
+            }
+        },
+        "polarization": {
+            "title": "Polarização entre seguidores de candidatos",
+            "similarity": {
+                "title": "Análise da semelhança entre os seguidores dos diferentes candidatos",
+                "description": "Esta tabela mostra o <a href='https://en.wikipedia.org/wiki/Jaccard_index'>Jaccard Index</a> (JI) para cada par de conjuntos de seguidores no Twitter, entre os diferentes candidatos. Valores mais altos implicam que há uma maior semelhança entre os conjuntos. Se dois candidatos tiverem exatamente os mesmos seguidores, o valor de JI entre eles é 1. Esta é uma possível métrica que indica a polarização entre seguidores, sendo que se espera que candidatos que apelem aos mesmos utilizadores, tenham um JI maior. <br>",
+                "plot_title":"Semelhança entre os conjuntos de seguidores (Jaccard Index)"
+            },
+            "intersection": {
+                "title": "Análise da interseção de seguidores",
+                "description": "Por outro lado, esta tabela permite responder à questão: Que percentagem dos seguidores de um candidato seguem outro. Neste caso, que percentagem de seguidores do candidato numa dada linha seguem o candidato de uma dada coluna. Naturalmente, exclui-se a diagonal por esse valor ser sempre 1, já que cada candidato partilha todos os seguidores consigo mesmo :)",
+                "plot_title": "Percentagem de seguidores de Candidat@ linha que seguem Candidat@ coluna"
+            },
+            "radar": {
+                "title": "Análise da interseção de seguidores",
+                "description": "Neste gráfico podemos ver a informação da tabela anterior de uma nova forma, que realça as diferenças entre a capacidade de cada candidato de apelar a seguidores de outros.",
+                "plot_title":"Visualização em radar da interseção de seguidores"
             }
         }
     }

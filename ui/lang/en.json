@@ -134,6 +134,24 @@
                 "retweet_count": "Retweets",
                 "created_at": "Date"
             }
+        },
+        "polarization": {
+            "title": "Polarization between followers of the candidates",
+            "similarity": {
+                "title": "Analysis of the similarity of followeres among the different candidates",
+                "description": "This table shows the <a href='https://en.wikipedia.org/wiki/Jaccard_index'>Jaccard Index</a> (JI) for the followers of each pair of candidates. Higher values mean a greater similarity between the two follower sets. If two candidates have exactly the same number of followers, the JI value will be 1. This is one possible metric of polarization between followers. It is expected that candidates that appeal to the same users share a larger JI value. <br>",
+                "plot_title":"Similarity between sets of followers (Jaccard Index)"
+            },
+            "intersection": {
+                "title": "Analysis of followers intersection",
+                "description": "On the other hand, this table allows us to answer the question: What percentage of followers of a candidate also follows another. In this case, what percentage of followers of the candidate on a given row, follow the candidate on a given column. Naturally, the main diagonal is excluded as this value is always 1, since every candidate shares all followers with her/himself :)",
+                "plot_title": "Percentage of followers of Candidate-row that follow Candidate-column"
+            },
+            "radar": {
+                "title": "Analysis of follower intersection",
+                "description": "In this plot, we can see the same information as in the previous table in a new way, which highlights the differences in how each candidate can appeal to the followers of other candidates.",
+                "plot_title":"Radar plot of followers intersection"
+            }
         }
     }
 }
