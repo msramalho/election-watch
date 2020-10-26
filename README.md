@@ -27,7 +27,7 @@ For a full description, please check the work on which Election Watch is based: 
 
 * `cp example.env .env` and edit
 * `docker-compose up` (pass `-d` for detached mode)
-* 
+
 </details>
 
 
