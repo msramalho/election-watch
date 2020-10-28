@@ -153,13 +153,14 @@ def handle_error_next_api(error, user_id, task="", verbose=True, checkSuspension
         else: update_not_allowed_user(user_id)
         return False  # False means skip
     elif type(error.message) == list and "code" in error.message[0]:
-        code = error.message[0]["code"]  # 88 = rate limit, 32 = authentication failed, 326 is blocked
+        code = int(error.message[0]["code"])  # 88 = rate limit, 32 = authentication failed, 326 is blocked
         if code == 34 or code == 50:  # "Sorry, that page does not exist.", 50:"User not found"
             update_not_allowed_user(user_id, "notfound")
             return False
         elif code == 63:  # 'User has been suspended.'
             update_not_allowed_user(user_id, "suspended")
             return False
+        elif code == 130: pass  # [{'message': 'Over capacity', 'code': 130}]
         # elif code == 88 or code == 32 or code == 326:
         elif code != 88:  # not rate limit
             # todo: notify on error
