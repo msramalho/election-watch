@@ -161,6 +161,7 @@ def handle_error_next_api(error, user_id, task="", verbose=True, checkSuspension
             update_not_allowed_user(user_id, "suspended")
             return False
         elif code == 130: pass  # [{'message': 'Over capacity', 'code': 130}]
+        elif code == 131: pass  # [{'message': 'Internal Error', 'code': 131}]
         # elif code == 88 or code == 32 or code == 326:
         elif code != 88:  # not rate limit
             # todo: notify on error
