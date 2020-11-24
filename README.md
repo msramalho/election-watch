@@ -34,14 +34,11 @@ For a full description, please check the work on which Election Watch is based: 
 <details>
 <summary>Handling mongo dumps</summary>
 
-
+After you download the mongodump zip (in this case from google drive) do
 ```bash
-docker exec some-mongo sh -c 'exec mongodump -d electionwatch --archive' > PATHTOLOCALFILE/dump.archive
+mongorestore --uri="mongodb://localhost:27017/" /d db-election-watch .\election-watch-folder\ --gzip
 ```
 
-```bash
-docker exec -it election-watch_core_1 bash
-```
 </details>
 
 <details>
