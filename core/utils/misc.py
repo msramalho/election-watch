@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime, json, os, operator, atexit
+import datetime, json, os, operator, atexit, re
 from pushbullet import Pushbullet
 
 import functools
@@ -108,6 +108,18 @@ def get_filter_by_day(day):
     day_end = day.replace(hour=23, minute=59, second=59, microsecond=0)
     return {"$gte": day_start, "$lt": day_end}
 
+
+def get_filter_between_days(day1, day2):
+    # expects datetime
+    day_start = day1.replace(hour=0, minute=0, second=0, microsecond=0)
+    day_end = day2.replace(hour=23, minute=59, second=59, microsecond=0)
+    return {"$gte": day_start, "$lt": day_end}
+
+# pre-compile a regex search function for faster regex searches
+
+
+def find_whole_word(w):
+    return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
 
 # register a detection of interruption for scripts
 @atexit.register
