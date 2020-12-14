@@ -151,7 +151,7 @@
             "histogram_websites": "Fake news shared, totals by website, in the past {days} days",
             "modal": {
                 "title": "Fake news sources ({websites})",
-                "suggest": "You can suggest new ones by editing <a href='https://github.com/msramalho/election-watch/blob/master/core/fakenews.txt'>this file</a> in our repository."
+                "suggest": "You can suggest new ones by editing <a href='https://github.com/msramalho/election-watch/blob/master/core/resources/fakenews.txt'>this file</a> in our repository."
             }
         },
         "suspensions": {
@@ -191,7 +191,7 @@
             "accounts": "#accounts"
         }
     },
-    "logs":{
+    "logs": {
         "title": "Data Collection Logs",
         "loading": "Loading...",
         "logs_erro": "We could not load the logs right now",
