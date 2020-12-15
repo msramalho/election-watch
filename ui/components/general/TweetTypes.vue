@@ -106,25 +106,25 @@ export default {
           x: this.x,
           y: this.y.map((x) => x.reply),
           stackgroup: "one",
-          name: "#replies",
+          name: "replies",
         },
         {
           x: this.x,
           y: this.y.map((x) => x.quote),
           stackgroup: "one",
-          name: "#quotes",
+          name: "quotes",
         },
         {
           x: this.x,
           y: this.y.map((x) => x.retweet),
           stackgroup: "one",
-          name: "#retweets",
+          name: "retweets",
         },
         {
           x: this.x,
           y: this.y.map((x) => x.original),
           stackgroup: "one",
-          name: "#originals",
+          name: "originals",
         },
       ];
       Plotly.newPlot("types_of_tweets_totals", traces, {

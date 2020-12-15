@@ -44,6 +44,40 @@
     </v-card>
     <br />
 
+    <br />
+    <v-card class="ma-2" elevation="10">
+      <h3
+        class="text-center pa-4"
+        v-html="$t('elections.hatespeech.title')"
+      ></h3>
+      <v-progress-circular
+        :size="50"
+        indeterminate
+        color="primary"
+        v-if="loading_plot ? 'primary' : false"
+        class="my-10"
+      ></v-progress-circular>
+      <div id="tweet_hatespeech_mentions_all"></div>
+    </v-card>
+    <br />
+
+    <br />
+    <v-card class="ma-2" elevation="10">
+      <h3
+        class="text-center pa-4"
+        v-html="$t('elections.hatespeech.title_minorities')"
+      ></h3>
+      <v-progress-circular
+        :size="50"
+        indeterminate
+        color="primary"
+        v-if="loading_plot ? 'primary' : false"
+        class="my-10"
+      ></v-progress-circular>
+      <div id="tweet_hatespeech_minorities_all"></div>
+    </v-card>
+    <br />
+
     <h2 class="text-center pa-4">{{ $t("elections.individual.title") }}</h2>
     <v-expansion-panels class="my-10" popout multiple>
       <v-expansion-panel
@@ -171,10 +205,12 @@
             {{ $t("elections.individual.plots.mentions") + candidate.name }}
           </h3>
           <div :id="`mentions_over_time_${candidate._id}`"></div>
+
           <h3 class="mb-0 pb-0 mx-auto" style="display: table">
             {{ $t("elections.individual.plots.impact") + candidate.name }}
           </h3>
           <div :id="`tweet_impact_over_time_${candidate._id}`"></div>
+
           <h3 class="mb-0 pb-0 mx-auto" style="display: table">
             {{ $t("elections.individual.plots.followers") + candidate.name }}
           </h3>
@@ -264,6 +300,8 @@ export default {
       return { name: c.name, _id: c._id };
     }); // retrieves the last screen_name only
     this.candidateNames.sort((c1, c2) => c1.name.localeCompare(c2.name));
+    this.fetchHateSpeech();
+
     this.display();
     this.loading_plot = false;
   },
@@ -273,6 +311,19 @@ export default {
       totals: [],
       loading_plot: false,
       candidateNames: [],
+      hatespeech: {},
+      colorway: [
+        "EF7B45",
+        "4F6D7A",
+        "16DB65",
+        "947BD3",
+        "0CAADC",
+        "5eb1bf",
+        "cdedf6",
+        "ef7b45",
+        "d84727",
+        "fffd98",
+      ],
     };
   },
   methods: {
@@ -281,6 +332,127 @@ export default {
     },
     max(arr) {
       return arr.reduce((a, b) => Math.max(a, b));
+    },
+    async fetchHateSpeech() {
+      const r = await this.$axios.get(`task_data`, {
+        params: { task_name: "measure hatespeech" },
+      });
+      this.hatespeech.x = r.data.history[0].map((d) => new Date(d));
+      this.hatespeech.candidates = {};
+      r.data.history[1].forEach((list, i) => {
+        let _ids = Object.keys(list.candidates);
+        _ids.forEach((_id) => {
+          if (this.hatespeech.candidates[_id] === undefined) {
+            this.hatespeech.candidates[_id] = {
+              _id,
+              metrics: [],
+            };
+          }
+          let daily_metrics = list.candidates[_id];
+          daily_metrics.total_hits = daily_metrics.hits.length;
+          daily_metrics.hits_percent =
+            daily_metrics.total_replies > 0
+              ? daily_metrics.total_hits / daily_metrics.total_replies
+              : 0;
+          daily_metrics.minority_arr = daily_metrics.hits
+            .map((hit) => hit.minority)
+            .filter((minority) => minority !== false);
+          daily_metrics.minority_map = daily_metrics.minority_arr.reduce(
+            (acc, e) => acc.set(e, (acc.get(e) || 0) + 1),
+            new Map()
+          );
+
+          this.hatespeech.candidates[_id].metrics.push(list.candidates[_id]);
+        });
+        _ids.forEach((_id) => {
+          let metrics = this.hatespeech.candidates[_id].metrics;
+          let minorities = metrics.map((m) => m.minority_arr).flat();
+          let minorities_hits = {};
+          let minorities_hits_percent = {};
+          let minorities_totals = {};
+          let minorities_totals_percent = {};
+          minorities.forEach((min) => {
+            minorities_hits[min] = metrics.map(
+              (m) => m.minority_map.get(min) ?? 0
+            );
+            minorities_hits_percent[min] = metrics.map((m) =>
+              m.hits.length > 0 && m.minority_map.has(min)
+                ? m.minority_map.get(min) / m.hits.length
+                : 0
+            );
+            minorities_totals[min] = this.sum(
+              metrics.map((m) => m.minority_map.get(min) ?? 0)
+            );
+            minorities_totals_percent[min] = this.sum(
+              metrics.map((m) =>
+                m.hits.length > 0 && m.minority_map.has(min)
+                  ? m.minority_map.get(min) / m.hits.length
+                  : 0
+              )
+            );
+          });
+          let daily_hits = metrics.map((m) => m.total_hits);
+          let hits_percent = metrics.map((m) => m.hits_percent);
+          this.hatespeech.candidates[_id].stats = {
+            daily_hits,
+            hits_percent,
+            minorities_hits,
+            minorities_hits_percent,
+            minorities_totals,
+            minorities_totals_percent,
+          };
+        });
+      });
+      this.displayHateSpeech();
+      this.displayMinoritiesRadar();
+    },
+    displayHateSpeech() {
+      let tracesHate = this.candidateNames.map((cand, i) => {
+        let c = this.hatespeech.candidates[cand._id];
+        return {
+          x: this.x,
+          y: c.stats.daily_hits,
+          type: "scatter",
+          mode: "lines+markers",
+          name: `${cand.name}`,
+        };
+      });
+      Plotly.newPlot(`tweet_hatespeech_mentions_all`, tracesHate, {
+        colorway: this.colorway,
+      });
+    },
+    displayMinoritiesRadar() {
+      let minorities = Object.entries(this.hatespeech.candidates)
+        .map((entry) => Object.keys(entry[1].stats.minorities_hits))
+        .flat()
+        .filter((v, i, a) => a.indexOf(v) === i); //unique minority keys
+      let all_minority_values = [];
+      let data = this.candidateNames.map((cand, i) => {
+        let percent = this.hatespeech.candidates[cand._id].stats
+          .minorities_totals_percent;
+        all_minority_values.push(minorities.map((min) => percent[min] ?? 0));
+        return {
+          type: "scatterpolar",
+          r: minorities.map((min) => percent[min] ?? 0),
+          theta: minorities,
+          fill: "toself",
+          name: cand.name,
+          closedTrace: true,
+        };
+      });
+
+      let layout = {
+        polar: {
+          radialaxis: {
+            visible: true,
+            range: [0, this.max(all_minority_values.flat())],
+          },
+        },
+        autosize: true,
+        height: 600,
+      };
+
+      Plotly.newPlot("tweet_hatespeech_minorities_all", data, layout);
     },
     tableHeaders() {
       return [
@@ -325,18 +497,6 @@ export default {
       return res;
     },
     display() {
-      let colorway = [
-        "EF7B45",
-        "4F6D7A",
-        "16DB65",
-        "947BD3",
-        "0CAADC",
-        "5eb1bf",
-        "cdedf6",
-        "ef7b45",
-        "d84727",
-        "fffd98",
-      ];
       let tracesMentions = this.candidateNames.map((cand, i) => {
         let c = this.candidates[cand._id];
         return {
@@ -348,7 +508,7 @@ export default {
         };
       });
       Plotly.newPlot(`mentions_over_time_all`, tracesMentions, {
-        colorway: colorway,
+        colorway: this.colorway,
         // title: `Menções ao longo do tempo`,
       });
       let tracesImpact = this.candidateNames.map((cand, i) => {
@@ -370,7 +530,7 @@ export default {
         };
       });
       Plotly.newPlot(`tweet_impact_over_time_all`, tracesImpact, {
-        colorway: colorway,
+        colorway: this.colorway,
         // title: `Impacto ao longo do tempo (likes+retweets)`,
       });
 
@@ -385,11 +545,10 @@ export default {
         };
       });
       Plotly.newPlot(`followers_over_time_all`, tracesFollowers, {
-        colorway: colorway,
+        colorway: this.colorway,
         // title: `Novos seguidores diários`,
       });
     },
-
     displayCandidate(cand, i) {
       setTimeout(() => {
         let c = this.candidates[cand._id];

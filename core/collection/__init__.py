@@ -14,6 +14,7 @@ from utils.nlp import *
 from utils.dynamic_parallelism import DynamicParallelism
 
 from utils.task import Task
+from utils.hatespeech import *
 
 # load configuration from JSON
 load_config()

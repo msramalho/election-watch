@@ -92,6 +92,10 @@
         "mentions": {
             "title": "Menções diárias por <strong>nome</strong> e por <code>@handle</code> para os diferentes candidatos"
         },
+        "hatespeech": {
+            "title": "Contagem diária de termos de discurso de ódio usados nas respostas a tweets de cada candidato",
+            "title_minorities": "Número médio de menções a minorias por cada 100 respostas aos tweets de cada candidato"
+        },
         "impact": {
             "title": "Impacto diário da atividade de cada candidato<br />medida como a soma do número de <i>likes</i> e <i>retweets</i> aos seus <i>tweets</i>"
         },
@@ -151,7 +155,7 @@
             "histogram_websites": "Notícias falsas partilhadas, valor total por site nos últimos {days} dias",
             "modal": {
                 "title": "Fontes de notícias falsas ({websites})",
-                "suggest": "Podes sugerir novas editanto <a href='https://github.com/msramalho/election-watch/blob/master/core/fakenews.txt'>este ficheiro</a> no nosso repositório."
+                "suggest": "Podes sugerir novas editanto <a href='https://github.com/msramalho/election-watch/blob/master/core/resources/fakenews.txt'>este ficheiro</a> no nosso repositório."
             }
         },
         "suspensions": {
@@ -191,7 +195,7 @@
             "accounts": "#contas"
         }
     },
-    "logs":{
+    "logs": {
         "title": "Logs de Recolha de Dados",
         "loading": "A carregar...",
         "logs_erro": "Não foi possível carregar os logs",
