@@ -224,9 +224,6 @@ export default {
         return row;
       });
       ratios = this.transpose(ratios);
-      // console.log(ratios);
-      // console.log(this.ratios);
-      // console.log(this.candidates);
       let candidateNames = this.candidates.map((c) => c[0]);
       let data = this.candidates.map((c, i) => {
         return {
