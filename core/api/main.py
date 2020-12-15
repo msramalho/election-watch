@@ -150,7 +150,7 @@ def embeddings_metadata():
 def add_header(response):
     response.cache_control.max_age = 0  # 54000=15min
     response.cache_control.public = True
-    logger.info(request.full_path)
+    # logger.info(request.full_path)
     return response
 
 
