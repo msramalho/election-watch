@@ -13,6 +13,11 @@ from utils.misc import json_to_dict, configs_abs_path, abs_path
 from utils.task import Task
 from utils.db_connect import DBConnect
 
+# disable stdout/sterr
+f = open(os.devnull, 'w')
+sys.stdout = f
+sys.stderr = f
+
 app = Flask(__name__)
 CORS(app)
 
@@ -150,7 +155,7 @@ def embeddings_metadata():
 def add_header(response):
     response.cache_control.max_age = 0  # 54000=15min
     response.cache_control.public = True
-    # logger.info(request.full_path)
+    logger.info(request.full_path)
     return response
 
 
@@ -160,5 +165,5 @@ if __name__ == '__main__':
     # Debug/Development
     # app.run(debug=True, host='0.0.0.0')
     # Production
-    http_server = WSGIServer(('', 5000), app)
+    http_server = WSGIServer(('', 5000), app, log=None, error_log=None)
     http_server.serve_forever()

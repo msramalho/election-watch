@@ -279,6 +279,7 @@ export default {
     const r = await this.$axios.get(`task_data`, {
       params: { task_name: "measure candidates" },
     });
+    this.fetchHateSpeech();
     // read relevant data
     this.x = r.data.history[0].map((d) => new Date(d));
     // this.totals = r.data.history[1].map((x) => x.total).reverse();
@@ -300,7 +301,6 @@ export default {
       return { name: c.name, _id: c._id };
     }); // retrieves the last screen_name only
     this.candidateNames.sort((c1, c2) => c1.name.localeCompare(c2.name));
-    this.fetchHateSpeech();
 
     this.display();
     this.loading_plot = false;
