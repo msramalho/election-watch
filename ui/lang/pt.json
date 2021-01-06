@@ -93,7 +93,7 @@
             "title": "Menções diárias por <strong>nome</strong> e por <code>@handle</code> para os diferentes candidatos"
         },
         "hatespeech": {
-            "title": "Contagem diária de termos de discurso de ódio usados nas respostas a tweets de cada candidato",
+            "title": "Contagem diária de termos de insultos a minorias usados nas respostas a tweets de cada candidato",
             "title_minorities": "Número médio de menções a minorias por cada 100 respostas aos tweets de cada candidato"
         },
         "impact": {

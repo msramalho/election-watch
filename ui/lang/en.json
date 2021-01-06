@@ -93,7 +93,7 @@
             "title": "Daily mentions by <strong>name</strong> and <code>@handle</code> for the different candidates"
         },
         "hatespeech": {
-            "title": "Daily count of hatespeech terms in replies to a given politician's tweets",
+            "title": "Daily count of minority insult terms in replies to a given politician's tweets",
             "title_minorities": "Average number minority mentions per 100 replies to a given politician's tweets"
         },
         "impact": {
