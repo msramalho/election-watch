@@ -90,7 +90,8 @@
     "elections": {
         "title": "Eleições Presidenciais 2021",
         "mentions": {
-            "title": "Menções diárias por <strong>nome</strong> e por <code>@handle</code> para os diferentes candidatos"
+            "title": "Menções diárias por <strong>nome</strong> e por <code>@handle</code> para os diferentes candidatos",
+            "details": "Marcelo Rebelo de Sousa apenas menções textuais, por não ter conta de Twitter, Bruno Fialho desistiu da corrida"
         },
         "hatespeech": {
             "title": "Contagem diária de termos de insultos a minorias usados nas respostas a tweets de cada candidato",

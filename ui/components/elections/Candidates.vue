@@ -3,6 +3,7 @@
     <!-- <v-card class="ma-4 my-10" :loading="loading_plot ? 'primary' : false"> -->
     <v-card class="ma-2" elevation="10">
       <h3 class="text-center pa-4" v-html="$t('elections.mentions.title')"></h3>
+      <small> {{ $t("elections.mentions.details") }}</small>
       <v-progress-circular
         :size="50"
         indeterminate

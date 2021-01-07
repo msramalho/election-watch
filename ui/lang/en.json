@@ -90,7 +90,8 @@
     "elections": {
         "title": "2021 Presidential Elections",
         "mentions": {
-            "title": "Daily mentions by <strong>name</strong> and <code>@handle</code> for the different candidates"
+            "title": "Daily mentions by <strong>name</strong> and <code>@handle</code> for the different candidates",
+            "details": "Marcelo Rebelo de Sousa only with text mentions, as he has no Twitter account, Bruno Fialho yielded"
         },
         "hatespeech": {
             "title": "Daily count of minority insult terms in replies to a given politician's tweets",
