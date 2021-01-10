@@ -75,6 +75,7 @@ def load_config():
 
 
 def pushbullet_notify(message):
+    return  # temporarily overrite
     if "pushbullet_token" not in CONFIG["notifications"]:
         print("Tried to send pushbullet message [%s] but no `notifications.pushbullet_token` was found" % message)
         return
