@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import twitter, datetime, time, json, os, atexit
+from socket import error as SocketError
 from .misc import *
 from . import misc  # for globals like CONFIG
 from .done_message import DoneMessage
@@ -113,9 +114,12 @@ def get_tweets(user, func, since_id_key, oldest_tweet, args={}):
     while len(new_tweets):
         try:
             max_id = tweets[-1]["_id"] - 1 if len(tweets) else None
-            new_tweets = [tweet_to_db_format(t) for t in func(user_id=user["_id"], count=200, max_id=max_id, since_id=since_id, **args)]
-            tweets.extend(new_tweets)
-            if len(new_tweets) and new_tweets[-1]["created_at"] < oldest_tweet: break
+            try:
+                new_tweets = [tweet_to_db_format(t) for t in func(user_id=user["_id"], count=200, max_id=max_id, since_id=since_id, **args)]
+                tweets.extend(new_tweets)
+                if len(new_tweets) and new_tweets[-1]["created_at"] < oldest_tweet: break
+            except SocketError:
+                print("GET request failed with SocketError, retrying...")
         except twitter.TwitterError as e:
             if not handle_error_next_api(e, user["_id"], "get_tweets:%s" % func.__name__, checkSuspension=True): break
     # update db with new value for since_id

@@ -6,7 +6,7 @@ class HatespeechTerms:
     def __init__(self, filename):
         self.terms = pd.read_csv(abs_path(filename), sep=',')
         self.terms.insult = self.terms.insult == "yes"
-        self.terms.minority[self.terms.minority == "no"] = False
+        self.terms.loc[self.terms['minority'] == "no", 'minority'] = False
         self.terms["regex_finder"] = [find_whole_word(w) for w in self.terms["word"].values]
 
     def get_minority(self, word):
