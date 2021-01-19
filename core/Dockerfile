@@ -2,10 +2,9 @@ FROM python:3
 
 # setup mongodb so that we can use mongodump from inside this container
 # instructions here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-RUN add-apt-repository main && \
-	add-apt-repository universe && \
-	add-apt-repository restricted && \
-	add-apt-repository multiverse  && \
+RUN deb http://deb.debian.org/debian stretch main && \
+	deb http://deb.debian.org/debian stretch-updates main && \
+	deb http://security.debian.org stretch/updates main && \
 	apt-get update && \
 	apt-get install -y software-properties-common && \
 	apt-get update && \
