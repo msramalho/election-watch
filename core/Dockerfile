@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.10-rc
 
 # setup mongodb so that we can use mongodump from inside this container
 # instructions here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
