@@ -2,8 +2,8 @@ FROM python:3
 
 # setup mongodb so that we can use mongodump from inside this container
 # instructions here: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-RUN apt-get install software-properties-common && \
-	apt-get update && \
+RUN apt-get update && \
+	apt-get install software-properties-common && \
 	apt install gcc-10 && \
 	wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - && \
 	echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list && \
