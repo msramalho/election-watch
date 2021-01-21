@@ -409,6 +409,7 @@ export default {
     },
     displayHateSpeech() {
       let tracesHate = this.candidateNames.map((cand, i) => {
+        if (cand._id == "0") return {};
         let c = this.hatespeech.candidates[cand._id];
         return {
           x: this.x,
@@ -429,6 +430,7 @@ export default {
         .filter((v, i, a) => a.indexOf(v) === i); //unique minority keys
       let all_minority_values = [];
       let data = this.candidateNames.map((cand, i) => {
+        if (cand._id == "0") return {};
         let percent = this.hatespeech.candidates[cand._id].stats
           .minorities_totals_percent;
         all_minority_values.push(minorities.map((min) => percent[min] ?? 0));
