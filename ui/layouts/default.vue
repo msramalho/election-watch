@@ -145,6 +145,10 @@
         <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
       </v-btn>
       <v-toolbar-title v-text="this.$t('default.title')" />
+      <span
+        style="color: red; margin-left: 10px"
+        v-text="this.$t('default.archived_warning')"
+      ></span>
       <v-spacer />
       <v-text-field
         flat

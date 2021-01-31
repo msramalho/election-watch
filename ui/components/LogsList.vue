@@ -116,7 +116,8 @@
 <script>
 export default {
   async fetch() {
-    const data = await this.$axios.get(`logs`);
+    // const data = await this.$axios.get(`logs`);
+    const data = await this.$axios.get(`logs.json`);
     this.logs = data.data;
   },
   data() {

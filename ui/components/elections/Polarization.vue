@@ -63,9 +63,10 @@ import Plotly from "plotly.js-dist";
 export default {
   async fetch() {
     this.loading_plot = true;
-    const r = await this.$axios.get(`task_data`, {
-      params: { task_name: "measure followers polarization" },
-    });
+    // const r = await this.$axios.get(`task_data`, {params: { task_name: "measure followers polarization" },});
+    const r = await this.$axios.get(
+      `task_data_measure_followers_polarization.json`
+    );
 
     // this.date = r.data.history[0][0]; //only contains this date
     this.candidates = r.data.history[1][0].candidates;

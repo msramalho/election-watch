@@ -83,7 +83,8 @@ export default {
         ['@nuxtjs/axios', {
             // baseURL: "http://35.234.106.142/",
             // baseURL: process.env.DEPLOY_ENV === 'GH_PAGES' ? "https://peaceful-forest-55095.herokuapp.com/http://35.234.106.142/" : "http://localhost:5000/"
-            baseURL: process.env.DEPLOY_ENV === 'GH_PAGES' ? "https://election-watch-api.msramalho.xyz" : "http://35.234.106.142/"
+            // baseURL: process.env.DEPLOY_ENV === 'GH_PAGES' ? "https://election-watch-api.msramalho.xyz" : "http://35.234.106.142/"
+            baseURL: process.env.DEPLOY_ENV === 'GH_PAGES' ? "https://msramalho.github.io/election-watch-portugal-presidentials-2021" : "http://localhost:5000/"
             // baseURL: "http://localhost:5000/"
         }],
         'cookie-universal-nuxt',

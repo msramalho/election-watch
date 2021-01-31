@@ -73,9 +73,8 @@ import Plotly from "plotly.js-dist";
 export default {
   async fetch() {
     this.loading_plot = true;
-    const r = await this.$axios.get(`task_data`, {
-      params: { task_name: "measure fakenews" },
-    });
+    // const r = await this.$axios.get(`task_data`, {params: { task_name: "measure fakenews" },});
+    const r = await this.$axios.get(`task_data_measure_fakenews.json`);
 
     // console.log(r.data);
     // read relevant data

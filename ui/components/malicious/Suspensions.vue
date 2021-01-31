@@ -49,9 +49,8 @@ import Plotly from "plotly.js-dist";
 export default {
   async fetch() {
     this.loading_plot = true;
-    const r = await this.$axios.get(`task_data`, {
-      params: { task_name: "measure suspensions" },
-    });
+    // const r = await this.$axios.get(`task_data`, {params: { task_name: "measure suspensions" },});
+    const r = await this.$axios.get(`task_data_measure_suspensions.json`);
 
     // read relevant data
     this.x = r.data.history[0].map((d) => new Date(d)).reverse();

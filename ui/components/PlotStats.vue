@@ -33,9 +33,8 @@ export default {
   async fetch() {
     this.loading_user_tweets = true;
     this.loading_mb = true;
-    const r = await this.$axios.get(`db_logs`, {
-      // params: { max_items: 500 },
-    });
+    // const r = await this.$axios.get(`db_logs`, {});
+    const data = await this.$axios.get(`db_logs.json`);
     r.data.last_updated = new Date(
       Date.parse(r.data.last_updated)
     ).toLocaleTimeString();

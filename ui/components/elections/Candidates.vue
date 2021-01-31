@@ -277,9 +277,8 @@ import Plotly from "plotly.js-dist";
 export default {
   async fetch() {
     this.loading_plot = true;
-    const r = await this.$axios.get(`task_data`, {
-      params: { task_name: "measure candidates" },
-    });
+    // const r = await this.$axios.get(`task_data`, {params: { task_name: "measure candidates" }});
+    const r = await this.$axios.get(`task_data_measure_candidates.json`);
     this.fetchHateSpeech();
     // read relevant data
     this.x = r.data.history[0].map((d) => new Date(d));
@@ -335,9 +334,8 @@ export default {
       return arr.reduce((a, b) => Math.max(a, b));
     },
     async fetchHateSpeech() {
-      const r = await this.$axios.get(`task_data`, {
-        params: { task_name: "measure hatespeech" },
-      });
+      // const r = await this.$axios.get(`task_data`, {params: { task_name: "measure hatespeech" },});
+      const r = await this.$axios.get(`task_data_measure_hatespeech.json`);
       this.hatespeech.x = r.data.history[0].map((d) => new Date(d));
       this.hatespeech.candidates = {};
       r.data.history[1].forEach((list, i) => {

@@ -66,9 +66,8 @@ import Plotly from "plotly.js-dist";
 export default {
   async fetch() {
     this.loading_plot = true;
-    const r = await this.$axios.get(`task_data`, {
-      params: { task_name: "count by type" },
-    });
+    // const r = await this.$axios.get(`task_data`, {params: { task_name: "count by type" },});
+    const r = await this.$axios.get(`task_data_count_by_type.json`);
 
     this.x = r.data.history[0].map((d) => new Date(d));
     this.y = r.data.history[1];

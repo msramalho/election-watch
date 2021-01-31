@@ -48,7 +48,8 @@
 <script>
 export default {
   async fetch() {
-    const data = await this.$axios.get(`stats`);
+    // const data = await this.$axios.get(`stats`);
+    const data = await this.$axios.get(`stats.json`);
     this.stats = data.data;
   },
   data() {
