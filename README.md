@@ -9,6 +9,15 @@ For a full description, please check the work on which Election Watch is based: 
 <img align="center" src="https://user-images.githubusercontent.com/19508417/97118189-8c869080-1700-11eb-97d6-0d77a7c2ace0.png"></img>
 
 
+## Archived executions
+Since election watch can be deployed in many contexts, this section will be used to list them and the precise code they used, in reverse chronological order:
+
+| Event                                            | From         | To            | Code link                                                             | Dataset link | Dataset contents                 | Archived endpoint                                                                                                    |
+| ------------------------------------------------ | ------------ | ------------- | --------------------------------------------------------------------- | ------------ | -------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Portuguese Presidential Elections, Jan 24th 2021 | Sep 2nd 2020 | Jan 30th 2021 | [v1.0](https://github.com/msramalho/election-watch/releases/tag/v1.0) | [TBD]()      | Twitter(users=xxxx, tweets=yyyy) | [election-watch-portugal-presidentials-2021](https://msramalho.github.io/election-watch-portugal-presidentials-2021) |
+
+
+
 ## Tips and Tricks
 
 <details>
@@ -27,7 +36,7 @@ For a full description, please check the work on which Election Watch is based: 
 
 * `cp example.env .env` and edit
 * `docker-compose up` (pass `-d` for detached mode)
-
+`--noIndexRestore` option:
 </details>
 
 
@@ -36,8 +45,20 @@ For a full description, please check the work on which Election Watch is based: 
 
 After you download the mongodump zip (in this case from google drive) do
 ```bash
-mongorestore --uri="mongodb://localhost:27017/" /d db-election-watch .\election-watch-folder\ --gzip
+# windows
+mongorestore --uri="mongodb://localhost:27017/" /d ew_db .\election-watch-folder\ --gzip
+# linux
+mongorestore --uri="mongodb://localhost:27017/" -d ew_db ./election-watch-folder --gzip
 ```
+`election-watch-folder` is the folder inside the unzipped directory you have downloaded (contains `.bson` files). `ew_db` is the name you want your database to have
+
+The current implementation imposes a 30 time to live (ttl) on the tweets collection for storage optimization purposes, hence it is advisable that you either import without indexes (some are useful like the index on `tweets.user`) or delete the `created_at` index before performing any operation. To import without indexes just append the `--noIndexRestore` option.
+
+For password protected do:
+```bash
+mongorestore -u USERNAME -p PASSWORD --authenticationDatabase admin --uri="mongodb://localhost:27017/" -d ew_db ./election-watch-folder 
+```
+where `USERNAME` is typically `root`
 
 </details>
 
