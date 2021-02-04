@@ -12,9 +12,9 @@ For a full description, please check the work on which Election Watch is based: 
 ## Archived executions
 Since election watch can be deployed in many contexts, this section will be used to list them and the precise code they used, in reverse chronological order:
 
-| Event                                            | From         | To            | Code                                                                  | Dataset | Dataset contents                 | Archived endpoint                                                                                                    |
-| ------------------------------------------------ | ------------ | ------------- | --------------------------------------------------------------------- | ------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Portuguese Presidential Elections, Jan 24th 2021 | Sep 2nd 2020 | Jan 30th 2021 | [v1.0](https://github.com/msramalho/election-watch/releases/tag/v1.0) | [TBD]() | Twitter(users=xxxx, tweets=yyyy) | [election-watch-portugal-presidentials-2021](https://msramalho.github.io/election-watch-portugal-presidentials-2021) |
+| Event                                                                                                                   | From         | To            | Code                                                                  | Dataset | Dataset contents                 | Archived endpoint                                                                                                    |
+| ----------------------------------------------------------------------------------------------------------------------- | ------------ | ------------- | --------------------------------------------------------------------- | ------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [Portuguese Presidential Elections, Jan 24th 2021](https://en.wikipedia.org/wiki/2021_Portuguese_presidential_election) | Sep 2nd 2020 | Jan 30th 2021 | [v1.0](https://github.com/msramalho/election-watch/releases/tag/v1.0) | [TBD]() | Twitter(users=xxxx, tweets=yyyy) | [election-watch-portugal-presidentials-2021](https://msramalho.github.io/election-watch-portugal-presidentials-2021) |
 
 
 <!-- TODO: include bibtex citation -->
@@ -44,6 +44,10 @@ Since election watch can be deployed in many contexts, this section will be used
 
 <details>
 <summary>Handling mongo dumps</summary>
+Dumps can be made with
+```bash
+mongodump --uri="mongodb://localhost:27017/DATABASE_NAME" --gzip -o dump_folder
+```
 
 After you download the mongodump zip (in this case from google drive) do
 ```bash
