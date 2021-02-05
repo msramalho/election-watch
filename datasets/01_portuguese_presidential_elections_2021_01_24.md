@@ -1,6 +1,6 @@
 # Dataset 01 - Portuguese Presidential Elections, Jan 24th 2021
 
-<h2 align="center"><a href="https://drive.google.com/file/d/1mpm6zXLxavF88DPpp6Xn5Q4zgl8Vobr3/view?usp=sharing">Download 📂</a></h2>
+<h2 align="center"><a href="https://drive.google.com/u/4/uc?id=1mpm6zXLxavF88DPpp6Xn5Q4zgl8Vobr3&export=download">Download 9.5GB 📂</a></h2>
 
 
 This dataset contains tweets and users mostly from the Portuguese Twittersphere. The watched users stem from a seed of political accounts (`usernames`) and news sources(`usernames_news`) (see list in the [config below](#config))
@@ -15,9 +15,10 @@ This dataset contains tweets and users mostly from the Portuguese Twittersphere.
 | code branch archive    | [branch](https://github.com/msramalho/election-watch/tree/archive-2021-presidentials)                                                |
 | tweets                 | `57 155 221` (57 million)                                                                                                            |
 | users                  | `1 115 491` (1 million)                                                                                                              |
+| size                   | `1 115 491` (1 million)                                                                                                              |
 | labels                 | `1857` `suspended` users (along with `time_suspended` date, and `time_unsuspended` in of un-suspensions)                             |
 | archived API for EW UI | [election-watch-portugal-presidentials-2021](https://msramalho.github.io/election-watch-portugal-presidentials-2021)                 |
-| download link          | [download zip](https://drive.google.com/file/d/1mpm6zXLxavF88DPpp6Xn5Q4zgl8Vobr3/view?usp=sharing)                                   |
+| download link          | [download 9.5GB zip](https://drive.google.com/u/4/uc?id=1mpm6zXLxavF88DPpp6Xn5Q4zgl8Vobr3&export=download)                           |
 | restore command        | `mongorestore --uri="mongodb://localhost:27017/" -d ew_db ./election-watch-folder --gzip`                                            |
 
 
