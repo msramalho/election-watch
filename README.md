@@ -17,6 +17,11 @@ Since election watch can be deployed in many contexts, this section will be used
 | Portuguese Presidential Elections, Jan 24th 2021 | Sep 2nd 2020 | Jan 30th 2021 | [v1.0](https://github.com/msramalho/election-watch/releases/tag/v1.0) | [Dataset](datasets/01_portuguese_presidential_elections_2021_01_24.md) | Twitter(tweets=`57 155 221`, users=`1 115 491`) | [election-watch-portugal-presidentials-2021](https://msramalho.github.io/election-watch-portugal-presidentials-2021) |
 
 
+<!-- When you use any of these datasets on your work, please cite [the thesis this is all based on](TODO_ARXIV), here's the `bibtex` version:
+```bibtex
+
+``` -->
+
 <!-- TODO: include bibtex citation -->
 
 
