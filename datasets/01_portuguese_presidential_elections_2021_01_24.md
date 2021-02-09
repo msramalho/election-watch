@@ -30,6 +30,18 @@ This dataset contains a period of 5 days `19/10/2020` - `24/10/2020` where the c
 ![daily_tweets](https://user-images.githubusercontent.com/19508417/106947613-82722600-6722-11eb-80d3-51715b4e9be5.png)
 
 
+# Academic work
+When you use any of these datasets on your work, please cite [the thesis this is all based on](https://arxiv.org/abs/2102.04293), here's the `bibtex` version:
+```bibtex
+@misc{ramalho2021highlevel,
+      title={High-level Approaches to Detect Malicious Political Activity on Twitter}, 
+      author={Miguel Sozinho Ramalho},
+      year={2021},
+      eprint={2102.04293},
+      archivePrefix={arXiv},
+      primaryClass={cs.SI}
+}
+```
 ### Config
 
 ```json

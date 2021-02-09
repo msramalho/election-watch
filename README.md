@@ -17,10 +17,17 @@ Since election watch can be deployed in many contexts, this section will be used
 | Portuguese Presidential Elections, Jan 24th 2021 | Sep 2nd 2020 | Jan 30th 2021 | [v1.0](https://github.com/msramalho/election-watch/releases/tag/v1.0) | [Dataset](datasets/01_portuguese_presidential_elections_2021_01_24.md) | Twitter(tweets=`57 155 221`, users=`1 115 491`) | [election-watch-portugal-presidentials-2021](https://msramalho.github.io/election-watch-portugal-presidentials-2021) |
 
 
-<!-- When you use any of these datasets on your work, please cite [the thesis this is all based on](TODO_ARXIV), here's the `bibtex` version:
+When you use any of these datasets on your work, please cite [the thesis this is all based on](https://arxiv.org/abs/2102.04293), here's the `bibtex` version:
 ```bibtex
-
-``` -->
+@misc{ramalho2021highlevel,
+      title={High-level Approaches to Detect Malicious Political Activity on Twitter}, 
+      author={Miguel Sozinho Ramalho},
+      year={2021},
+      eprint={2102.04293},
+      archivePrefix={arXiv},
+      primaryClass={cs.SI}
+}
+```
 
 <!-- TODO: include bibtex citation -->
 
