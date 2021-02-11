@@ -19,7 +19,7 @@ Since election watch can be deployed in many contexts, this section will be used
 
 When you use any of these datasets on your work, please cite [the thesis this is all based on](https://arxiv.org/abs/2102.04293), here's the `bibtex` version:
 ```bibtex
-@misc{ramalho2021highlevel,
+@masterthesis{ramalho2021highlevel,
       title={High-level Approaches to Detect Malicious Political Activity on Twitter}, 
       author={Miguel Sozinho Ramalho},
       year={2021},
