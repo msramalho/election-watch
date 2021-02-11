@@ -33,7 +33,7 @@ This dataset contains a period of 5 days `19/10/2020` - `24/10/2020` where the c
 # Academic work
 When you use any of these datasets on your work, please cite [the thesis this is all based on](https://arxiv.org/abs/2102.04293), here's the `bibtex` version:
 ```bibtex
-@misc{ramalho2021highlevel,
+@masterthesis{ramalho2021highlevel,
       title={High-level Approaches to Detect Malicious Political Activity on Twitter}, 
       author={Miguel Sozinho Ramalho},
       year={2021},
